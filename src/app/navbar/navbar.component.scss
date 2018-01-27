@@ -15,10 +15,6 @@
   }
 }
 
-.fabric {
-  //background-image: url("/assets/img/shell.jpg");
-}
-
 .profile-picture {
   width: 30px;
   height: 30px;
@@ -29,4 +25,10 @@
 
 .user-control {
   margin-right: 40px;
+}
+
+.home-control {
+  margin-right: 40px;
+  float: left;
+  vertical-align: bottom;
 }

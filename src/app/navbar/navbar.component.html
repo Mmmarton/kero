@@ -1,5 +1,13 @@
 <div class="navbar">
   <div *ngIf="isLoggedIn()">
+    <a routerLink="home" class="home-control">
+      <fa [name]="'home'" [size]="2"></fa>
+      Kero
+    </a>
+    <a routerLink="dashboard" class="home-control">
+      <fa [name]="'cogs'" [size]="2"></fa>
+      Dashboard
+    </a>
     <a routerLink="user/{{user?.username}}" class="user-control">
       <img class="profile-picture" [src]="user?.picture" /> {{user?.nickname}}
     </a>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
-import { User } from '../user/user.model';
 import { MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +12,11 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  stayIn: boolean;
 
   constructor(
     private auth: AuthService,
+    private router: Router,
     public dialogRef: MatDialogRef<LoginComponent>) { }
 
   onNoClick(): void {
@@ -25,7 +27,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.logIn(new User(this.username, this.password));
+    if(this.auth.logIn(this.username, this.password, this.stayIn)) {
+      this.router.navigate(['/dashboard']);
+    }
     this.dialogRef.close();
   }
 

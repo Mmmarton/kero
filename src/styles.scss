@@ -37,7 +37,7 @@ input[type='search'],
 input[type='tel'],
 input[type='text'],
 input[type='url'],
-textarea, select, {
+textarea, select{
   border: none;
   color: $color-secondary;
 }

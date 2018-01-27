@@ -17,13 +17,13 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
+    path: 'error',
+    component: ErrorComponent
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'dashboard',
-  },
-  {
-    path: 'error',
-    component: ErrorComponent
   },
   {
     path: '**',

@@ -1,28 +1,36 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../user/user.model';
-import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 
 @Injectable()
 export class AuthService {
 
   private user: User;
 
-  constructor(private router: Router) {
-    this.logIn(new User("jaja", "123"));
+  constructor(private cookies: CookieService) {
+    this.user = <User>cookies.getObject('user');
   }
 
-  logIn(user: User) {
+  logIn(username: string, password: string, stayIn: boolean) {
+    this.user = this.fetchUser(username, password);
+    if (stayIn && this.user) {
+      this.cookies.putObject("user", this.user);
+    }
+    return this.user;
+  }
+
+  private fetchUser(username: string, password: string) {
+    let user: User = new User(username, password);
     user.firstName = "Jake";
     user.lastName = "Markov";
     user.nickname = "jama";
-    user.picture = "/assets/img/user.jpg"
-    this.user = user;
-    this.router.navigate(['/dashboard']);
+    user.picture = "/assets/img/user.jpg";
+    return user;
   }
 
   logOut() {
+    this.cookies.remove("user");
     this.user = null;
-    this.router.navigate(['/home']);
   }
 
   isLoggedIn() {

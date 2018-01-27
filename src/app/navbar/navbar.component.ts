@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { User } from '../user/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,11 +17,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private auth: AuthService, public dialog: MatDialog) {
+  constructor(private auth: AuthService, public dialog: MatDialog, private router: Router) {
     this.user = auth.getUser();
   }
 
   isLoggedIn() {
+    this.user = this.auth.getUser();
     return this.auth.isLoggedIn();
   }
 
@@ -34,6 +36,7 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     this.auth.logOut();
+    this.router.navigate(['/home']);
   }
 
 }

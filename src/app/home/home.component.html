@@ -1,5 +1,13 @@
 <div class="promo-container">
   <div class="menu-container">
-    <h1>Log in</h1>
+    <h1 class="title">Log in</h1>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="username" placeholder="Username">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" [(ngModel)]="password" placeholder="Password">
+    </mat-form-field>
+    <button (click)="login()">Log in</button>
   </div>
 </div>

@@ -1,6 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./scss/colors";
+@import "./scss/material";
+@import "./scss/mixins";
 @import "../node_modules/milligram/src/milligram";
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 
 body {
   margin: 0;
+  @include unselectable();
+  font-family: 'Raleway', cursive;
+}
+
+button {
+  color: white;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1em;
+  &:hover {
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+  }
+  &:active {
+    background-color: lighten($color-secondary, 10%);
+    border-color: lighten($color-secondary, 10%);
+  }
+}
+
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+textarea, select, {
+  border: none;
 }

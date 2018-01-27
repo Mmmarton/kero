@@ -1,0 +1,21 @@
+@mixin box_shadow($blur, $spread, $color) {
+  -webkit-box-shadow: 0px 0px $blur $spread rgba($color,.8);
+  -moz-box-shadow: 0px 0px $blur $spread rgba($color,.8);
+  box-shadow: 0px 0px $blur $spread rgba($color,.8);
+}
+
+@mixin unselectable() {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+@mixin unfocusable() {
+  user-focus: none;
+  -moz-user-focus: none;
+  -khtml-user-focus: none;
+  -webkit-user-focus: none;
+  -o-user-focus: none;
+}

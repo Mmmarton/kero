@@ -1,12 +1,12 @@
 .scroll-container {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
 .scroll-content {
-  min-width: 600px;
   width: calc(100vw + 26px);
-  height: 100%;
+  height: calc(100% + 26px);;
   overflow: auto;
+  margin: 0px;
 }

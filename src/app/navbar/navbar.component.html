@@ -16,6 +16,8 @@
     </a>
   </div>
   <div *ngIf="!isLoggedIn()">
-    <a (click)="openDialog()">Login</a>
+    <a (click)="openDialog()">
+      <fa [name]="'sign-in'"></fa>
+    </a>
   </div>
 </div>

@@ -9,12 +9,13 @@ body {
   margin: 0;
   @include unselectable();
   font-family: 'Raleway', cursive;
+  color: $color-initial;
 }
 
 button {
-  color: white;
+  @include double_shadow(30px, 5px, black, 5px, 1px, black);
   font-family: 'Indie Flower', cursive;
-  font-size: 1em;
+  font-size: 1.3em;
   &:hover {
     background-color: $color-secondary;
     border-color: $color-secondary;
@@ -23,6 +24,10 @@ button {
     background-color: lighten($color-secondary, 10%);
     border-color: lighten($color-secondary, 10%);
   }
+}
+
+button[type='submit'] {
+  float:right;
 }
 
 input[type='email'],
@@ -34,4 +39,22 @@ input[type='text'],
 input[type='url'],
 textarea, select, {
   border: none;
+  color: $color-secondary;
+}
+
+.mat-dialog-container {
+  background-color: transparent;
+  padding: 0px !important;
+}
+
+a {
+  color: $color-secondary;
+  font-weight: bold;
+  font-family: 'Indie Flower', cursive;
+
+  &:focus,
+	&:hover {
+    color: lighten($color-secondary, 10%);
+    cursor: pointer;
+  }
 }

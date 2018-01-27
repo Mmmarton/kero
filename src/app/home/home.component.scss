@@ -1,31 +1,7 @@
-@import "../../scss/colors";
-@import "../../scss/mixins";
-
 .promo-container {
   padding: 200px;
   width: auto;
   height: 100vh;
   background-image: url("/assets/img/170387.jpg");
   background-size: cover;
-}
-
-.menu-container {
-  width: 30rem;
-  height: 50rem;
-  @include box_shadow(20px, 10px, black);
-  background-color: rgba($color: $color-dark, $alpha: .8);
-  border-style: solid;
-  border-color: rgba($color: $color-primary, $alpha: .8);
-  border-width: 1px;
-  padding: 40px;
-  .title {
-    font-size: 4em;
-    font-weight: 900;
-    padding-left: 0px;
-    margin-bottom: 60px;
-    font-family: 'Indie Flower', cursive;
-  }
-  mat-form-field {
-    width: 100%;
-  }
 }

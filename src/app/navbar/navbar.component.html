@@ -1,0 +1,9 @@
+<div class="navbar">
+  <div *ngIf="isLoggedIn()">
+    <a routerLink="dashboard">Dashboard</a>
+    <a routerLink="home">Home</a>
+  </div>
+  <div *ngIf="!isLoggedIn()">
+    <a (click)="openDialog()">Login</a>
+  </div>
+</div>

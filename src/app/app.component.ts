@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavbarComponent } from './navbar/navbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(private router: Router) { }
+
+  isErroPage() {
+    console.log(this.router.url);
+    return this.router.url == "/error";
+  }
 }

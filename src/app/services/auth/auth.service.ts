@@ -9,7 +9,7 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  login(user: User) {
+  logIn(user: User) {
     user.firstName = "Jake";
     user.lastName = "Markov";
     user.nickname = "jama";
@@ -17,7 +17,11 @@ export class AuthService {
     this.router.navigate(['/dashboard']);
   }
 
-  logout() {
+  logOut() {
     this.user = null;
+  }
+
+  isLoggedIn() {
+    return this.user != null;
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
+import { User } from '../user/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +11,13 @@ import { LoginComponent } from '../login/login.component';
 })
 export class NavbarComponent implements OnInit {
 
+  user: User;
+
   ngOnInit() {
   }
 
   constructor(private auth: AuthService, public dialog: MatDialog) {
+    this.user = auth.getUser();
   }
 
   isLoggedIn() {
@@ -26,6 +30,10 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  logOut() {
+    this.auth.logOut();
   }
 
 }

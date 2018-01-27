@@ -11,7 +11,6 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   isErroPage() {
-    console.log(this.router.url);
     return this.router.url == "/error";
   }
 }

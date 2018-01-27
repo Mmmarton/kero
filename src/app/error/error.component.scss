@@ -1,0 +1,22 @@
+@import "../../scss/colors";
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/img/swirl.jpg");
+}
+
+.text-huge {
+  font-size: 8em;
+  text-align: center;
+  color: $color-initial;
+  margin-top: 100px;
+}
+
+.text-large {
+  font-size: 5em;
+  text-align: center;
+  color: $color-secondary;
+  margin-top: 20px;
+}

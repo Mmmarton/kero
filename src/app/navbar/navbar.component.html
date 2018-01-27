@@ -1,7 +1,11 @@
-<div class="navbar">
+<div class="navbar" [ngClass]="{'fabric': isLoggedIn()}">
   <div *ngIf="isLoggedIn()">
-    <a routerLink="dashboard">Dashboard</a>
-    <a routerLink="home">Home</a>
+    <a routerLink="user/{{user.username}}" class="user-control">
+      <img class="profile-picture" [src]="user.picture" /> {{user.nickname}}
+    </a>
+    <a (click)="logOut()" class="logout-control">
+      <fa [name]="'sign-out'"></fa>
+    </a>
   </div>
   <div *ngIf="!isLoggedIn()">
     <a (click)="openDialog()">Login</a>

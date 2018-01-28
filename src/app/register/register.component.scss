@@ -2,8 +2,8 @@
 @import "../../scss/mixins";
 
 .menu-container {
-  width: 30rem;
-  height: 50rem;
+  width: 60rem;
+  height: 70rem;
   @include darkenStyle();
   padding: 40px;
   .title {
@@ -17,6 +17,6 @@
     width: 100%;
   }
   button[type='submit'] {
-    margin-top: 20px;
+    margin-top: 60px;
   }
 }

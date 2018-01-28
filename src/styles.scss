@@ -52,7 +52,6 @@ a {
   font-weight: bold;
   font-family: 'Raleway', cursive;
 
-  &:focus,
 	&:hover {
     color: lighten($color-secondary, 10%);
     cursor: pointer;

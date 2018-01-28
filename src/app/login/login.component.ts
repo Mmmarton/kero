@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<LoginComponent>) { }
 
   onNoClick(): void {
@@ -27,9 +29,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if(this.auth.logIn(this.username, this.password, this.stayIn)) {
+    if (this.auth.logIn(this.username, this.password, this.stayIn)) {
       this.router.navigate(['/dashboard']);
     }
+    this.dialogRef.close();
+  }
+
+  openRegister() {
+    let dialogRef = this.dialog.open(RegisterComponent);
     this.dialogRef.close();
   }
 

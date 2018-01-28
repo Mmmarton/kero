@@ -15,6 +15,7 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/guards/auth.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     DashboardComponent,
     ErrorComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,10 @@ import { LoginComponent } from './login/login.component';
     AuthService,
     AuthGuard
   ],
-  entryComponents: [LoginComponent],
+  entryComponents: [
+    LoginComponent,
+    RegisterComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

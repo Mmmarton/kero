@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar" [ngClass]="{'darkbar': isLoggedIn()}">
   <div *ngIf="isLoggedIn()">
     <a routerLink="home" class="home-control">
       <fa [name]="'home'" [size]="2"></fa>
@@ -17,7 +17,7 @@
   </div>
   <div *ngIf="!isLoggedIn()">
     <a (click)="openDialog()">
-      <fa [name]="'sign-in'"></fa>
+      <fa class="shadow-text" [name]="'sign-in'" [size]="2"></fa>
     </a>
   </div>
 </div>

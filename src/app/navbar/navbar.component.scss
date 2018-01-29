@@ -2,12 +2,9 @@
 
 .navbar {
   z-index: 1;
-  @include darkenStyle();
-  @include box_shadow(7px, 1px, black);
   position: fixed;
   padding: 10px;
   width: 100%;
-  border-width: 0px;
   text-align: right;
 
   a {
@@ -31,4 +28,15 @@
   margin-right: 40px;
   float: left;
   vertical-align: bottom;
+}
+
+.darkbar {
+  @include darkenStyle();
+  @include box_shadow(7px, 1px, black);
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+
+.shadow-text {
+  text-shadow: 1px 1px 2px black; 
 }

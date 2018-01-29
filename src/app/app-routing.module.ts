@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,17 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: DashboardComponent
   },
+  // {
+  //   path: 'user',
+  //   canActivate: [AuthGuard],
+  //   component: UserComponent,
+  //   children: [
+  //     {
+  //       path: ':name',
+  //       component: UserComponent
+  //     }
+  //   ]
+  // },
   {
     path: 'error',
     component: ErrorComponent

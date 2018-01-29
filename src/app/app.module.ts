@@ -16,6 +16,7 @@ import { AuthGuard } from './services/guards/auth.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -27,7 +28,8 @@ import { RegisterComponent } from './register/register.component';
     ErrorComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

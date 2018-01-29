@@ -1,10 +1,13 @@
 @import "../../scss/colors";
 @import "../../scss/mixins";
 
-.menu-container {
-  width: 60rem;
-  height: 70rem;
+.outer-container {
   @include darkenStyle();
+  width: 30rem;
+  height: 70rem;
+}
+
+.menu-container {
   padding: 40px;
   .title {
     font-size: 4em;
@@ -17,6 +20,19 @@
     width: 100%;
   }
   button[type='submit'] {
-    margin-top: 60px;
+    margin-top: 30px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .outer-container {
+    height: 50rem;
+    overflow: hidden;
+  }
+
+  .menu-container {
+    width: calc(30rem);
+    height: calc(100%);
+    overflow: auto;
   }
 }

@@ -13,11 +13,8 @@ export class RegisterComponent implements OnInit {
   username: string;
   password: string;
   nickname: string;
-  firstName: string;
-  lastName: string;
   email: string;
   picture: string;
-  loveMe: boolean;
 
   constructor(
     private auth: AuthService,

@@ -9,7 +9,6 @@ import { CookieModule } from 'ngx-cookie';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/guards/auth.guard';
@@ -17,6 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
+import { GaleryComponent } from './galery/galery.component';
+import { EventComponent } from './event/event.component';
 
 
 
@@ -24,12 +25,13 @@ import { UserComponent } from './user/user.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent,
     ErrorComponent,
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    GaleryComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

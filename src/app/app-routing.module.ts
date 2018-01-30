@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { GaleryComponent } from './galery/galery.component';
 
 const routes: Routes = [
   {
@@ -13,9 +13,9 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'dashboard',
+    path: 'galery',
     canActivate: [AuthGuard],
-    component: DashboardComponent
+    component: GaleryComponent
   },
   {
     path: 'user',
@@ -38,7 +38,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'dashboard',
+    redirectTo: 'galery',
   },
   {
     path: '**',

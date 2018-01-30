@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.auth.logIn(this.username, this.password, this.stayIn)) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/galery']);
     }
     this.dialogRef.close();
   }

@@ -13,4 +13,8 @@ export class AppComponent {
   isErroPage() {
     return this.router.url == "/error";
   }
+
+  needPadding() {
+    return this.router.url != "/error" && this.router.url != "/home";
+  }
 }

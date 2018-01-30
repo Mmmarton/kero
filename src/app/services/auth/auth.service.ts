@@ -24,6 +24,7 @@ export class AuthService {
     user.firstName = "Jake";
     user.lastName = "Markov";
     user.nickname = "jama";
+    user.email = "asd@asd.asd";
     user.picture = "/assets/img/user.jpg";
     return user;
   }

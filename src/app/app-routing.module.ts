@@ -17,17 +17,20 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: DashboardComponent
   },
-  // {
-  //   path: 'user',
-  //   canActivate: [AuthGuard],
-  //   component: UserComponent,
-  //   children: [
-  //     {
-  //       path: ':name',
-  //       component: UserComponent
-  //     }
-  //   ]
-  // },
+  {
+    path: 'user',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: ':name',
+        component: UserComponent
+      },
+      {
+        path: '',
+        component: UserComponent
+      }
+    ]
+  },
   {
     path: 'error',
     component: ErrorComponent

@@ -1,6 +1,36 @@
 <div class="container">
-  <p>
-    user works!
-    {{username}}
-  </p>
+  <form class="example-form">
+    <div class="row">
+      <div class="column column-20">
+        <div class='box'>
+          <div class='content'>
+            <a class="profile-file">
+              <fa [name]="'pencil-square'" [size]="2"></fa>
+              <input type="file" (change)="readUrl($event)" name="userfile" (ngModel)="user.picture" />
+            </a>
+            <img [src]="user.picture" class="image" />
+          </div>
+        </div>
+      </div>
+      <mat-divider [vertical]="true"></mat-divider>
+      <div class="column infos">
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="user.username" readonly placeholder="Username" name="username">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" name="nickname">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="user.email" readonly placeholder="Email" name="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="user.firstName" placeholder="Firstname" name="firstName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="user.lastName" placeholder="Lastname" name="lastName">
+        </mat-form-field>
+        <button type="submit">Save</button>
+      </div>
+    </div>
+  </form>
 </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from './user.model';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -8,12 +10,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  username: string;
+  user: User;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit() {
-    this.username = this.route.snapshot.params.name;
+    let username = this.route.snapshot.params.name;
+    if (username) {
+      this.user = new User("Margit");
+    }
+    else {
+      this.user = this.auth.getUser();
+    }
+  }
+
+  readUrl(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event: any) => {
+        this.user.picture = event.target.result;
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
 }

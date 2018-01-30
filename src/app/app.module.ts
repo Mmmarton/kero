@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule } from '@angular/forms';
-import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatDividerModule } from '@angular/material';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { CookieModule } from 'ngx-cookie';
 
@@ -41,6 +41,7 @@ import { UserComponent } from './user/user.component';
     MatNativeDateModule,
     MatInputModule,
     MatCheckboxModule,
+    MatDividerModule,
     Angular2FontawesomeModule,
     CookieModule.forRoot()
   ],

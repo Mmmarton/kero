@@ -8,7 +8,7 @@
       <fa [name]="'cogs'" [size]="2"></fa>
       Dashboard
     </a>
-    <a routerLink="user/{{user?.username}}" class="user-control">
+    <a routerLink="user" class="user-control">
       <img class="profile-picture" [src]="user?.picture" /> {{user?.nickname}}
     </a>
     <a (click)="logOut()" class="logout-control">

@@ -8,7 +8,7 @@
               <fa [name]="'pencil-square'" [size]="2"></fa>
               <input type="file" (change)="readUrl($event)" name="userfile" (ngModel)="user.picture" />
             </a>
-            <img [src]="user.picture" class="image" />
+            <img [src]="user.picture"/>
           </div>
         </div>
       </div>

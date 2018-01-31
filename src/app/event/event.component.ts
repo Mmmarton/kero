@@ -1,29 +1,38 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Event } from './event.model';
-import { TimerService } from '../services/timer/timer.service';
+import { Observable } from "rxjs";
+import { IntervalObservable } from "rxjs/observable/IntervalObservable";
+import 'rxjs/add/operator/takeWhile';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss'],
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, OnDestroy {
 
   @Input()
   event: Event;
   private previewIndex = 0;
-  imageInterval: any;
+  private alive: boolean;
 
-  constructor(private timer: TimerService) {
+  constructor() {
+    this.alive = true;
   }
 
   ngOnInit() {
-    this.timer.repeat(this, () => {
-      console.log(this.event.location)
-    }, 1000);
+    IntervalObservable.create(10000 + Math.random() * 20000)
+      .takeWhile(() => this.alive) // only fires when component is alive
+      .subscribe(() => {
+        this.previewIndex = (this.previewIndex + 1) % this.event.previews.length;
+      });
   }
 
   getPreview() {
     return this.event.previews[this.previewIndex];
+  }
+
+  ngOnDestroy() {
+    this.alive = false; // switches your IntervalObservable off
   }
 }

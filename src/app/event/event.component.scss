@@ -9,13 +9,27 @@ h1 {
   font-size: 1.5em;
 }
 
+h5 {
+  font-weight: bold;
+  color: $color-primary;
+}
+
 .container {
   @include darkenStyle();
   @include box_shadow(7px, 1px, black);
-  margin: 2em;
+  margin: 1em;
   padding: 10px;
   width: 30em;
   height: 15em;
+  overflow: hidden;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: darken($color-secondary, 18%);
+  }
+  &:active {
+    background-color: darken($color-secondary, 15%);
+  }
 }
 
 img {

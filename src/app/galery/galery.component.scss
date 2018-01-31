@@ -6,4 +6,33 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 100%;
+  justify-content: space-evenly;
+  padding-bottom: 5em;
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+.row {
+  align-items: center;
+  justify-content: center;
+  margin: 2em;
+}
+
+.event-add {
+  text-shadow: 1px 1px 5px black;
+  margin: 0px;
+  padding: 0px;
+  h1 {
+    margin: 0px;
+    display: block;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+}
+
+.padder {
+  width: 30em;
+  margin: 1em;
+  padding: 10px;
 }

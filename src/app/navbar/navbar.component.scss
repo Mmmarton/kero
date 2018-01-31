@@ -40,3 +40,13 @@
 .shadow-text {
   text-shadow: 1px 1px 2px black; 
 }
+
+.event-add {
+  text-shadow: 1px 1px 5px black;
+  margin-left: 2em;
+  h1 {
+    display: inline;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+}

@@ -13,10 +13,11 @@ export class GaleryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    for (let i = 0; i < Math.random() * 20 + 5; i++) {
+    let eventCount: number = Math.random() * 5 + 3;
+    for (let i = 0; i < eventCount; i++) {
       this.events.push(new Event(
-        this.getRandomString(20), 
-        new Date(), 
+        this.getRandomString(25),
+        new Date(),
         this.getRandomString(120),
         ["/assets/img/place1.jpg", "/assets/img/place2.jpg", "/assets/img/place3.jpg"]));
     }
@@ -28,6 +29,10 @@ export class GaleryComponent implements OnInit {
       result += Math.random().toString(36).substring(7) + "\n";
     }
     return result;
+  }
+
+  count(size: number) {
+    return new Array(size);
   }
 
 }

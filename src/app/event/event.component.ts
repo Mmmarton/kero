@@ -22,7 +22,7 @@ export class EventComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     IntervalObservable.create(10000 + Math.random() * 20000)
-      .takeWhile(() => this.alive) // only fires when component is alive
+      .takeWhile(() => this.alive)
       .subscribe(() => {
         this.previewIndex = (this.previewIndex + 1) % this.event.previews.length;
       });
@@ -33,6 +33,6 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.alive = false; // switches your IntervalObservable off
+    this.alive = false;
   }
 }

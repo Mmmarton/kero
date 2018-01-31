@@ -56,4 +56,8 @@ a {
     color: lighten($color-secondary, 10%);
     cursor: pointer;
   }
+
+  &:active {
+    color: darken($color-secondary, 5%);
+  }
 }

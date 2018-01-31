@@ -1,5 +1,12 @@
 export class Event {
 
-  constructor(private location: string, private date: Date) {
+  location: string;
+  date: Date;
+  description: string;
+
+  constructor(location: string, date: Date, description: string) {
+    this.location = location;
+    this.date = date;
+    this.description = description;
   }
 }

@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { GaleryComponent } from './galery/galery.component';
 import { EventComponent } from './event/event.component';
+import { LimitPipe } from './pipes/limit.pipe';
 
 
 
@@ -31,7 +32,8 @@ import { EventComponent } from './event/event.component';
     RegisterComponent,
     UserComponent,
     GaleryComponent,
-    EventComponent
+    EventComponent,
+    LimitPipe
   ],
   imports: [
     BrowserModule,

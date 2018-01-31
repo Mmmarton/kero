@@ -2,11 +2,9 @@
   <div *ngIf="isLoggedIn()">
     <a routerLink="home" class="home-control">
       <fa [name]="'home'" [size]="2"></fa>
-      Kero
     </a>
     <a routerLink="galery" class="home-control">
       <fa [name]="'th'" [size]="2"></fa>
-      Events
     </a>
     <a routerLink="user" class="user-control">
       <img class="profile-picture" [src]="user?.picture" /> {{user?.nickname}}

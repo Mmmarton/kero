@@ -1,3 +1,12 @@
-<p>
-  event works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="column column-50">
+      <img [src]="event.picture" class="image" />
+    </div>
+    <div class="column column-50">
+      <h1>{{event.location}}</h1>
+      <h5>{{event.date | date:'yyyy.MM.dd'}}</h5>
+      <p>{{event.description | limit : 100}}</p>
+    </div>
+  </div>
+</div>

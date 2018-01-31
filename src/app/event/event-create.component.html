@@ -1,0 +1,9 @@
+<div class="menu-container">
+    <form (submit)="create()">
+      <h1 class="title">New event</h1>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="title" placeholder="Title" name="title">
+      </mat-form-field>
+      <button type="submit">Create</button>
+    </form>
+  </div>

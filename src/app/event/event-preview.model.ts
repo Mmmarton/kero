@@ -1,12 +1,12 @@
 export class Event {
 
-  location: string;
+  title: string;
   date: Date;
   description: string;
   previews: string[];
 
-  constructor(location: string, date: Date, description?: string, previews?: string[]) {
-    this.location = location;
+  constructor(title: string, date: Date, description?: string, previews?: string[]) {
+    this.title = title;
     this.date = date;
     this.description = description;
     this.previews = previews;

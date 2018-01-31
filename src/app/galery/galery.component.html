@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <a class="event-add">
+    <a (click)="openCreate()" class="event-create">
       <fa [name]="'plus-circle'" [size]="3"></fa>
       <h1>New</h1>
     </a>
   </div>
-  <app-event *ngFor="let event of events" [event]="event"></app-event>
+  <app-event-preview *ngFor="let event of events" [event]="event"></app-event-preview>
   <div *ngFor="let n of count(10)" class="padder"></div>
 </div>

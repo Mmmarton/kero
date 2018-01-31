@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventComponent } from './event.component';
+import { EventPreviewComponent } from './event-preview.component';
 
 describe('EventComponent', () => {
-  let component: EventComponent;
-  let fixture: ComponentFixture<EventComponent>;
+  let component: EventPreviewComponent;
+  let fixture: ComponentFixture<EventPreviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

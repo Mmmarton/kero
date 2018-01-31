@@ -1,0 +1,22 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.menu-container {
+  width: 40rem;
+  height: 35rem;
+  @include darkenStyle();
+  padding: 40px;
+  .title {
+    font-size: 4em;
+    font-weight: 900;
+    padding-left: 0px;
+    margin-bottom: 60px;
+    font-family: 'Indie Flower', cursive;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+  button[type='submit'] {
+    margin-top: 20px;
+  }
+}

@@ -1,15 +1,15 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Event } from './event.model';
+import { Event } from './event-preview.model';
 import { Observable } from "rxjs";
 import { IntervalObservable } from "rxjs/observable/IntervalObservable";
 import 'rxjs/add/operator/takeWhile';
 
 @Component({
-  selector: 'app-event',
-  templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss'],
+  selector: 'app-event-preview',
+  templateUrl: './event-preview.component.html',
+  styleUrls: ['./event-preview.component.scss'],
 })
-export class EventComponent implements OnInit, OnDestroy {
+export class EventPreviewComponent implements OnInit, OnDestroy {
 
   @Input()
   event: Event;

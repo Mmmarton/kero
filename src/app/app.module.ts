@@ -17,8 +17,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { GaleryComponent } from './galery/galery.component';
-import { EventComponent } from './event/event.component';
+import { EventPreviewComponent } from './event/event-preview.component';
 import { LimitPipe } from './pipes/limit.pipe';
+import { EventCreateComponent } from './event/event-create.component';
 
 
 
@@ -32,8 +33,9 @@ import { LimitPipe } from './pipes/limit.pipe';
     RegisterComponent,
     UserComponent,
     GaleryComponent,
-    EventComponent,
-    LimitPipe
+    EventPreviewComponent,
+    LimitPipe,
+    EventCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { LimitPipe } from './pipes/limit.pipe';
   ],
   entryComponents: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    EventCreateComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
     return this.auth.isLoggedIn();
   }
 
-  openDialog(): void {
+  openLogin(): void {
     let dialogRef = this.dialog.open(LoginComponent);
 
     dialogRef.afterClosed().subscribe(result => {

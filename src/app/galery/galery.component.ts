@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from '../event/event.model';
+import { Event } from '../event/event-preview.model';
+import { MatDialog } from '@angular/material';
+import { EventCreateComponent } from '../event/event-create.component';
 
 @Component({
   selector: 'app-galery',
@@ -10,7 +12,7 @@ export class GaleryComponent implements OnInit {
 
   events: Event[] = [];
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     let eventCount: number = Math.random() * 5 + 3;
@@ -33,6 +35,14 @@ export class GaleryComponent implements OnInit {
 
   count(size: number) {
     return new Array(size);
+  }
+
+  openCreate(): void {
+    let dialogRef = this.dialog.open(EventCreateComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

@@ -19,6 +19,7 @@ import { UserComponent } from './user/user.component';
 import { GaleryComponent } from './galery/galery.component';
 import { EventComponent } from './event/event.component';
 import { LimitPipe } from './pipes/limit.pipe';
+import { TimerService } from './services/timer/timer.service';
 
 
 
@@ -51,7 +52,8 @@ import { LimitPipe } from './pipes/limit.pipe';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    TimerService
   ],
   entryComponents: [
     LoginComponent,

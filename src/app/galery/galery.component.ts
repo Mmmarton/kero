@@ -14,7 +14,11 @@ export class GaleryComponent implements OnInit {
 
   ngOnInit() {
     for (let i = 0; i < Math.random() * 20 + 5; i++) {
-      this.events.push(new Event(this.getRandomString(20), new Date(), this.getRandomString(120)));
+      this.events.push(new Event(
+        this.getRandomString(20), 
+        new Date(), 
+        this.getRandomString(120),
+        ["/assets/img/place1.jpg", "/assets/img/place2.jpg", "/assets/img/place3.jpg"]));
     }
   }
 

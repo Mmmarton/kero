@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-event-create',
@@ -8,9 +8,12 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 })
 export class EventCreateComponent implements OnInit {
 
+  title: string;
+
   constructor(
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<EventCreateComponent>) { }
+    public dialogRef: MatDialogRef<EventCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -20,7 +23,7 @@ export class EventCreateComponent implements OnInit {
   }
 
   create() {
-    
+    this.data.createEvent(this.title);
     this.dialogRef.close();
   }
 }

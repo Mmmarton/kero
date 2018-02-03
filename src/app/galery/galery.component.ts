@@ -17,14 +17,14 @@ export class GaleryComponent implements OnInit {
   ngOnInit() {
     let eventCount: number = Math.random() * 5 + 3;
     for (let i = 0; i < eventCount; i++) {
-      this.createEvent(this.getRandomString(25));
+      this.createEvent(this.getRandomString(25), new Date());
     }
   }
 
-  createEvent(title: string) {
+  createEvent(title: string, date: Date) {
     this.events.push(new Event(
       title,
-      new Date(),
+      date,
       this.getRandomString(120),
       ["/assets/img/place1.jpg", "/assets/img/place2.jpg", "/assets/img/place3.jpg"])
     );
@@ -44,7 +44,7 @@ export class GaleryComponent implements OnInit {
 
   openCreate(): void {
     let dialogRef = this.dialog.open(EventCreateComponent, {
-      data: { createEvent: (title: string) => { this.createEvent(title); } }
+      data: { createEvent: (title: string, date: Date) => { this.createEvent(title, date); } }
     });
 
     dialogRef.afterClosed().subscribe(result => {

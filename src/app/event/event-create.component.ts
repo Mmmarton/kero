@@ -9,6 +9,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class EventCreateComponent implements OnInit {
 
   title: string;
+  date: Date;
 
   constructor(
     public dialog: MatDialog,
@@ -23,7 +24,7 @@ export class EventCreateComponent implements OnInit {
   }
 
   create() {
-    this.data.createEvent(this.title);
+    this.data.createEvent(this.title, this.date);
     this.dialogRef.close();
   }
 }

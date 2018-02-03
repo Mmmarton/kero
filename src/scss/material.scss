@@ -38,7 +38,7 @@ $mat-blueish: (
 
 $primary: mat-palette($mat-grey, 500);
 $accent:  mat-palette($mat-blueish, 500);
-$warn:    mat-palette($mat-red, 500);
+$warn:    mat-palette($mat-green, 500);
 
 $theme: mat-dark-theme($primary, $accent, $warn);
 

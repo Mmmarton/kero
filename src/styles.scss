@@ -12,7 +12,7 @@ body {
   color: $color-initial;
 }
 
-button {
+button[type='submit'] {
   @include double_shadow(30px, 5px, black, 5px, 1px, black);
   font-family: 'Indie Flower', cursive;
   font-size: 1.3em;
@@ -60,4 +60,8 @@ a {
   &:active {
     color: darken($color-secondary, 5%);
   }
+}
+
+th {
+  border-bottom: none;
 }

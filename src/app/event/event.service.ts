@@ -22,7 +22,7 @@ export class EventService {
   }
 
   addEvent(title: string, date: Date) {
-    this.events.push(new Event(
+    this.events.unshift(new Event(
       title,
       date,
       "",
@@ -32,6 +32,10 @@ export class EventService {
 
   getEvents() {
     return this.events;
+  }
+
+  getEvent(id: string) {
+    return this.events.find(event => event.id === id);
   }
 
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Event } from './event.model';
+import { EventService } from './event.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-view',
@@ -7,13 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventViewComponent implements OnInit {
 
-  images = [];
   private imagePreviews = ['/assets/img/place1.jpg', '/assets/img/place2.jpg', '/assets/img/place3.jpg'];
+  images = [];
+  event: Event;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private eventService: EventService,
+    private router: Router) { }
 
   ngOnInit() {
-    for (let i = 0; i < Math.floor(Math.random() * 10 + 3); i++) {
+    this.event = this.eventService.getEvent(this.route.snapshot.params.id);
+    if (!this.event) {
+      this.router.navigate(['/galery']);
+    }
+    for (let i = 0; i < Math.floor(Math.random() * 10 + 10); i++) {
       this.images.push(this.imagePreviews[Math.floor(Math.random() * 3)]);
     }
   }

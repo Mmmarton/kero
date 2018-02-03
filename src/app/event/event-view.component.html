@@ -1,10 +1,14 @@
-<div class="details-container">
-  <h1>{{event.title}}</h1>
-  <h5>{{event.date | date:'yyyy.MM.dd'}}</h5>
-  <p>{{event.description}}</p>
-</div>
-
-<div class="iamge-container">
+<div class="outer-container">
+  <div class="details-container" *ngIf="event">
+    <div class="description-container">
+      <a (click)="openCreate()" class="event-edit">
+        <fa [name]="'edit'" [size]="2"></fa>
+      </a>
+      <h1>{{event.title}}</h1>
+      <h5>{{event.date | date:'yyyy.MM.dd'}}</h5>
+      <p>{{event.description}}</p>
+    </div>
+  </div>
   <div class="container" *ngFor="let image of images; let i = index">
     <div class='box'>
       <div class='content'>

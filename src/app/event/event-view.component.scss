@@ -2,7 +2,7 @@
 @import "../../scss/mixins";
 @import "../../scss/boxing";
 
-$imagebox-size: 20em;
+$imagebox-size: 15em;
 
 h1 {
   margin: 0px;
@@ -16,10 +16,26 @@ h5 {
   color: $color-primary;
 }
 
-.iamge-container {
+.event-edit {
+  text-shadow: 1px 1px 5px black;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  float: right;
+}
+
+.outer-container {
   @include flex_container();
   margin: 1em;
   padding-bottom: 5em;
+}
+
+.details-container {
+  @include darken_style();
+  @include box_shadow(7px, 1px, black);
+  margin: 1em;
+  padding: 1em;
+  width: 100%;
 }
 
 .container {

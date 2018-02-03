@@ -31,7 +31,7 @@
 }
 
 .darkbar {
-  @include darkenStyle();
+  @include darken_style();
   @include box_shadow(7px, 1px, black);
   border-left-width: 0px;
   border-right-width: 0px;

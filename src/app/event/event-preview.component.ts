@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Event } from './event-preview.model';
+import { Event } from './event.model';
 import { Observable } from "rxjs";
 import { IntervalObservable } from "rxjs/observable/IntervalObservable";
 import 'rxjs/add/operator/takeWhile';

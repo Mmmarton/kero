@@ -2,6 +2,8 @@
 @import "../../scss/mixins";
 @import "../../scss/boxing";
 
+$imagebox-size: 20em;
+
 h1 {
   margin: 0px;
   color: $color-secondary;
@@ -14,13 +16,19 @@ h5 {
   color: $color-primary;
 }
 
+.iamge-container {
+  @include flex_container();
+  margin: 1em;
+  padding-bottom: 5em;
+}
+
 .container {
   @include darken_style();
   @include box_shadow(7px, 1px, black);
   margin: 1em;
-  padding: 10px;
-  width: 30em;
-  height: 15em;
+  padding: 0.2em;
+  width: $imagebox-size;
+  height: $imagebox-size;
   overflow: hidden;
   cursor: pointer;
   
@@ -35,5 +43,11 @@ h5 {
 img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: scale-down;
+}
+
+.padder {
+  width: $imagebox-size;
+  margin: 1em;
+  padding: 0.2em;
 }

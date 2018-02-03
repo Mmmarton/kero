@@ -16,10 +16,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
-import { GaleryComponent } from './galery/galery.component';
+import { EventListComponent } from './event/event-list.component';
 import { EventPreviewComponent } from './event/event-preview.component';
 import { LimitPipe } from './pipes/limit.pipe';
 import { EventCreateComponent } from './event/event-create.component';
+import { EventViewComponent } from './event/event-view.component';
+import { EventService } from './event/event.service';
 
 
 
@@ -32,10 +34,11 @@ import { EventCreateComponent } from './event/event-create.component';
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    GaleryComponent,
+    EventListComponent,
     EventPreviewComponent,
     LimitPipe,
-    EventCreateComponent
+    EventCreateComponent,
+    EventViewComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { EventCreateComponent } from './event/event-create.component';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    EventService
   ],
   entryComponents: [
     LoginComponent,

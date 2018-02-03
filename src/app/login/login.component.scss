@@ -4,7 +4,7 @@
 .menu-container {
   width: 30rem;
   height: 50rem;
-  @include darkenStyle();
+  @include darken_style();
   padding: 40px;
   .title {
     font-size: 4em;

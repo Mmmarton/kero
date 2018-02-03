@@ -5,7 +5,8 @@ import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
-import { GaleryComponent } from './galery/galery.component';
+import { EventListComponent } from './event/event-list.component';
+import { EventViewComponent } from './event/event-view.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,12 @@ const routes: Routes = [
   {
     path: 'galery',
     canActivate: [AuthGuard],
-    component: GaleryComponent
+    component: EventListComponent
+  },
+  {
+    path: 'event',
+    canActivate: [AuthGuard],
+    component: EventViewComponent
   },
   {
     path: 'user',

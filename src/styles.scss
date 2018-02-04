@@ -86,3 +86,14 @@ a.danger {
   }
 }
 
+button[type='submit'].danger {
+  &:hover {
+    background-color: $color-tertiary;
+    border-color: $color-tertiary;
+  }
+  &:active {
+    background-color: lighten($color-tertiary, 10%);
+    border-color: lighten($color-tertiary, 10%);
+  }
+}
+

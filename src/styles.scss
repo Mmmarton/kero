@@ -69,3 +69,20 @@ th {
 img {
   pointer-events: none;
 }
+
+.danger {
+  color: $color-tertiary;
+}
+
+a.danger {
+  color: $color-tertiary;
+
+  &:hover {
+    color: lighten($color-tertiary, 10%);
+  }
+
+  &:active {
+    color: darken($color-tertiary, 5%);
+  }
+}
+

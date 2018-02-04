@@ -38,4 +38,8 @@ export class EventService {
     return this.events.find(event => event.id === id);
   }
 
+  deleteEvent(event: Event) {
+    this.events.splice(this.events.indexOf(event), 1);
+  }
+
 }

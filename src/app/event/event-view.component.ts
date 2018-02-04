@@ -5,6 +5,7 @@ import { EventService } from './event.service';
 import { Router } from '@angular/router';
 import { EventEditComponent } from './event-edit.component';
 import { MatDialog } from '@angular/material';
+import { EventDeleteComponent } from './event-delete.component';
 
 @Component({
   selector: 'app-event-view',
@@ -42,6 +43,16 @@ export class EventViewComponent implements OnInit {
 
   openEdit(): void {
     let dialogRef = this.dialog.open(EventEditComponent, {
+      data: { event: this.event }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDelete(): void {
+    let dialogRef = this.dialog.open(EventDeleteComponent, {
       data: { event: this.event }
     });
 

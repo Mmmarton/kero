@@ -1,0 +1,19 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.menu-container {
+  width: 40rem;
+  height: 42rem;
+  @include darken_style();
+  padding: 40px;
+  .title {
+    font-size: 4em;
+    font-weight: 900;
+    padding-left: 0px;
+    margin-bottom: 60px;
+    font-family: 'Indie Flower', cursive;
+  }
+  button[type='submit'] {
+    margin-top: 20px;
+  }
+}

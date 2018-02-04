@@ -3,6 +3,9 @@
     <a (click)="openEdit()" class="event-edit">
       <fa [name]="'edit'" [size]="2"></fa>
     </a>
+    <a (click)="openDelete()" class="event-delete danger">
+      <fa [name]="'trash'" [size]="2"></fa>
+    </a>
     <h1>{{event.title}}</h1>
     <h5>{{event.date | date:'yyyy.MM.dd'}}</h5>
     <div class="description">

@@ -23,6 +23,7 @@ import { EventCreateComponent } from './event/event-create.component';
 import { EventViewComponent } from './event/event-view.component';
 import { EventService } from './event/event.service';
 import { EventEditComponent } from './event/event-edit.component';
+import { EventDeleteComponent } from './event/event-delete.component';
 
 
 
@@ -40,7 +41,8 @@ import { EventEditComponent } from './event/event-edit.component';
     LimitPipe,
     EventCreateComponent,
     EventViewComponent,
-    EventEditComponent
+    EventEditComponent,
+    EventDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { EventEditComponent } from './event/event-edit.component';
     LoginComponent,
     RegisterComponent,
     EventCreateComponent,
-    EventEditComponent
+    EventEditComponent,
+    EventDeleteComponent
   ],
   bootstrap: [AppComponent]
 })

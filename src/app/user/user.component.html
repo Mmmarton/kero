@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="example-form">
+  <form (submit)="update()">
     <div class="row">
       <div class="column column-20">
         <div class='box'>
@@ -8,7 +8,7 @@
               <fa [name]="'pencil-square'" [size]="2"></fa>
               <input type="file" (change)="readUrl($event)" name="userfile" (ngModel)="user.picture" />
             </a>
-            <img [src]="user.picture"/>
+            <img [src]="user.picture" />
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
         <mat-form-field>
           <input matInput type="text" [(ngModel)]="user.lastName" placeholder="Lastname" name="lastName">
         </mat-form-field>
-        <button type="submit">Save</button>
+        <button type="submit">Update</button>
       </div>
     </div>
   </form>

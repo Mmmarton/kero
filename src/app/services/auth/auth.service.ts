@@ -8,7 +8,11 @@ export class AuthService {
   private user: User;
 
   constructor(private cookies: CookieService) {
-    this.user = <User>cookies.getObject('user');
+    let user = new User();
+    let savedUser = <User>cookies.getObject('user');
+    if (savedUser) {
+      this.user = user.update(savedUser);
+    }
   }
 
   logIn(username: string, password: string, stayIn: boolean) {
@@ -39,6 +43,19 @@ export class AuthService {
   }
 
   getUser() {
-    return this.user;
+    if (this.user) {
+      return this.user.getCopy();
+    }
+    return null;
+  }
+
+  updateUser(user: User) {
+    if (this.user) {
+      this.user.update(user);
+      if (this.cookies.get('user')) {
+        this.cookies.putObject("user", this.user);
+      }
+    }
+    return null;
   }
 }

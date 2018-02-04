@@ -17,10 +17,12 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     let username = this.route.snapshot.params.name;
     if (username) {
+      //we have a valid username, we should get it from the server
       this.user = new User("Margit");
     }
     else {
-      this.user = this.auth.getUser();
+      let user = this.auth.getUser();
+      this.user = new User().update(user);
     }
   }
 
@@ -34,6 +36,10 @@ export class UserComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]);
     }
+  }
+
+  update() {
+    this.auth.updateUser(this.user);
   }
 
 }

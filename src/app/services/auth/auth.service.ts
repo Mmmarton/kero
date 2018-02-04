@@ -15,9 +15,9 @@ export class AuthService {
     }
   }
 
-  logIn(username: string, password: string, stayIn: boolean) {
+  logIn(username: string, password: string) {
     this.user = this.fetchUser(username, password);
-    if (stayIn && this.user) {
+    if (this.user) {
       this.cookies.putObject("user", this.user);
     }
     return this.user;

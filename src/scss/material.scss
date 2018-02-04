@@ -36,7 +36,7 @@ $mat-blueish: (
   )
 );
 
-$primary: mat-palette($mat-grey, 500);
+$primary: mat-palette($mat-blueish, 500);
 $accent:  mat-palette($mat-blueish, 500);
 $warn:    mat-palette($mat-green, 500);
 

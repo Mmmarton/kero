@@ -22,6 +22,7 @@ import { LimitPipe } from './pipes/limit.pipe';
 import { EventCreateComponent } from './event/event-create.component';
 import { EventViewComponent } from './event/event-view.component';
 import { EventService } from './event/event.service';
+import { EventEditComponent } from './event/event-edit.component';
 
 
 
@@ -38,7 +39,8 @@ import { EventService } from './event/event.service';
     EventPreviewComponent,
     LimitPipe,
     EventCreateComponent,
-    EventViewComponent
+    EventViewComponent,
+    EventEditComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { EventService } from './event/event.service';
   entryComponents: [
     LoginComponent,
     RegisterComponent,
-    EventCreateComponent
+    EventCreateComponent,
+    EventEditComponent
   ],
   bootstrap: [AppComponent]
 })

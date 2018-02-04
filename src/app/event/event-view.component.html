@@ -1,11 +1,11 @@
 <div class="outer-container">
   <div class="details-container" *ngIf="event">
-    <div class="description-container">
-      <a (click)="openCreate()" class="event-edit">
-        <fa [name]="'edit'" [size]="2"></fa>
-      </a>
-      <h1>{{event.title}}</h1>
-      <h5>{{event.date | date:'yyyy.MM.dd'}}</h5>
+    <a (click)="openEdit()" class="event-edit">
+      <fa [name]="'edit'" [size]="2"></fa>
+    </a>
+    <h1>{{event.title}}</h1>
+    <h5>{{event.date | date:'yyyy.MM.dd'}}</h5>
+    <div class="description">
       <p>{{event.description}}</p>
     </div>
   </div>

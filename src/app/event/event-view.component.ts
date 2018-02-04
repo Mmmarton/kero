@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Event } from './event.model';
 import { EventService } from './event.service';
 import { Router } from '@angular/router';
+import { EventEditComponent } from './event-edit.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-event-view',
@@ -16,6 +18,7 @@ export class EventViewComponent implements OnInit {
   event: Event;
 
   constructor(private route: ActivatedRoute,
+    public dialog: MatDialog,
     private eventService: EventService,
     private router: Router) { }
 
@@ -35,6 +38,16 @@ export class EventViewComponent implements OnInit {
 
   count(size: number) {
     return new Array(size);
+  }
+
+  openEdit(): void {
+    let dialogRef = this.dialog.open(EventEditComponent, {
+      data: { event: this.event }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

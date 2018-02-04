@@ -1,0 +1,18 @@
+<div class="menu-container">
+  <form (submit)="save()">
+    <h1 class="title">Edit event</h1>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="event.title" placeholder="Title" name="title">
+    </mat-form-field>
+    <mat-form-field>
+      <input show-todays-date matInput [matDatepicker]="picker" [(ngModel)]="event.date" placeholder="Event date" name="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Description" [(ngModel)]="event.description" name="description" matTextareaAutosize matAutosizeMinRows="2"
+        matAutosizeMaxRows="2"></textarea>
+    </mat-form-field>
+    <button type="submit">Save</button>
+  </form>
+</div>

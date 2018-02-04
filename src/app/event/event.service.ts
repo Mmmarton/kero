@@ -9,7 +9,7 @@ export class EventService {
   constructor() {
     let eventCount: number = Math.random() * 5 + 3;
     for (let i = 0; i < eventCount; i++) {
-      this.addEvent(this.getRandomString(25), new Date());
+      this.addEvent(this.getRandomString(25), new Date(), this.getRandomString(500));
     }
   }
 
@@ -21,11 +21,11 @@ export class EventService {
     return result;
   }
 
-  addEvent(title: string, date: Date) {
+  addEvent(title: string, date: Date, description?: string) {
     this.events.unshift(new Event(
       title,
       date,
-      "",
+      description ? description : "",
       ["/assets/img/place1.jpg", "/assets/img/place2.jpg", "/assets/img/place3.jpg"])
     );
   }

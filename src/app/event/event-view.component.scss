@@ -38,6 +38,11 @@ h5 {
   width: 100%;
 }
 
+.description {
+  word-wrap:break-word;
+  width: 80%;
+}
+
 .container {
   @include darken_style();
   @include box_shadow(7px, 1px, black);

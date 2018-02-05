@@ -1,6 +1,5 @@
 @import "../../scss/colors";
 @import "../../scss/mixins";
-@import "../../scss/boxing";
 
 $imagebox-size: 15em;
 
@@ -54,11 +53,9 @@ h5 {
 .container {
   @include darken_style();
   @include box_shadow(7px, 1px, black);
-  margin: 1em;
+  margin: 0.5em;
   padding: 0.2em;
-  width: $imagebox-size;
-  height: $imagebox-size;
-  overflow: hidden;
+  width: auto;
   cursor: pointer;
   
   &:hover {
@@ -67,16 +64,9 @@ h5 {
   &:active {
     background-color: darken($color-secondary, 15%);
   }
-}
 
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: scale-down;
-}
-
-.padder {
-  width: $imagebox-size;
-  margin: 1em;
-  padding: 0.2em;
+  img {
+    width: auto;
+    height: 15em;
+  }
 }

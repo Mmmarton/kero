@@ -43,3 +43,7 @@ $warn:    mat-palette($mat-green, 500);
 $theme: mat-dark-theme($primary, $accent, $warn);
 
 @include angular-material-theme($theme);
+
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+  transform: none !important;
+}

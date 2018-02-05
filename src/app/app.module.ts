@@ -24,7 +24,8 @@ import { EventViewComponent } from './event/event-view.component';
 import { EventService } from './event/event.service';
 import { EventEditComponent } from './event/event-edit.component';
 import { EventDeleteComponent } from './event/event-delete.component';
-
+import { ImageService } from './image/image.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { EventDeleteComponent } from './event/event-delete.component';
   providers: [
     AuthService,
     AuthGuard,
-    EventService
+    EventService,
+    ImageService
   ],
   entryComponents: [
     LoginComponent,

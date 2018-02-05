@@ -6,13 +6,13 @@
     <a (click)="openDelete()" class="event-delete danger">
       <fa [name]="'trash'" [size]="2"></fa>
     </a>
-    <h1>{{event.title}}</h1>
-    <h5>{{event.date | date:'yyyy.MM.dd'}}</h5>
+    <h1>{{event?.title}}</h1>
+    <h5>{{event?.date | date:'yyyy.MM.dd'}}</h5>
     <div class="description">
-      <p>{{event.description}}</p>
+      <p>{{event?.description}}</p>
     </div>
   </div>
-  <div class="container" *ngFor="let image of images; let i = index">
+  <div class="container" *ngFor="let preview of imagePreviews; let i = index">
     <div class='box'>
       <div class='content'>
         <img [src]="getPreview(i)" />

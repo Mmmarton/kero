@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Event } from './event.model';
 import { EventService } from './event.service';
@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { EventEditComponent } from './event-edit.component';
 import { MatDialog } from '@angular/material';
 import { EventDeleteComponent } from './event-delete.component';
+import { ImageService } from '../image/image.service';
+import { ImagePreview } from '../image/image-preview.model';
 
 @Component({
   selector: 'app-event-view',
@@ -14,27 +16,27 @@ import { EventDeleteComponent } from './event-delete.component';
 })
 export class EventViewComponent implements OnInit {
 
-  private imagePreviews = ['/assets/img/place1.jpg', '/assets/img/place2.jpg', '/assets/img/place3.jpg'];
-  images = [];
+  imagePreviews: ImagePreview[] = [];
   event: Event;
 
   constructor(private route: ActivatedRoute,
     public dialog: MatDialog,
     private eventService: EventService,
-    private router: Router) { }
+    private router: Router,
+    private imageService: ImageService) { }
 
   ngOnInit() {
     this.event = this.eventService.getEvent(this.route.snapshot.params.id);
-    if (!this.event) {
-      this.router.navigate(['/galery']);
+    if (this.event) {
+      this.imagePreviews = this.imageService.getImagePreviews(this.event.id);
     }
-    for (let i = 0; i < Math.floor(Math.random() * 10 + 10); i++) {
-      this.images.push(this.imagePreviews[Math.floor(Math.random() * 3)]);
+    else {
+      this.router.navigate(['/galery']);
     }
   }
 
   getPreview(imageId: number) {
-    return this.images[imageId];
+    return this.imagePreviews[imageId].image;
   }
 
   count(size: number) {

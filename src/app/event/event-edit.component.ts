@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { EventService } from './event.service';
 import { Event } from './event.model';
 
 @Component({
@@ -15,7 +14,6 @@ export class EventEditComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<EventEditComponent>,
-    private eventService: EventService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {

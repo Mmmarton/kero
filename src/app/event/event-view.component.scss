@@ -1,7 +1,7 @@
 @import "../../scss/colors";
 @import "../../scss/mixins";
 
-$imagebox-size: 15em;
+$preview-size: 15em;
 
 h1 {
   margin: 0px;
@@ -50,11 +50,11 @@ h5 {
   width: 80%;
 }
 
-.container {
+.preview-container {
   @include darken_style();
   @include box_shadow(7px, 1px, black);
   margin: 0.5em;
-  padding: 0.2em;
+  padding: 0.2em 0.2em 0em;
   width: auto;
   cursor: pointer;
   
@@ -67,6 +67,6 @@ h5 {
 
   img {
     width: auto;
-    height: 15em;
+    height: $preview-size;
   }
 }

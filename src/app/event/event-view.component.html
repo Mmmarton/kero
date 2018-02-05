@@ -12,7 +12,7 @@
       <p>{{event?.description}}</p>
     </div>
   </div>
-  <div class="container" *ngFor="let preview of imagePreviews; let i = index">
+  <div class="preview-container" *ngFor="let preview of imagePreviews; let i = index">
     <img [src]="getPreview(i)" />
   </div>
 </div>

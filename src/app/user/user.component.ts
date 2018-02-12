@@ -18,7 +18,7 @@ export class UserComponent implements OnInit {
     let username = this.route.snapshot.params.name;
     if (username) {
       //we have a valid username, we should get it from the server
-      this.user = new User("Margit");
+      this.user = new User();
     }
     else {
       let user = this.auth.getUser();

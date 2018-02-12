@@ -1,5 +1,6 @@
 <div class="scroll-container">
   <div class="scroll-content">
+    <app-image-view></app-image-view>
     <app-navbar *ngIf="!isErroPage()"></app-navbar>
     <div [ngClass]="{'toppad':needPadding()}"></div>
     <router-outlet></router-outlet>

@@ -26,6 +26,7 @@ import { EventEditComponent } from './event/event-edit.component';
 import { EventDeleteComponent } from './event/event-delete.component';
 import { ImageService } from './image/image.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { ImageViewComponent } from './image/image-view.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { OverlayContainer } from '@angular/cdk/overlay';
     EventCreateComponent,
     EventViewComponent,
     EventEditComponent,
-    EventDeleteComponent
+    EventDeleteComponent,
+    ImageViewComponent
   ],
   imports: [
     BrowserModule,

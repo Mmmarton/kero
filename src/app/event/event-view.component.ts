@@ -63,4 +63,8 @@ export class EventViewComponent implements OnInit {
     });
   }
 
+  viewImage(preview: ImagePreview) {
+    this.imageService.setCurrentImage(preview.id);
+  }
+
 }

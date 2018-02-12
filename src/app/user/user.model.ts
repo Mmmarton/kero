@@ -1,5 +1,4 @@
 export class User {
-  username: string;
   hash: string;
   nickname: string;
   firstName: string;
@@ -7,13 +6,11 @@ export class User {
   email: string;
   picture: string;
 
-  constructor(username?: string, password?: string) {
-    this.username = username;
-    this.hash = btoa(username + password);
+  constructor() {
   }
 
   getCopy() {
-    let user = new User(this.username);
+    let user = new User();
     user.email = this.email;
     user.firstName = this.firstName;
     user.hash = this.hash;
@@ -29,7 +26,6 @@ export class User {
     this.lastName = user.lastName;
     this.nickname = user.nickname;
     this.picture = user.picture;
-    this.username = user.username;
     this.hash = user.hash;
     return this;
   }

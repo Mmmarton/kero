@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   private fetchUser(username: string, password: string) {
-    let user: User = new User(username, password);
+    let user: User = new User();
     user.firstName = "Jake";
     user.lastName = "Markov";
     user.nickname = "jama";

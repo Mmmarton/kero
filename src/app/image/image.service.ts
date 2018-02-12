@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ImagePreview } from './image-preview.model';
+import { Image } from './image.model';
 
 @Injectable()
 export class ImageService {
 
   private imagePreviewsSet: ImagePreview[] = [];
+  private currentImage: Image;
 
   constructor() {
     this.imagePreviewsSet.push(new ImagePreview('qwesdea', 'http://yuuma7.com/wp-content/uploads/2014/08/Place-de-la-Concorde-1000x644.jpg'));
@@ -20,8 +22,20 @@ export class ImageService {
     return imagePreviews;
   }
 
-  getImage(id: string) {
-    return this.imagePreviewsSet.find(preview => preview.id === id).image;;
+  getImagePreview(id: string) {
+    return this.imagePreviewsSet.find(preview => preview.id === id).image;
   }
 
+  setCurrentImage(id: string) {
+    let image = this.imagePreviewsSet.find(preview => preview.id === id).image;
+    this.currentImage = new Image(image);
+  }
+
+  getCurrentImage() {
+    return this.currentImage;
+  }
+
+  closeCurrentImage() {
+    this.currentImage = null;
+  }
 }

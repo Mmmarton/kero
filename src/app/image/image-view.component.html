@@ -1,16 +1,16 @@
-<div *ngIf="showImage()" class="fullscreen">
+<div *ngIf="isImageShown()" class="fullscreen">
   <a (click)="close()">
     <fa class="exit-button" [name]="'times'" [size]="3"></fa>
   </a>
   <div class="image-container">
     <a>
-      <fa class="navigation-button" [name]="'chevron-left'" [size]="3"></fa>
+      <fa class="navigation-button" [name]="'chevron-left'" [size]="3" (click)="left()"></fa>
     </a>
     <div class="image-box">
       <img [src]="getImage()" />
     </div>
     <a>
-      <fa class="navigation-button" [name]="'chevron-right'" [size]="3"></fa>
+      <fa class="navigation-button" [name]="'chevron-right'" [size]="3" (click)="right()"></fa>
     </a>
   </div>
 </div>

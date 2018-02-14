@@ -7,6 +7,8 @@ export class ImageService {
 
   private imagePreviewsSet: ImagePreview[] = [];
   private currentImage: Image;
+  private currentImageIndex: number;
+  private imagePreviews;
 
   constructor() {
     this.imagePreviewsSet.push(new ImagePreview('qwesdea', 'http://yuuma7.com/wp-content/uploads/2014/08/Place-de-la-Concorde-1000x644.jpg'));
@@ -15,24 +17,43 @@ export class ImageService {
   }
 
   getImagePreviews(eventId: string) {
-    let imagePreviews = [];
+    this.imagePreviews = [];
     for (let i = 0; i < Math.floor(Math.random() * 10 + 10); i++) {
-      imagePreviews.push(this.imagePreviewsSet[Math.floor(Math.random() * 3)]);
+      this.imagePreviews.push(this.imagePreviewsSet[Math.floor(Math.random() * 3)]);
     }
-    return imagePreviews;
+    return this.imagePreviews;
   }
 
   getImagePreview(id: string) {
-    return this.imagePreviewsSet.find(preview => preview.id === id).image;
+    return this.imagePreviews.find(preview => preview.id === id).image;
   }
 
   setCurrentImage(id: string) {
-    let image = this.imagePreviewsSet.find(preview => preview.id === id).image;
-    this.currentImage = new Image(image);
+    this.currentImageIndex = this.imagePreviews.findIndex(preview => preview.id === id);
+    let src = this.imagePreviews[this.currentImageIndex].image;
+    this.currentImage = new Image(src);
   }
 
   getCurrentImage() {
     return this.currentImage;
+  }
+
+  advanceCurrentImage() {
+    this.currentImageIndex++;
+    if (this.currentImageIndex >= this.imagePreviews.length) {
+      this.currentImageIndex = 0;
+    }
+    let src = this.imagePreviews[this.currentImageIndex].image;
+    this.currentImage = new Image(src);
+  }
+
+  previousCurrentImage() {
+    this.currentImageIndex--;
+    if (this.currentImageIndex < 0) {
+      this.currentImageIndex = this.imagePreviews.length - 1;
+    }
+    let src = this.imagePreviews[this.currentImageIndex].image;
+    this.currentImage = new Image(src);
   }
 
   closeCurrentImage() {

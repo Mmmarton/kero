@@ -18,7 +18,7 @@ export class ImageViewComponent implements OnInit {
     this.imageService.closeCurrentImage();
   }
 
-  showImage() {
+  isImageShown() {
     return this.imageService.getCurrentImage() != null;
   }
 
@@ -26,4 +26,11 @@ export class ImageViewComponent implements OnInit {
     return this.imageService.getCurrentImage().src;
   }
 
+  right() {
+    this.imageService.advanceCurrentImage();
+  }
+
+  left() {
+    this.imageService.previousCurrentImage();
+  }
 }

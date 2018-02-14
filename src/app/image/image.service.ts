@@ -5,21 +5,23 @@ import { Image } from './image.model';
 @Injectable()
 export class ImageService {
 
-  private imagePreviewsSet: ImagePreview[] = [];
   private currentImage: Image;
   private currentImageIndex: number;
   private imagePreviews;
 
   constructor() {
-    this.imagePreviewsSet.push(new ImagePreview('qwesdea', 'http://yuuma7.com/wp-content/uploads/2014/08/Place-de-la-Concorde-1000x644.jpg'));
-    this.imagePreviewsSet.push(new ImagePreview('regaerg', 'http://www.comrie.org.uk/wp-content/uploads/2012/07/Carleton-Place-Town-Hall.jpg'));
-    this.imagePreviewsSet.push(new ImagePreview('ytjreae', 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Festival_place_Basingstoke.jpg'));
+  }
+
+  random() {
+    return 200 + Math.round(Math.random() * 800);
   }
 
   getImagePreviews(eventId: string) {
     this.imagePreviews = [];
     for (let i = 0; i < Math.floor(Math.random() * 10 + 10); i++) {
-      this.imagePreviews.push(this.imagePreviewsSet[Math.floor(Math.random() * 3)]);
+      this.imagePreviews.push(
+        new ImagePreview(Math.random().toString(36).substring(7), 'https://lorempixel.com/' + this.random() + '/' + this.random() + '/')
+      );
     }
     return this.imagePreviews;
   }

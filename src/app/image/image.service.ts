@@ -19,20 +19,19 @@ export class ImageService {
   getImagePreviews(eventId: string) {
     this.imagePreviews = [];
     for (let i = 0; i < Math.floor(Math.random() * 10 + 10); i++) {
-      this.imagePreviews.push(
-        new ImagePreview(Math.random().toString(36).substring(7), 'https://lorempixel.com/' + this.random() + '/' + this.random() + '/')
-      );
+      let imagePreview = new ImagePreview(Math.random().toString(36).substring(7), 'https://lorempixel.com/' + this.random() + '/' + this.random() + '/');
+      this.imagePreviews.push(imagePreview);
     }
     return this.imagePreviews;
   }
 
   getImagePreview(id: string) {
-    return this.imagePreviews.find(preview => preview.id === id).image;
+    return this.imagePreviews.find(preview => preview.id === id).src;
   }
 
   setCurrentImage(id: string) {
     this.currentImageIndex = this.imagePreviews.findIndex(preview => preview.id === id);
-    let src = this.imagePreviews[this.currentImageIndex].image;
+    let src = this.imagePreviews[this.currentImageIndex].src;
     this.currentImage = new Image(src);
   }
 
@@ -45,7 +44,7 @@ export class ImageService {
     if (this.currentImageIndex >= this.imagePreviews.length) {
       this.currentImageIndex = 0;
     }
-    let src = this.imagePreviews[this.currentImageIndex].image;
+    let src = this.imagePreviews[this.currentImageIndex].src;
     this.currentImage = new Image(src);
   }
 
@@ -54,7 +53,7 @@ export class ImageService {
     if (this.currentImageIndex < 0) {
       this.currentImageIndex = this.imagePreviews.length - 1;
     }
-    let src = this.imagePreviews[this.currentImageIndex].image;
+    let src = this.imagePreviews[this.currentImageIndex].src;
     this.currentImage = new Image(src);
   }
 

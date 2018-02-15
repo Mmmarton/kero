@@ -36,7 +36,7 @@ export class EventViewComponent implements OnInit {
   }
 
   getPreview(imageId: number) {
-    return this.imagePreviews[imageId].image;
+    return this.imagePreviews[imageId].src;
   }
 
   count(size: number) {
@@ -67,4 +67,11 @@ export class EventViewComponent implements OnInit {
     this.imageService.setCurrentImage(preview.id);
   }
 
+  loaded(imageId: number) {
+    this.imagePreviews[imageId].loaded = true;
+  }
+
+  isLoaded(imageId: number) {
+    return this.imagePreviews[imageId].loaded;
+  }
 }

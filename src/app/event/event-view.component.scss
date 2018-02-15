@@ -73,4 +73,15 @@ h5 {
     width: auto;
     height: $preview-size;
   }
+
+  .loader {
+    margin: 0px;
+    padding: 0px;
+    width: $preview-size;
+    height: $preview-size;
+
+    display: flex;
+    justify-content:center;
+    align-items:center;
+  }
 }

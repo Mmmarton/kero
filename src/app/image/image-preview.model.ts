@@ -1,9 +1,11 @@
 export class ImagePreview {
   id: string;
-  image: string;
+  src: string;
+  loaded: boolean;
 
-  constructor(id: string, image: string) {
+  constructor(id: string, src: string) {
     this.id = id;
-    this.image = image;
+    this.src = src;
+    this.loaded = false;
   }
 }

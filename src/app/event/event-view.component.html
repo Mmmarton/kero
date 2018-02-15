@@ -12,7 +12,11 @@
       <p>{{event?.description}}</p>
     </div>
   </div>
-  <div class="preview-container" *ngFor="let preview of imagePreviews; let i = index" (click)="viewImage(preview)">
-    <img [src]="getPreview(i)" />
+  <div class="preview-container" *ngFor="let preview of imagePreviews; let i = index"
+    (click)="viewImage(preview)">
+    <img [src]="getPreview(i)" (load)="loaded(i)" [hidden]="!isLoaded(i)" />
+    <div class="loader" *ngIf="!isLoaded(i)">
+      <fa [name]="'image'" [size]="3"></fa>
+    </div>
   </div>
 </div>

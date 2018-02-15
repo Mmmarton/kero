@@ -5,6 +5,14 @@
   border-right-width: 2px;
   padding: 10px;
   margin-right: 10px;
+  border-color: $color-dark;
+}
+
+.separator {
+  border-width: 2px;
+  margin: 2em 0em 2em -20px;
+  width: calc(20em + 20px);
+  border-color: $color-dark;
 }
 
 .infos {

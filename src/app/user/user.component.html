@@ -29,6 +29,15 @@
         <mat-form-field>
           <input matInput type="text" [(ngModel)]="user.lastName" placeholder="Lastname" name="lastName">
         </mat-form-field>
+        <mat-divider class="separator"></mat-divider>
+        <mat-form-field>
+          <input matInput type="password" [(ngModel)]="password" placeholder="Password" name="password">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" [(ngModel)]="password2" placeholder="Repeat password"
+            name="password2">
+        </mat-form-field>
+        <mat-divider class="separator"></mat-divider>
         <button type="submit">Update</button>
       </div>
     </div>

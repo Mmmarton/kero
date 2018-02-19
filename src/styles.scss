@@ -12,17 +12,20 @@ body {
   color: $color-initial;
 }
 
-button[type='submit'] {
+button[type='submit'],.button {
   @include double_shadow(30px, 5px, black, 5px, 1px, black);
   font-family: 'Indie Flower', cursive;
   font-size: 1.3em;
+  color: $color-secondary;
   &:hover {
     background-color: $color-secondary;
     border-color: $color-secondary;
+    color: $color-initial;
   }
   &:active {
     background-color: lighten($color-secondary, 10%);
     border-color: lighten($color-secondary, 10%);
+    color: $color-initial;
   }
 }
 
@@ -86,14 +89,17 @@ a.danger {
   }
 }
 
-button[type='submit'].danger {
+button[type='submit'].danger, .button.danger {
+  color: $color-tertiary;
   &:hover {
     background-color: $color-tertiary;
     border-color: $color-tertiary;
+    color: $color-initial;
   }
   &:active {
     background-color: lighten($color-tertiary, 10%);
     border-color: lighten($color-tertiary, 10%);
+    color: $color-initial;
   }
 }
 

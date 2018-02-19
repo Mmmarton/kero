@@ -1,0 +1,25 @@
+<div class="container">
+  <form>
+    <h1 class="title">Upload images</h1>
+    <a class="button-upload">
+      <fa [name]="'folder-open'" [size]="4"></fa>
+      <input type="file" ng2FileSelect [uploader]="uploader" multiple/>
+    </a>
+    <div class="controls">
+      <button class="button danger" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">Clear</button>
+      <button class="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload</button>
+    </div>
+
+    <mat-chip-list>
+      <div class="image-box" [ngClass]="{'done':item.isSuccess}" (change)="changeHandler(item)"
+        *ngFor="let item of uploader.queue; let i = index">
+        <mat-chip>
+          <span>{{ item?.file?.name }}</span>
+          <a class="image-remove" (click)="item.remove()">
+            <fa [name]="'times'" [size]="1"></fa>
+          </a>
+        </mat-chip>
+      </div>
+    </mat-chip-list>
+  </form>
+</div>

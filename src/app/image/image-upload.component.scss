@@ -1,0 +1,67 @@
+@import "../../scss/mixins";
+@import "../../scss/colors";
+
+.container {
+  padding: 30px 60px 30px 60px;
+  .title {
+    font-size: 4em;
+    font-weight: 900;
+    padding-left: 0px;
+    margin-bottom: 1.2em;
+    font-family: 'Indie Flower', cursive;
+  }
+  button {
+    margin: 20px 10px 20px 0px;
+  }
+}
+
+.image-box {
+  margin: 0.2em;
+  
+  .image-remove {
+    margin-left: 1em;
+  }
+
+  mat-chip {
+    @include darken_style();
+    @include box_shadow(7px, 1px, black);
+  }
+}
+
+.button-upload {
+  text-shadow: 1px 1px 5px black;
+  margin-right: 1em;
+  position: relative;
+  overflow: hidden;
+  float: left;
+  clear: right;
+
+  fa {
+    display: inline;
+  }
+
+  h2 {
+    display: inline;
+  }
+}
+
+.controls {
+  display: block;
+}
+
+.button-upload input[type="file"] {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  font-size: 100px;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+}
+
+.done {
+  mat-chip {
+    background-color: darken($color-secondary, 22%);
+  }
+}

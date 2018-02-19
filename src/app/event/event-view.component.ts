@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 import { EventDeleteComponent } from './event-delete.component';
 import { ImageService } from '../image/image.service';
 import { ImagePreview } from '../image/image-preview.model';
+import { ImageUploadComponent } from '../image/image-upload.component';
 
 @Component({
   selector: 'app-event-view',
@@ -55,6 +56,16 @@ export class EventViewComponent implements OnInit {
 
   openDelete(): void {
     let dialogRef = this.dialog.open(EventDeleteComponent, {
+      data: { event: this.event }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openAdd(): void {
+    let dialogRef = this.dialog.open(ImageUploadComponent, {
       data: { event: this.event }
     });
 

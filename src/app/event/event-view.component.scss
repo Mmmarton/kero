@@ -31,6 +31,21 @@ h5 {
   float: right;
 }
 
+.image-add {
+  text-shadow: 1px 1px 5px black;
+  margin: 2px;
+  padding: 0px;
+  position: relative;
+  float: right;
+  vertical-align: bottom;
+  .underlay {
+    display:inline;
+    position: relative;
+    right: -1.1em;
+    top: 0.9em;
+  }
+}
+
 .outer-container {
   @include flex_container();
   margin: 1em;

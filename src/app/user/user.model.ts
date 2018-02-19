@@ -5,6 +5,7 @@ export class User {
   lastName: string;
   email: string;
   picture: string;
+  role: string;
 
   constructor() {
   }
@@ -17,6 +18,7 @@ export class User {
     user.lastName = this.lastName;
     user.nickname = this.nickname;
     user.picture = this.picture;
+    user.role = this.role;
     return user;
   }
 
@@ -27,6 +29,7 @@ export class User {
     this.nickname = user.nickname;
     this.picture = user.picture;
     this.hash = user.hash;
+    this.role = user.role;
     return this;
   }
 }

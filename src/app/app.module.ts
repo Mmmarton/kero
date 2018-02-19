@@ -2,7 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule } from '@angular/forms';
-import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatDividerModule } from '@angular/material';
+import {
+  MatDatepickerModule, MatNativeDateModule, MatFormFieldModule,
+  MatInputModule, MatCheckboxModule, MatDividerModule, MatChipsModule
+} from '@angular/material';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { CookieModule } from 'ngx-cookie';
 
@@ -27,6 +30,8 @@ import { EventDeleteComponent } from './event/event-delete.component';
 import { ImageService } from './image/image.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { ImageViewComponent } from './image/image-view.component';
+import { ImageUploadComponent } from './image/image-upload.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -45,7 +50,8 @@ import { ImageViewComponent } from './image/image-view.component';
     EventViewComponent,
     EventEditComponent,
     EventDeleteComponent,
-    ImageViewComponent
+    ImageViewComponent,
+    ImageUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +64,10 @@ import { ImageViewComponent } from './image/image-view.component';
     MatInputModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatChipsModule,
     Angular2FontawesomeModule,
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    FileUploadModule
   ],
   providers: [
     AuthService,

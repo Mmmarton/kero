@@ -11,6 +11,11 @@
     <div class="description">
       <p>{{event?.description}}</p>
     </div>
+
+    <a [routerLink]="['/upload', event.id]" class="image-add">
+      <fa [name]="'plus'" [size]="2" class="underlay"></fa>
+      <fa [name]="'image'" [size]="2"></fa>
+    </a>
   </div>
   <div class="preview-container" *ngFor="let preview of imagePreviews; let i = index"
     (click)="viewImage(preview)">

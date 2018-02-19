@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { EventListComponent } from './event/event-list.component';
 import { EventViewComponent } from './event/event-view.component';
+import { ImageUploadComponent } from './image/image-upload.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
         component: UserComponent
       }
     ]
+  },
+  {
+    path: 'upload/:id',
+    canActivate: [AuthGuard],
+    component: ImageUploadComponent
   },
   {
     path: 'error',

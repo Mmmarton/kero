@@ -8,6 +8,7 @@ import { UserComponent } from './user/user.component';
 import { EventListComponent } from './event/event-list.component';
 import { EventViewComponent } from './event/event-view.component';
 import { ImageUploadComponent } from './image/image-upload.component';
+import { UserListComponent } from './user/user-list.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
     path: 'user',
     canActivate: [AuthGuard],
     children: [
+      {
+        path: 'list',
+        component: UserListComponent
+      },
       {
         path: ':name',
         component: UserComponent

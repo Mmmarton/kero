@@ -1,0 +1,30 @@
+<div class="container">
+  <table>
+    <tr class="table-header">
+      <th class="image-cell"></th>
+      <th>Nickname</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>
+        <img class="profile-picture" [src]="user?.picture">
+      </td>
+      <td>{{user?.nickname}}</td>
+      <td>{{user?.firstName}}</td>
+      <td>{{user?.lastName}}</td>
+      <td>{{user?.email}}</td>
+      <td>
+        <mat-form-field class="role-cell">
+          <mat-select [(ngModel)]="user.role" (change)="update(user)">
+            <mat-option *ngFor="let role of roles; let i = index" [value]="role">
+              {{ role }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</div>

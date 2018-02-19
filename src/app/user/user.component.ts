@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from './user.model';
 import { AuthService } from '../services/auth/auth.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-user',
@@ -12,13 +13,12 @@ export class UserComponent implements OnInit {
 
   user: User;
 
-  constructor(private route: ActivatedRoute, private auth: AuthService) { }
+  constructor(private route: ActivatedRoute, private auth: AuthService, private userService: UserService) { }
 
   ngOnInit() {
     let username = this.route.snapshot.params.name;
     if (username) {
-      //we have a valid username, we should get it from the server
-      this.user = new User();
+      this.user = this.userService.getUser(username);
     }
     else {
       let user = this.auth.getUser();

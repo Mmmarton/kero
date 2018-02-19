@@ -32,6 +32,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { ImageViewComponent } from './image/image-view.component';
 import { ImageUploadComponent } from './image/image-upload.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ImageDeleteComponent } from './image/image-delete.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     EventEditComponent,
     EventDeleteComponent,
     ImageViewComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    ImageDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     RegisterComponent,
     EventCreateComponent,
     EventEditComponent,
-    EventDeleteComponent
+    EventDeleteComponent,
+    ImageDeleteComponent
   ],
   bootstrap: [AppComponent]
 })

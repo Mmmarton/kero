@@ -7,7 +7,7 @@ export class ImageService {
 
   private currentImage: Image;
   private currentImageIndex: number;
-  private imagePreviews;
+  private imagePreviews: ImagePreview[];
 
   constructor() {
   }
@@ -55,6 +55,19 @@ export class ImageService {
     }
     let src = this.imagePreviews[this.currentImageIndex].src;
     this.currentImage = new Image(src);
+  }
+
+  deleteCurrentImage(): boolean {
+    this.imagePreviews.splice(this.currentImageIndex, 1);
+    if (this.currentImageIndex >= this.imagePreviews.length) {
+      this.currentImageIndex = 0;
+    }
+    if (this.imagePreviews.length < 1) {
+      return false;
+    }
+    let src = this.imagePreviews[this.currentImageIndex].src;
+    this.currentImage = new Image(src);
+    return true;
   }
 
   closeCurrentImage() {

@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ImageService } from './image.service';
 import { Image } from './image.model';
+import { ImageDeleteComponent } from './image-delete.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-image-view',
@@ -20,7 +22,7 @@ export class ImageViewComponent implements OnInit {
     }
   }
 
-  constructor(private imageService: ImageService) { }
+  constructor(public dialog: MatDialog, private imageService: ImageService) { }
 
   ngOnInit() {
   }
@@ -47,5 +49,16 @@ export class ImageViewComponent implements OnInit {
 
   handleKey(event) {
     console.log(event, event.keyCode, event.keyIdentifier);
+  }
+
+  openDelete(): void {
+    let dialogRef = this.dialog.open(ImageDeleteComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(!result) {
+        this.close();
+      }
+      console.log('The dialog was closed');
+    });
   }
 }

@@ -7,6 +7,7 @@
       <th>Lastname</th>
       <th>Email</th>
       <th>Role</th>
+      <th></th>
     </tr>
     <tr *ngFor="let user of users">
       <td>
@@ -24,6 +25,11 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+      </td>
+      <td>
+        <a (click)="openDelete(user)" class="user-delete danger">
+          <fa [name]="'ban'" [size]="2"></fa>
+        </a>
       </td>
     </tr>
   </table>

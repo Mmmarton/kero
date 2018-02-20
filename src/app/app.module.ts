@@ -35,6 +35,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { ImageDeleteComponent } from './image/image-delete.component';
 import { UserListComponent } from './user/user-list.component';
 import { UserService } from './user/user.service';
+import { UserDeleteComponent } from './user/user-delete.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { UserService } from './user/user.service';
     ImageViewComponent,
     ImageUploadComponent,
     ImageDeleteComponent,
-    UserListComponent
+    UserListComponent,
+    UserDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,8 @@ import { UserService } from './user/user.service';
     EventCreateComponent,
     EventEditComponent,
     EventDeleteComponent,
-    ImageDeleteComponent
+    ImageDeleteComponent,
+    UserDeleteComponent
   ],
   bootstrap: [AppComponent]
 })

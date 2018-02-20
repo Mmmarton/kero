@@ -5,23 +5,25 @@ import { User } from './user.model';
 export class UserService {
 
   roles = ["GUEST", "MEMBER"];
+  users: User[];
 
-  constructor() { }
+  constructor() {
+    this.users = [];
+    for (let i = 0; i < Math.random() * 5 + 10; i++) {
+      this.users.push(this.generateUser());
+    }
+  }
 
   getUser(username: string) {
     return new User();
   }
 
-  getUsers(): User[] {
-    let users = [];
-    for (let i = 0; i < Math.random() * 5 + 10; i++) {
-      users.push(this.generateUser());
-    }
-    return users;
-  }
-
   update(user: User) {
     //update user;
+  }
+
+  delete(user: User) {
+    this.users.splice(this.users.indexOf(user), 1);
   }
 
   private generateUser(): User {

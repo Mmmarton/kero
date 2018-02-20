@@ -8,6 +8,8 @@ export class User {
   role: string;
 
   constructor() {
+    this.picture = "/assets/img/user.jpg";
+    this.role = "GUEST";
   }
 
   getCopy() {

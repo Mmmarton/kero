@@ -9,7 +9,7 @@ export class UserService {
 
   constructor() {
     this.users = [];
-    for (let i = 0; i < Math.random() * 5 + 10; i++) {
+    for (let i = 0; i < Math.random() * 5 + 1; i++) {
       this.users.push(this.generateUser());
     }
   }
@@ -24,6 +24,10 @@ export class UserService {
 
   delete(user: User) {
     this.users.splice(this.users.indexOf(user), 1);
+  }
+
+  invite(user: User) {
+    this.users.push(user);
   }
 
   private generateUser(): User {

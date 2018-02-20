@@ -3,6 +3,7 @@ import { User } from './user.model';
 import { UserService } from './user.service';
 import { UserDeleteComponent } from './user-delete.component';
 import { MatDialog } from '@angular/material';
+import { UserInviteComponent } from './user-invite.component';
 
 @Component({
   selector: 'app-user-list',
@@ -29,6 +30,14 @@ export class UserListComponent implements OnInit {
     let dialogRef = this.dialog.open(UserDeleteComponent, {
       data: { user: user }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openInvite(): void {
+    let dialogRef = this.dialog.open(UserInviteComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

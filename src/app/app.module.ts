@@ -36,6 +36,7 @@ import { ImageDeleteComponent } from './image/image-delete.component';
 import { UserListComponent } from './user/user-list.component';
 import { UserService } from './user/user.service';
 import { UserDeleteComponent } from './user/user-delete.component';
+import { UserInviteComponent } from './user/user-invite.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { UserDeleteComponent } from './user/user-delete.component';
     ImageUploadComponent,
     ImageDeleteComponent,
     UserListComponent,
-    UserDeleteComponent
+    UserDeleteComponent,
+    UserInviteComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ import { UserDeleteComponent } from './user/user-delete.component';
     EventEditComponent,
     EventDeleteComponent,
     ImageDeleteComponent,
-    UserDeleteComponent
+    UserDeleteComponent,
+    UserInviteComponent
   ],
   bootstrap: [AppComponent]
 })

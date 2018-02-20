@@ -1,0 +1,12 @@
+<div class="modal-container">
+  <form (submit)="create()">
+    <h1 class="title">Invite user</h1>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="user.email" placeholder="Email" name="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" name="nickname">
+    </mat-form-field>
+    <button type="submit">Invite</button>
+  </form>
+</div>

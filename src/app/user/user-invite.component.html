@@ -1,12 +1,22 @@
 <div class="modal-container">
-  <form (submit)="create()">
+  <form [formGroup]="form" (submit)="invite()">
     <h1 class="title">Invite user</h1>
     <mat-form-field>
-      <input matInput type="text" [(ngModel)]="user.email" placeholder="Email" name="email">
+      <input matInput type="text" [(ngModel)]="user.email" placeholder="Email" formControlName="email">
+      <mat-error *ngIf="!form.controls.email.valid && form.controls.email.dirty && !error">
+        A valid email is required with a length between 5 and 50 characters.
+      </mat-error>
+      <mat-error *ngIf="error">
+        Email already used.
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" name="nickname">
+      <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" formControlName="nickname">
+      <mat-error *ngIf="!form.controls.nickname.valid && form.controls.nickname.dirty">
+        Nickname is required with a length between 3 and 20 characters. Just to know who
+        are you inviting.
+      </mat-error>
     </mat-form-field>
-    <button type="submit">Invite</button>
+    <button type="submit" [disabled]="!form.valid">Invite</button>
   </form>
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user.model';
+import { User, UserInvitation } from './user.model';
 
 @Injectable()
 export class UserService {
@@ -24,10 +24,6 @@ export class UserService {
 
   delete(user: User) {
     this.users.splice(this.users.indexOf(user), 1);
-  }
-
-  invite(user: User) {
-    this.users.push(user);
   }
 
   private generateUser(): User {

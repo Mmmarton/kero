@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './user.model';
+import { UserInvitation } from './user.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { UserService } from './user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-user-invite',
@@ -10,23 +12,41 @@ import { UserService } from './user.service';
 })
 export class UserInviteComponent implements OnInit {
 
-  user: User;
+  user: UserInvitation;
+  form: FormGroup;
+  error: string;
 
   constructor(
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<UserInviteComponent>,
-    private userService: UserService) { }
+    private userService: UserService,
+    private auth: AuthService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   ngOnInit() {
-    this.user = new User();
+    this.user = new UserInvitation();
+    this.form = new FormGroup({
+      nickname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.email]),
+    });
   }
 
-  create() {
-    this.userService.invite(this.user);
-    this.dialogRef.close();
+  invite() {
+    this.auth.post("user/invite", this.user, 'text').subscribe(
+      response => {
+        console.log(response);
+        this.dialogRef.close();
+      },
+      error => {
+        console.log(error);
+        if (error.status == 400) {
+          this.error = error.error;
+          this.form.get('email').setErrors(['']);
+          console.log(this.error);
+        }
+      });
   }
 }

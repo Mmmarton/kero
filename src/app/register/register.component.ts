@@ -4,7 +4,6 @@ import { MatDialogRef } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { User, UserRegistration } from '../user/user.model';
-import { EqualValidator, ValidateEquals } from '../validators/equal.validator';
 
 @Component({
   selector: 'app-register',

@@ -37,6 +37,7 @@ import { UserListComponent } from './user/user-list.component';
 import { UserService } from './user/user.service';
 import { UserDeleteComponent } from './user/user-delete.component';
 import { UserInviteComponent } from './user/user-invite.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -78,14 +79,16 @@ import { UserInviteComponent } from './user/user-invite.component';
     MatSelectModule,
     Angular2FontawesomeModule,
     CookieModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    HttpClientModule 
   ],
   providers: [
     AuthService,
     AuthGuard,
     EventService,
     ImageService,
-    UserService
+    UserService,
+    HttpClient
   ],
   entryComponents: [
     LoginComponent,

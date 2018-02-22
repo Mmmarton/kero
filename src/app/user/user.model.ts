@@ -24,14 +24,14 @@ export class User {
     return user;
   }
 
-  update(user: User) {
-    this.email = user.email;
-    this.firstName = user.firstName;
-    this.lastName = user.lastName;
-    this.nickname = user.nickname;
-    this.picture = user.picture;
-    this.hash = user.hash;
-    this.role = user.role;
+  update(user: any) {
+    this.email = user.email || null;
+    this.firstName = user.firstName || null;
+    this.lastName = user.lastName || null;
+    this.nickname = user.nickname || null;
+    this.picture = user.picture || "/assets/img/user.jpg";
+    this.hash = user.hash || null;
+    this.role = user.role || null;
     return this;
   }
 }

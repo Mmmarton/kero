@@ -3,6 +3,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { RegisterComponent } from '../register/register.component';
+import { Credentials } from '../user/credentials.model';
+import { User } from '../user/user.model';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +13,7 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
+  credentials: Credentials;
   stayIn: boolean;
 
   constructor(
@@ -26,13 +27,23 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.credentials = new Credentials();
   }
 
   login() {
-    if (this.auth.logIn(this.username, this.password)) {
-      this.router.navigate(['/galery']);
-    }
-    this.dialogRef.close();
+    this.auth.post("auth/login", this.credentials).subscribe(
+      response => {
+        let user = new User();
+        user.update(response);
+        this.auth.logIn(user);
+        this.dialogRef.close();
+      },
+      error => {
+        if (error.status == 401) {
+          console.log(error.error);
+          this.credentials.empty();
+        }
+      });
   }
 
   openRegister() {

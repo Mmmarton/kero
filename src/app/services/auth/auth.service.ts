@@ -71,6 +71,14 @@ export class AuthService {
     }
   }
 
+  isAdmin() {
+    return this.user.role == "ROLE_ADMIN";
+  }
+
+  isMember() {
+    return this.user.role == "ROLE_MEMBER" || this.user.role == "ROLE_ADMIN";
+  }
+
   private checkIfValidLogin(savedUser: User) {
     this.user.update(savedUser);
     this.get("auth/status").subscribe(

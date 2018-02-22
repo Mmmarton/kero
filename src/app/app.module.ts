@@ -38,6 +38,8 @@ import { UserService } from './user/user.service';
 import { UserDeleteComponent } from './user/user-delete.component';
 import { UserInviteComponent } from './user/user-invite.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AdminGuard } from './services/guards/admin.guard';
+import { MemberGuard } from './services/guards/member.guard';
 
 
 @NgModule({
@@ -86,6 +88,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   providers: [
     AuthService,
     AuthGuard,
+    AdminGuard,
+    MemberGuard,
     EventService,
     ImageService,
     UserService,

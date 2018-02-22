@@ -3,7 +3,7 @@
     <a routerLink="galery" class="action-control">
       <fa [name]="'th'" [size]="2"></fa>
     </a>
-    <a routerLink="user/list" class="action-control">
+    <a routerLink="user/list" *ngIf="isAdmin()" class="action-control">
       <fa [name]="'users'" [size]="2"></fa>
     </a>
     <a routerLink="user" class="user-control">

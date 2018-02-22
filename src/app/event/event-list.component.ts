@@ -3,6 +3,7 @@ import { Event } from './event.model';
 import { MatDialog } from '@angular/material';
 import { EventCreateComponent } from './event-create.component';
 import { EventService } from './event.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-event-list',
@@ -11,7 +12,7 @@ import { EventService } from './event.service';
 })
 export class EventListComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private eventService: EventService) { }
+  constructor(public dialog: MatDialog, private eventService: EventService, private auth: AuthService) { }
 
   ngOnInit() { }
 
@@ -21,6 +22,10 @@ export class EventListComponent implements OnInit {
 
   getEvents() {
     return this.eventService.getEvents();
+  }
+
+  isMember() {
+    return this.auth.isMember();
   }
 
   openCreate(): void {

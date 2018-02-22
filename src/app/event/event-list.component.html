@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="isMember()">
     <a (click)="openCreate()" class="event-create">
       <fa [name]="'plus-circle'" [size]="3"></fa>
       <h1>New</h1>

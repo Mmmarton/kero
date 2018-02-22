@@ -10,6 +10,8 @@ import { EventViewComponent } from './event/event-view.component';
 import { ImageUploadComponent } from './image/image-upload.component';
 import { UserListComponent } from './user/user-list.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminGuard } from './services/guards/admin.guard';
+import { MemberGuard } from './services/guards/member.guard';
 
 const routes: Routes = [
   {
@@ -36,7 +38,8 @@ const routes: Routes = [
     children: [
       {
         path: 'list',
-        component: UserListComponent
+        component: UserListComponent,
+        canActivate: [AdminGuard]
       },
       {
         path: ':name',
@@ -50,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'upload/:id',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MemberGuard],
     component: ImageUploadComponent
   },
   {

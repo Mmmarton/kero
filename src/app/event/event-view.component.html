@@ -1,9 +1,9 @@
 <div class="outer-container">
   <div class="details-container" *ngIf="event">
-    <a (click)="openEdit()" class="event-edit">
+    <a (click)="openEdit()" class="event-edit" *ngIf="isMember()">
       <fa [name]="'edit'" [size]="2"></fa>
     </a>
-    <a (click)="openDelete()" class="event-delete danger">
+    <a (click)="openDelete()" class="event-delete danger" *ngIf="isMember()">
       <fa [name]="'trash'" [size]="2"></fa>
     </a>
     <h1>{{event?.title}}</h1>
@@ -12,7 +12,7 @@
       <p>{{event?.description}}</p>
     </div>
 
-    <a [routerLink]="['/upload', event.id]" class="image-add">
+    <a [routerLink]="['/upload', event.id]" class="image-add" *ngIf="isMember()">
       <fa [name]="'plus'" [size]="2" class="underlay"></fa>
       <fa [name]="'image'" [size]="2"></fa>
     </a>

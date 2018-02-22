@@ -3,6 +3,7 @@ import { ImageService } from './image.service';
 import { Image } from './image.model';
 import { ImageDeleteComponent } from './image-delete.component';
 import { MatDialog } from '@angular/material';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-image-view',
@@ -22,7 +23,7 @@ export class ImageViewComponent implements OnInit {
     }
   }
 
-  constructor(public dialog: MatDialog, private imageService: ImageService) { }
+  constructor(public dialog: MatDialog, private imageService: ImageService, private auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -55,10 +56,14 @@ export class ImageViewComponent implements OnInit {
     let dialogRef = this.dialog.open(ImageDeleteComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      if(!result) {
+      if (!result) {
         this.close();
       }
       console.log('The dialog was closed');
     });
+  }
+
+  isMember() {
+    return this.auth.isMember();
   }
 }

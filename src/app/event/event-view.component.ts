@@ -9,6 +9,7 @@ import { EventDeleteComponent } from './event-delete.component';
 import { ImageService } from '../image/image.service';
 import { ImagePreview } from '../image/image-preview.model';
 import { ImageUploadComponent } from '../image/image-upload.component';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-event-view',
@@ -24,7 +25,8 @@ export class EventViewComponent implements OnInit {
     public dialog: MatDialog,
     private eventService: EventService,
     private router: Router,
-    private imageService: ImageService) { }
+    private imageService: ImageService,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.event = this.eventService.getEvent(this.route.snapshot.params.id);
@@ -80,6 +82,10 @@ export class EventViewComponent implements OnInit {
 
   loaded(imageId: number) {
     this.imagePreviews[imageId].loaded = true;
+  }
+
+  isMember() {
+    return this.auth.isMember();
   }
 
   isLoaded(imageId: number) {

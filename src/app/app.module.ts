@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatOptionModule,
   MatInputModule, MatCheckboxModule, MatDividerModule, MatChipsModule, MatSelectModule
@@ -80,7 +80,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     Angular2FontawesomeModule,
     CookieModule.forRoot(),
     FileUploadModule,
-    HttpClientModule 
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,
@@ -92,7 +93,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   ],
   entryComponents: [
     LoginComponent,
-    RegisterComponent,
     EventCreateComponent,
     EventEditComponent,
     EventDeleteComponent,

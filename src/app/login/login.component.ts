@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RegisterComponent } from '../register/register.component';
 import { Credentials } from '../user/credentials.model';
 import { User } from '../user/user.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   credentials: Credentials;
   stayIn: boolean;
+  error: string;
+  form: FormGroup;
 
   constructor(
     private auth: AuthService,
@@ -28,6 +31,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.credentials = new Credentials();
+    this.form = new FormGroup({
+      username: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(30)])
+    });
   }
 
   login() {
@@ -36,19 +43,15 @@ export class LoginComponent implements OnInit {
         let user = new User();
         user.update(response);
         this.auth.logIn(user);
+        this.router.navigate(['/galery']);
         this.dialogRef.close();
       },
       error => {
         if (error.status == 401) {
-          console.log(error.error);
+          this.error = error.error;
           this.credentials.empty();
+          this.form.markAsPristine();
         }
       });
   }
-
-  openRegister() {
-    let dialogRef = this.dialog.open(RegisterComponent);
-    this.dialogRef.close();
-  }
-
 }

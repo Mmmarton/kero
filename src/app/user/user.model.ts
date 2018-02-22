@@ -35,3 +35,14 @@ export class User {
     return this;
   }
 }
+
+export class UserRegistration {
+  username: string;
+  password: string;
+  password2: string;
+  nickname: string;
+  email: string;
+  inviteCode: string;
+
+  constructor() { }
+}

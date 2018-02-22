@@ -1,17 +1,25 @@
 <div class="modal-container">
-  <form (submit)="login()">
+  <form [formGroup]="form" (submit)="login()">
     <h1 class="title">Log in</h1>
     <mat-form-field>
-      <input matInput type="text" [(ngModel)]="credentials.username" placeholder="Username" name="username">
+      <input matInput type="text" [(ngModel)]="credentials.username" placeholder="Username"
+        formControlName="username">
+      <mat-error *ngIf="!form.controls.username.valid && form.controls.username.dirty">
+        Invalid username.
+      </mat-error>
+      <mat-error *ngIf="error">
+        Invalid credentials.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput type="password" [(ngModel)]="credentials.password" placeholder="Password" name="password">
+      <input matInput type="password" [(ngModel)]="credentials.password" placeholder="Password"
+        formControlName="password">
+      <mat-error *ngIf="!form.controls.password.valid && form.controls.password.dirty">
+        Invalid password.
+      </mat-error>
+      <mat-error *ngIf="error"></mat-error>
     </mat-form-field>
-
-    <p>No account?
-      <a (click)="openRegister()">Register</a>
-    </p>
-    <button type="submit">Log in</button>
+    <button [disabled]="!form.valid" type="submit">Log in</button>
   </form>
 </div>

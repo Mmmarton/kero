@@ -9,11 +9,16 @@ import { EventListComponent } from './event/event-list.component';
 import { EventViewComponent } from './event/event-view.component';
 import { ImageUploadComponent } from './image/image-upload.component';
 import { UserListComponent } from './user/user-list.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'register/:email/:code',
+    component: RegisterComponent
   },
   {
     path: 'galery',

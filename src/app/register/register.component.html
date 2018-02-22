@@ -1,29 +1,50 @@
-<div class="outer-container">
-  <div class="modal-container">
-    <form (submit)="register()">
+<div class="container">
+  <div class="row">
+    <form [formGroup]="form" (submit)="register()" class="column column-50 column-offset-25">
       <h1 class="title">Register</h1>
 
       <mat-form-field>
-        <input matInput type="text" [(ngModel)]="username" placeholder="Username" name="username">
+        <input matInput type="text" [(ngModel)]="user.username" placeholder="Username" formControlName="username">
+        <mat-error *ngIf="!form.controls.username.valid && form.controls.username.dirty">
+          Username is required with a length between 8 and 30 characters.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="password" [(ngModel)]="password" placeholder="Password" name="password">
+        <input matInput type="password" [(ngModel)]="user.password" placeholder="Password"
+          formControlName="password" (input)="check()">
+        <mat-error *ngIf="!form.controls.password.valid && form.controls.password.dirty">
+          Password is required with a length between 12 and 30 characters.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="password" [(ngModel)]="password2" placeholder="Repeat password" name="password2">
+        <input matInput type="password" [(ngModel)]="user.password2" placeholder="Repeat password"
+          formControlName="password2">
+        <mat-error *ngIf="!form.controls.password2.valid && form.controls.password2.dirty">
+          Passwords do not match.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="text" [(ngModel)]="nickname" placeholder="Nickname" name="nickname">
+        <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" formControlName="nickname">
+        <mat-error *ngIf="!form.controls.nickname.valid && form.controls.nickname.dirty">
+          Nickname is required with a length between 3 and 20 characters.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="text" [(ngModel)]="email" placeholder="Email" name="email">
+        <input matInput type="text" [(ngModel)]="user.email" placeholder="Email" formControlName="email">
+        <mat-error *ngIf="!form.controls.email.valid && form.controls.email.dirty && !error">
+          A valid email is required with a length between 5 and 50 characters.
+        </mat-error>
+        <mat-error *ngIf="error">
+          Invalid invitation for the given email.
+        </mat-error>
       </mat-form-field>
 
-      <button type="submit">Go on</button>
+      <button [disabled]="!form.valid" type="submit">Go on</button>
+      <button class="button danger" (click)="goHome()">Home</button>
     </form>
   </div>
 </div>

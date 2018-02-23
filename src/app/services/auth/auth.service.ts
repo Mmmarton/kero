@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../user/user.model';
+import { User, UserUpdateModel } from '../../user/user.model';
 import { CookieService } from 'ngx-cookie';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Credentials } from '../../user/credentials.model';
@@ -72,8 +72,8 @@ export class AuthService {
   logIn(user: User) {
     this.user = user;
     if (this.user) {
-      let user = this.user;
-      user.picture = "";
+      let user = this.user.getCopy();
+      user.picture = null;
       this.cookies.putObject("user", user, { expires: this.expirationDate });
       this.getPicture().subscribe(
         result => {
@@ -97,15 +97,13 @@ export class AuthService {
     return this.user.getCopy();
   }
 
-  updateUser(user: User) {
-    if (this.user.token) {
-      this.user.update(user);
-      if (this.cookies.get('user')) {
-        let user = this.user;
-        user.picture = "";
-        this.cookies.putObject("user", user, { expires: this.expirationDate });
-      }
-    }
+  updateUser(user: UserUpdateModel) {
+    this.user.nickname = user.nickname;
+    this.user.firstName = user.firstName;
+    this.user.lastName = user.lastName;
+    let userCookie = this.user.getCopy();
+    userCookie.picture = null;
+    this.cookies.putObject("user", userCookie, { expires: this.expirationDate });
   }
 
   isAdmin() {

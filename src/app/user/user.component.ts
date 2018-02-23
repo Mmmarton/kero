@@ -65,6 +65,7 @@ export class UserComponent implements OnInit {
   update() {
     this.auth.put("user/", this.user, 'text').subscribe(
       response => {
+        this.auth.updateUser(this.user);
       },
       error => {
         if (error.status == 406) {

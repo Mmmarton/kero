@@ -45,16 +45,18 @@ export class UserListComponent implements OnInit {
   }
 
   update(user: User) {
-    
+
   }
 
-  openDelete(user: User): void {
+  openDelete(user: UserListing): void {
     let dialogRef = this.dialog.open(UserDeleteComponent, {
       data: { user: user }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        this.users.splice(this.users.indexOf(result), 1);
+      }
     });
   }
 

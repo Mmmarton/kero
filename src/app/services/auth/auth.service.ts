@@ -52,6 +52,15 @@ export class AuthService {
     return this.http.put(this.api + url, object, { headers: headers, withCredentials: true, responseType: type });
   }
 
+  delete(url: string, type: any = 'json') {
+    let headers = new HttpHeaders()
+      .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN'));
+    if (this.user.token) {
+      headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
+    }
+    return this.http.delete(this.api + url, { headers: headers, withCredentials: true, responseType: type });
+  }
+
   get(url: string, type: any = 'json') {
     let headers = new HttpHeaders();
     if (this.user.token) {

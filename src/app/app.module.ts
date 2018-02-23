@@ -34,7 +34,6 @@ import { ImageUploadComponent } from './image/image-upload.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ImageDeleteComponent } from './image/image-delete.component';
 import { UserListComponent } from './user/user-list.component';
-import { UserService } from './user/user.service';
 import { UserDeleteComponent } from './user/user-delete.component';
 import { UserInviteComponent } from './user/user-invite.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -92,7 +91,6 @@ import { MemberGuard } from './services/guards/member.guard';
     MemberGuard,
     EventService,
     ImageService,
-    UserService,
     HttpClient
   ],
   entryComponents: [

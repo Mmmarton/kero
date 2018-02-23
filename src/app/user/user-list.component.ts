@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './user.model';
-import { UserService } from './user.service';
+import { User, UserListing } from './user.model';
 import { UserDeleteComponent } from './user-delete.component';
 import { MatDialog } from '@angular/material';
 import { UserInviteComponent } from './user-invite.component';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -12,18 +12,40 @@ import { UserInviteComponent } from './user-invite.component';
 })
 export class UserListComponent implements OnInit {
 
-  users: User[];
-  roles;
+  users: UserListing[] = [];
+  roles = ["ROLE_GUEST", "ROLE_MEMBER"];
 
-  constructor(private userService: UserService, public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private auth: AuthService) { }
 
   ngOnInit() {
-    this.users = this.userService.users;
-    this.roles = this.userService.roles;
+    this.auth.get("user/list").subscribe(
+      result => {
+        console.log(result);
+        let users: any = result;
+        for (let i = 0; i < users.length; i++) {
+          let user = new UserListing(users[i]);
+          this.users.push(user);
+          this.auth.getPicture(user.email).subscribe(
+            (result) => {
+              let picture: any = result;
+              if (picture) {
+                user.picture = picture;
+              }
+            }
+          );
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+
+
   }
 
   update(user: User) {
-    this.userService.update(user);
+    
   }
 
   openDelete(user: User): void {

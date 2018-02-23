@@ -70,3 +70,17 @@ export class UserUpdateModel {
     return this;
   }
 }
+
+export class UserListing {
+  picture: string;
+  email: string;
+  nickname: string;
+  role: string;
+
+  constructor(user: any) {
+    this.email = user.email;
+    this.nickname = user.nickname;
+    this.role = user.role;
+    this.picture = "/assets/img/user.jpg";
+  }
+}

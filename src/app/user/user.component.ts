@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User, UserUpdateModel } from './user.model';
 import { AuthService } from '../services/auth/auth.service';
-import { UserService } from './user.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { PasswordValidator } from '../../validators/password-match.validator';
 
@@ -20,7 +19,7 @@ export class UserComponent implements OnInit {
   imageFile: any;
   password2: string;
 
-  constructor(private route: ActivatedRoute, private auth: AuthService, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit() {
     let user = this.auth.getUser();

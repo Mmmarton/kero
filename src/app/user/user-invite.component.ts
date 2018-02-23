@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInvitation } from './user.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { UserService } from './user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
 
@@ -19,7 +18,6 @@ export class UserInviteComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<UserInviteComponent>,
-    private userService: UserService,
     private auth: AuthService) { }
 
   onNoClick(): void {

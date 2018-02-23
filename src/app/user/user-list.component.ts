@@ -20,7 +20,6 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.auth.get("user/list").subscribe(
       result => {
-        console.log(result);
         let users: any = result;
         for (let i = 0; i < users.length; i++) {
           let user = new UserListing(users[i]);
@@ -36,16 +35,18 @@ export class UserListComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
       }
     );
-
-
-
   }
 
-  update(user: User) {
-
+  update(user: UserListing) {
+    this.auth.put("user/role", { email: user.email, role: user.role }, 'text').subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   openDelete(user: UserListing): void {
@@ -64,7 +65,9 @@ export class UserListComponent implements OnInit {
     let dialogRef = this.dialog.open(UserInviteComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        this.users.push(new UserListing(result));
+      }
     });
   }
 

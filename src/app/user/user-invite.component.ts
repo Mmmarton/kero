@@ -35,7 +35,7 @@ export class UserInviteComponent implements OnInit {
   invite() {
     this.auth.post("user/invite", this.user, 'text').subscribe(
       response => {
-        this.dialogRef.close();
+        this.dialogRef.close(this.user);
       },
       error => {
         if (error.status == 400) {

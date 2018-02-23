@@ -23,16 +23,19 @@ export class AuthService {
     }
   }
 
-  getImage(email?: string) {
+  getPicture(email?: string) {
     if (email == null) {
       email = this.user.email;
     }
     return this.get("user/picture/" + email, 'text');
   }
 
+  setPicture(picture: string) {
+    this.user.picture = picture;
+  }
+
   post(url: string, object: any, type: any = 'json') {
     let headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
       .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN'));
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
@@ -40,8 +43,17 @@ export class AuthService {
     return this.http.post(this.api + url, object, { headers: headers, withCredentials: true, responseType: type });
   }
 
+  put(url: string, object: any, type: any = 'json') {
+    let headers = new HttpHeaders()
+      .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN'));
+    if (this.user.token) {
+      headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
+    }
+    return this.http.put(this.api + url, object, { headers: headers, withCredentials: true, responseType: type });
+  }
+
   get(url: string, type: any = 'json') {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let headers = new HttpHeaders();
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
     }
@@ -51,11 +63,12 @@ export class AuthService {
   logIn(user: User) {
     this.user = user;
     if (this.user) {
-      this.cookies.putObject("user", this.user, { expires: this.expirationDate });
-      this.getImage().subscribe(
+      let user = this.user;
+      user.picture = "";
+      this.cookies.putObject("user", user, { expires: this.expirationDate });
+      this.getPicture().subscribe(
         result => {
           this.user.picture = result;
-          console.log(user);
         }
       );
     }
@@ -79,7 +92,9 @@ export class AuthService {
     if (this.user.token) {
       this.user.update(user);
       if (this.cookies.get('user')) {
-        this.cookies.putObject("user", this.user, { expires: this.expirationDate });
+        let user = this.user;
+        user.picture = "";
+        this.cookies.putObject("user", user, { expires: this.expirationDate });
       }
     }
   }
@@ -94,7 +109,7 @@ export class AuthService {
 
   private getPictureOrLogOut(savedUser: User) {
     this.user.update(savedUser);
-    this.getImage().subscribe(
+    this.getPicture().subscribe(
       result => {
         this.user.picture = result;
       },

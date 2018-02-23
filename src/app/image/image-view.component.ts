@@ -48,10 +48,6 @@ export class ImageViewComponent implements OnInit {
     this.imageService.previousCurrentImage();
   }
 
-  handleKey(event) {
-    console.log(event, event.keyCode, event.keyIdentifier);
-  }
-
   openDelete(): void {
     let dialogRef = this.dialog.open(ImageDeleteComponent);
 

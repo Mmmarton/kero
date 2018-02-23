@@ -14,10 +14,6 @@ export class UserService {
     }
   }
 
-  getUser(username: string) {
-    return new User();
-  }
-
   update(user: User) {
     //update user;
   }

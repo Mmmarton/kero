@@ -42,10 +42,6 @@ const routes: Routes = [
         canActivate: [AdminGuard]
       },
       {
-        path: ':name',
-        component: UserComponent
-      },
-      {
         path: '',
         component: UserComponent
       }

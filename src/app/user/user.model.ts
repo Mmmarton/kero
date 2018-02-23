@@ -51,3 +51,22 @@ export class UserInvitation {
   email: string;
   nickname: string;
 }
+
+export class UserUpdateModel {
+  email: string;
+  nickname: string;
+  firstName: string;
+  lastName: string;
+  oldPassword: string;
+  password: string;
+
+  constructor() { }
+
+  fromUser(user: User): UserUpdateModel {
+    this.email = user.email || null;
+    this.nickname = user.nickname || null;
+    this.firstName = user.firstName || null;
+    this.lastName = user.lastName || null;
+    return this;
+  }
+}

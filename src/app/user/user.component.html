@@ -1,44 +1,74 @@
 <div class="container">
-  <form (submit)="update()">
+  <form (submit)="update()" [formGroup]="form">
     <div class="row">
-      <div class="column column-20">
+      <div class="column column-20 column-offset-10 imageColumn">
         <div class='box'>
           <div class='content'>
-            <img [src]="user.picture" />
+            <img [src]="getPicture()" />
             <a class="profile-file">
               <fa [name]="'folder-open'" [size]="2"></fa>
-              <input type="file" (change)="readUrl($event)" name="userfile" (ngModel)="user.picture"
+              <input type="file" (change)="readUrl($event)" (ngModel)="picture" [ngModelOptions]="{standalone: true}"
               />
             </a>
           </div>
         </div>
       </div>
       <mat-divider [vertical]="true"></mat-divider>
-      <div class="column infos">
-        <mat-form-field>
-          <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" name="nickname">
-        </mat-form-field>
+      <div class="column column-50 infos">
         <mat-form-field>
           <input matInput type="text" [(ngModel)]="user.email" readonly placeholder="Email"
-            name="email">
+            formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" formControlName="nickname">
+          <mat-error *ngIf="!form.controls.nickname.valid && form.controls.nickname.dirty">
+            Nickname length must be between 3 and 20 characters.
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput type="text" [(ngModel)]="user.firstName" placeholder="Firstname"
-            name="firstName">
+            formControlName="firstName">
+          <mat-error *ngIf="!form.controls.firstName.valid && form.controls.firstName.dirty">
+            Fisrtname length must be between 3 and 30 characters.
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="text" [(ngModel)]="user.lastName" placeholder="Lastname" name="lastName">
+          <input matInput type="text" [(ngModel)]="user.lastName" placeholder="Lastname" formControlName="lastName">
+          <mat-error *ngIf="!form.controls.lastName.valid && form.controls.lastName.dirty">
+            Lastname length must be length between 3 and 30 characters.
+          </mat-error>
         </mat-form-field>
-        <mat-divider class="separator"></mat-divider>
         <mat-form-field>
-          <input matInput type="password" [(ngModel)]="password" placeholder="Password" name="password">
+          <input matInput type="password" [(ngModel)]="user.oldPassword" placeholder="Old password"
+            formControlName="oldPassword">
+          <mat-error *ngIf="(!form.get('oldPassword').getError('notEmpty')) && form.controls.oldPassword.dirty && !error">
+            Old password length must be between 12 and 30 characters.
+          </mat-error>
+          <mat-error *ngIf="(form.get('oldPassword').getError('notEmpty')) && form.controls.oldPassword.dirty && !error">
+            Please complete new password field.
+          </mat-error>
+          <mat-error *ngIf="error">
+            Incorrect password.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" [(ngModel)]="user.password" (input)="check()" placeholder="New password"
+            formControlName="password">
+          <mat-error *ngIf="(!form.get('password').getError('notEmpty')) && form.controls.password.dirty">
+            New password length must be between 12 and 30 characters.
+          </mat-error>
+          <mat-error *ngIf="(form.get('password').getError('notEmpty')) && form.controls.password.dirty">
+            Please complete old password field.
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput type="password" [(ngModel)]="password2" placeholder="Repeat password"
-            name="password2">
+            formControlName="password2">
+          <mat-error *ngIf="!form.controls.password2.valid && form.controls.password2.dirty">
+            Passwords do not match.
+          </mat-error>
         </mat-form-field>
-        <mat-divider class="separator"></mat-divider>
-        <button type="submit">Update</button>
+        <button [disabled]="!form.valid" type="submit">Update</button>
       </div>
     </div>
   </form>

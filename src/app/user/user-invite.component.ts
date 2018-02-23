@@ -37,15 +37,12 @@ export class UserInviteComponent implements OnInit {
   invite() {
     this.auth.post("user/invite", this.user, 'text').subscribe(
       response => {
-        console.log(response);
         this.dialogRef.close();
       },
       error => {
-        console.log(error);
         if (error.status == 400) {
           this.error = error.error;
           this.form.get('email').setErrors(['']);
-          console.log(this.error);
         }
       });
   }

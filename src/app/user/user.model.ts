@@ -4,7 +4,7 @@ export class User {
   firstName: string;
   lastName: string;
   email: string;
-  picture: string;
+  picture: any;
   role: string;
 
   constructor() {

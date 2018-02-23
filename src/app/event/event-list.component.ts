@@ -12,7 +12,11 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class EventListComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private eventService: EventService, private auth: AuthService) { }
+  constructor(
+    public dialog: MatDialog,
+    private eventService: EventService,
+    private auth: AuthService
+  ) { }
 
   ngOnInit() { }
 

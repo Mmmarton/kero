@@ -16,11 +16,18 @@ export class AuthService {
     this.user = new User();
     let savedUser = <User>cookies.getObject('user');
     if (savedUser) {
-      this.checkIfValidLogin(savedUser);
+      this.getPictureOrLogOut(savedUser);
     }
     else {
       this.get("auth/session", "text").subscribe(r => { });
     }
+  }
+
+  getImage(email?: string) {
+    if (email == null) {
+      email = this.user.email;
+    }
+    return this.get("user/picture/" + email, 'text');
   }
 
   post(url: string, object: any, type: any = 'json') {
@@ -45,6 +52,12 @@ export class AuthService {
     this.user = user;
     if (this.user) {
       this.cookies.putObject("user", this.user, { expires: this.expirationDate });
+      this.getImage().subscribe(
+        result => {
+          this.user.picture = result;
+          console.log(user);
+        }
+      );
     }
   }
 
@@ -79,13 +92,11 @@ export class AuthService {
     return this.user.role == "ROLE_MEMBER" || this.user.role == "ROLE_ADMIN";
   }
 
-  private checkIfValidLogin(savedUser: User) {
+  private getPictureOrLogOut(savedUser: User) {
     this.user.update(savedUser);
-    this.get("auth/status").subscribe(
+    this.getImage().subscribe(
       result => {
-        if (!(<any>result).role || (<any>result).role != this.user.role) {
-          this.logOut();
-        }
+        this.user.picture = result;
       },
       error => {
         this.logOut();

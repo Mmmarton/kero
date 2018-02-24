@@ -19,7 +19,7 @@ export class AuthService {
       this.getPictureOrLogOut(savedUser);
     }
     else {
-      this.get("auth/session", "text").subscribe(r => { });
+      this.get("auth/session", "text").subscribe(r => { }, e => { });
     }
   }
 
@@ -36,7 +36,7 @@ export class AuthService {
 
   post(url: string, object: any, type: any = 'json') {
     let headers = new HttpHeaders()
-      .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN'));
+      .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN') || "");
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
     }
@@ -45,7 +45,7 @@ export class AuthService {
 
   put(url: string, object: any, type: any = 'json') {
     let headers = new HttpHeaders()
-      .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN'));
+      .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN') || "");
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
     }
@@ -54,7 +54,7 @@ export class AuthService {
 
   delete(url: string, type: any = 'json') {
     let headers = new HttpHeaders()
-      .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN'));
+      .set('X-XSRF-TOKEN', <string>this.cookies.getObject('XSRF-TOKEN') || "");
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
     }
@@ -78,6 +78,9 @@ export class AuthService {
       this.getPicture().subscribe(
         result => {
           this.user.picture = result;
+        },
+        error => {
+
         }
       );
     }

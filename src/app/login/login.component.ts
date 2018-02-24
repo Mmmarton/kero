@@ -52,6 +52,9 @@ export class LoginComponent implements OnInit {
           this.credentials.empty();
           this.form.markAsPristine();
         }
+        else {
+          console.log("Login failed.");
+        }
       });
   }
 }

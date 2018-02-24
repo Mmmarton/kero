@@ -42,10 +42,8 @@ export class UserListComponent implements OnInit {
   update(user: UserListing) {
     this.auth.put("user/role", { email: user.email, role: user.role }, 'text').subscribe(
       response => {
-        console.log(response);
       },
       error => {
-        console.log(error);
       });
   }
 

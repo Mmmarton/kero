@@ -31,15 +31,62 @@ export class EventViewComponent implements OnInit {
   ngOnInit() {
     this.event = this.eventService.getEvent(this.route.snapshot.params.id);
     if (this.event) {
-      this.imagePreviews = this.imageService.getImagePreviews(this.event.id);
+      this.getImages();
     }
     else {
-      this.router.navigate(['/galery']);
+      this.auth.get("event/" + this.route.snapshot.params.id).subscribe(
+        result => {
+          this.event = result;
+          this.getImages();
+        },
+        error => {
+          this.router.navigate(['/galery']);
+        }
+      );
     }
   }
 
+  private getImages() {
+    this.auth.get("image/" + this.event.id).subscribe(
+      result => {
+        console.log(result);
+        for (let i = 0; i < result.length; i++) {
+          let imagePreview = new ImagePreview();
+          imagePreview.id = result[i].id;
+          imagePreview.image = result[i].imagePath;
+          this.imagePreviews.push(imagePreview);
+          this.loadImage(imagePreview);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  private loadImage(imagePreview: ImagePreview) {
+    this.auth.get("image/" + imagePreview.image, 'text').subscribe(
+      result => {
+        imagePreview.setImage(result);
+        return true;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   getPreview(imageId: number) {
-    return this.imagePreviews[imageId].src;
+    return this.imagePreviews[imageId].image;
+    /*this.auth.post("image/load", this.imagePreviews[imageId].imagePath).subscribe(
+      result => {
+        console.log(result);
+        return result;
+      },
+      error => {
+        console.log(error);
+      }
+    );*/
   }
 
   count(size: number) {
@@ -58,16 +105,6 @@ export class EventViewComponent implements OnInit {
 
   openDelete(): void {
     let dialogRef = this.dialog.open(EventDeleteComponent, {
-      data: { event: this.event }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  openAdd(): void {
-    let dialogRef = this.dialog.open(ImageUploadComponent, {
       data: { event: this.event }
     });
 

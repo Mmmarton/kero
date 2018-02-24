@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ImageUploadComponent implements OnInit {
 
   uploader: FileUploader;
-  eventId: number;
+  eventId: string;
 
   constructor(private route: ActivatedRoute,
     private router: Router) { }

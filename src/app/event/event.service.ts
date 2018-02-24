@@ -17,7 +17,7 @@ export class EventService {
     this.events.unshift(new Event().new(event.title, event.date));
   }
 
-  private setEvents(events: any[]) {
+  setEvents(events: any[]) {
     this.events = [];
     for (let i = 0; i < events.length; i++) {
       this.events.unshift(new Event().load(

@@ -1,14 +1,18 @@
 <div class="modal-container">
-  <form (submit)="create()">
+  <form (submit)="create()" [formGroup]="form">
     <h1 class="title">New event</h1>
     <mat-form-field>
-      <input matInput type="text" [(ngModel)]="title" placeholder="Title" name="title">
+      <input matInput type="text" [(ngModel)]="title" placeholder="Title" formControlName="title">
+      <mat-error *ngIf="!form.controls.title.valid && form.controls.title.dirty">
+        Title is required with a length between 3 and 50 characters.
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input show-todays-date matInput [matDatepicker]="picker" [(ngModel)]="date" placeholder="Event date" name="date">
+      <input show-todays-date matInput [matDatepicker]="picker" [(ngModel)]="date" placeholder="Event date"
+        formControlName="date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button type="submit">Create</button>
+    <button [disabled]="!form.valid" type="submit">Create</button>
   </form>
 </div>

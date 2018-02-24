@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { EventService } from './event.service';
 import { Event } from './event.model';
 import { AuthService } from '../services/auth/auth.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-event-create',
@@ -13,6 +14,7 @@ export class EventCreateComponent implements OnInit {
 
   title: string;
   date: Date;
+  form: FormGroup;
 
   constructor(
     private dialog: MatDialog,
@@ -26,6 +28,10 @@ export class EventCreateComponent implements OnInit {
 
   ngOnInit() {
     this.date = new Date();
+    this.form = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+      date: new FormControl('', [])
+    });
   }
 
   create() {

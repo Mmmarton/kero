@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Event } from './event.model';
+import { AuthService } from '../services/auth/auth.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-event-edit',
@@ -10,10 +12,12 @@ import { Event } from './event.model';
 export class EventEditComponent implements OnInit {
 
   event: Event;
+  form: FormGroup;
 
   constructor(
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<EventEditComponent>,
+    private auth: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
@@ -22,9 +26,28 @@ export class EventEditComponent implements OnInit {
 
   ngOnInit() {
     this.event = this.data.event.getCopy();
+    this.form = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+      description: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]),
+      date: new FormControl('', [])
+    });
   }
 
   save() {
+    let event = {
+      id: this.event.id,
+      title: this.event.title,
+      date: this.event.date.getTime(),
+      description: this.event.description
+    };
+    this.auth.put("event/", event, 'text').subscribe(
+      result => {
+        console.log(result);
+      },
+      error => {
+        console.log(error);
+      }
+    );
     this.data.event.update(this.event);
     this.dialogRef.close();
   }

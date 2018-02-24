@@ -3,7 +3,7 @@
 
 .modal-container {
   width: 40rem;
-  height: 58rem;
+  height: 65rem;
   @include darken_style();
   padding: 40px;
   .title {
@@ -15,6 +15,7 @@
   }
   mat-form-field {
     width: 100%;
+    margin-bottom: 1.5em;
   }
   button[type='submit'] {
     margin-top: 20px;

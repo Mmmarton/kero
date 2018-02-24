@@ -12,8 +12,6 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class EventListComponent implements OnInit {
 
-  private events: Event[] = [];
-
   constructor(
     public dialog: MatDialog,
     private eventService: EventService,
@@ -23,7 +21,8 @@ export class EventListComponent implements OnInit {
   ngOnInit() {
     this.auth.get("event/").subscribe(
       result => {
-        this.setEvents(result);
+        console.log("setting events");
+        this.eventService.setEvents(result);
       },
       error => {
         console.log(error);
@@ -33,6 +32,10 @@ export class EventListComponent implements OnInit {
 
   count(size: number) {
     return new Array(size);
+  }
+
+  getEvents() {
+    return this.eventService.events;
   }
 
   isMember() {
@@ -46,18 +49,4 @@ export class EventListComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-
-  private setEvents(events: any[]) {
-    for (let i = 0; i < events.length; i++) {
-      this.events.unshift(new Event(
-        events[i].id,
-        events[i].authorId,
-        events[i].title,
-        events[i].date,
-        events[i].description ? events[i].description : "",
-        ["/assets/img/place1.jpg", "/assets/img/place2.jpg", "/assets/img/place3.jpg"])
-      );
-    }
-  }
-
 }

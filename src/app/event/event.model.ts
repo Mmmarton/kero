@@ -7,17 +7,35 @@ export class Event {
   description: string;
   previews: string[];
 
-  constructor(id: string, authorId: string, title: string, date: Date, description?: string, previews?: string[]) {
+  constructor() { }
+
+  new(title: string, date: Date) {
+    this.title = title;
+    this.date = date;
+    this.description = "";
+    this.previews = ["/assets/img/preview.jpg"];
+    return this;
+  }
+
+  load(id: string, authorId: string, title: string, date: Date, description?: string, previews?: string[]) {
     this.id = id;
     this.authorId = authorId;
     this.title = title;
     this.date = date;
     this.description = description;
     this.previews = previews;
+    return this;
   }
 
   getCopy() {
-    return new Event(this.id, this.authorId, this.title, this.date, this.description, this.previews);
+    let event: Event = new Event();
+    event.id = this.id;
+    event.authorId = this.authorId;
+    event.description = this.description;
+    event.previews = this.previews;
+    event.title = this.title;
+    event.date = this.date;
+    return event;
   }
 
   update(event: Event) {

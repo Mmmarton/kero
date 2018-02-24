@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Credentials } from '../../user/credentials.model';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -40,7 +41,7 @@ export class AuthService {
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
     }
-    return this.http.post(this.api + url, object, { headers: headers, withCredentials: true, responseType: type });
+    return this.http.post<any>(this.api + url, object, { headers: headers, withCredentials: true, responseType: type });
   }
 
   put(url: string, object: any, type: any = 'json') {
@@ -49,7 +50,7 @@ export class AuthService {
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
     }
-    return this.http.put(this.api + url, object, { headers: headers, withCredentials: true, responseType: type });
+    return this.http.put<any>(this.api + url, object, { headers: headers, withCredentials: true, responseType: type });
   }
 
   delete(url: string, type: any = 'json') {
@@ -58,7 +59,7 @@ export class AuthService {
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
     }
-    return this.http.delete(this.api + url, { headers: headers, withCredentials: true, responseType: type });
+    return this.http.delete<any>(this.api + url, { headers: headers, withCredentials: true, responseType: type });
   }
 
   get(url: string, type: any = 'json') {
@@ -66,7 +67,7 @@ export class AuthService {
     if (this.user.token) {
       headers = headers.append('KERO_AUTH_TOKEN', this.user.token);
     }
-    return this.http.get(this.api + url, { headers: headers, withCredentials: true, responseType: type });
+    return this.http.get<any>(this.api + url, { headers: headers, withCredentials: true, responseType: type });
   }
 
   logIn(user: User) {

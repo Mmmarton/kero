@@ -20,15 +20,13 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.auth.get("user/list").subscribe(
       result => {
-        let users: any = result;
-        for (let i = 0; i < users.length; i++) {
-          let user = new UserListing(users[i]);
+        for (let i = 0; i < result.length; i++) {
+          let user = new UserListing(result[i]);
           this.users.push(user);
           this.auth.getPicture(user.email).subscribe(
             (result) => {
-              let picture: any = result;
-              if (picture) {
-                user.picture = picture;
+              if (result) {
+                user.picture = result;
               }
             }
           );

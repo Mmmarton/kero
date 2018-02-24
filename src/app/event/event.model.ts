@@ -1,13 +1,15 @@
 export class Event {
 
   id: string;
+  authorId: string;
   title: string;
   date: Date;
   description: string;
   previews: string[];
 
-  constructor(title: string, date: Date, description?: string, previews?: string[]) {
-    this.id = Math.random().toString(36).substring(7);
+  constructor(id: string, authorId: string, title: string, date: Date, description?: string, previews?: string[]) {
+    this.id = id;
+    this.authorId = authorId;
     this.title = title;
     this.date = date;
     this.description = description;
@@ -15,7 +17,7 @@ export class Event {
   }
 
   getCopy() {
-    return new Event(this.title, this.date, this.description, this.previews);
+    return new Event(this.id, this.authorId, this.title, this.date, this.description, this.previews);
   }
 
   update(event: Event) {

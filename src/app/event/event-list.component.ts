@@ -12,20 +12,27 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class EventListComponent implements OnInit {
 
+  private events: Event[] = [];
+
   constructor(
     public dialog: MatDialog,
     private eventService: EventService,
     private auth: AuthService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.auth.get("event/").subscribe(
+      result => {
+        this.setEvents(result);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
   count(size: number) {
     return new Array(size);
-  }
-
-  getEvents() {
-    return this.eventService.getEvents();
   }
 
   isMember() {
@@ -38,6 +45,19 @@ export class EventListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  private setEvents(events: any[]) {
+    for (let i = 0; i < events.length; i++) {
+      this.events.unshift(new Event(
+        events[i].id,
+        events[i].authorId,
+        events[i].title,
+        events[i].date,
+        events[i].description ? events[i].description : "",
+        ["/assets/img/place1.jpg", "/assets/img/place2.jpg", "/assets/img/place3.jpg"])
+      );
+    }
   }
 
 }

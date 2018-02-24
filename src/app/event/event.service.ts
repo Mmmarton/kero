@@ -7,27 +7,6 @@ export class EventService {
   private events: Event[] = [];
 
   constructor() {
-    let eventCount: number = Math.random() * 5 + 3;
-    for (let i = 0; i < eventCount; i++) {
-      this.addEvent(this.getRandomString(25), new Date(), this.getRandomString(500));
-    }
-  }
-
-  private getRandomString(length: number) {
-    let result: string = Math.random().toString(36).substring(7);
-    for (let i = 1; i < length / 7 - Math.random(); i++) {
-      result += Math.random().toString(36).substring(7) + "\n";
-    }
-    return result;
-  }
-
-  addEvent(title: string, date: Date, description?: string) {
-    this.events.unshift(new Event(
-      title,
-      date,
-      description ? description : "",
-      ["/assets/img/place1.jpg", "/assets/img/place2.jpg", "/assets/img/place3.jpg"])
-    );
   }
 
   getEvents() {

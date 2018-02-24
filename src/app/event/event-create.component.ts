@@ -26,7 +26,7 @@ export class EventCreateComponent implements OnInit {
   }
 
   create() {
-    this.eventService.addEvent(this.title, this.date);
+    this.eventService.addEvent({ title: this.title, date: this.date });
     this.dialogRef.close();
   }
 }

@@ -41,8 +41,7 @@ export class EventEditComponent implements OnInit {
       description: this.event.description
     };
     this.auth.put("event/", event, 'text').subscribe(
-      result => {
-        console.log(result);
+      response => {
       },
       error => {
         console.log(error);

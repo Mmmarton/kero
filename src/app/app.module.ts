@@ -27,7 +27,7 @@ import { EventViewComponent } from './event/event-view.component';
 import { EventService } from './event/event.service';
 import { EventEditComponent } from './event/event-edit.component';
 import { EventDeleteComponent } from './event/event-delete.component';
-import { ImageService } from './image/image.service';
+import { ImagePreviewService } from './image/image-preview.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { ImageViewComponent } from './image/image-view.component';
 import { ImageUploadComponent } from './image/image-upload.component';
@@ -90,7 +90,7 @@ import { MemberGuard } from './services/guards/member.guard';
     AdminGuard,
     MemberGuard,
     EventService,
-    ImageService,
+    ImagePreviewService,
     HttpClient
   ],
   entryComponents: [

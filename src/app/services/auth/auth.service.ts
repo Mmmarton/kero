@@ -77,8 +77,8 @@ export class AuthService {
       user.picture = null;
       this.cookies.putObject("user", user, { expires: this.expirationDate });
       this.getPicture().subscribe(
-        result => {
-          this.user.picture = result;
+        response => {
+          this.user.picture = response;
         },
         error => {
 
@@ -121,8 +121,8 @@ export class AuthService {
   private getPictureOrLogOut(savedUser: User) {
     this.user.update(savedUser);
     this.getPicture().subscribe(
-      result => {
-        this.user.picture = result;
+      response => {
+        this.user.picture = response;
       },
       error => {
         this.logOut();

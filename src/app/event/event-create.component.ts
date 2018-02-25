@@ -36,8 +36,7 @@ export class EventCreateComponent implements OnInit {
 
   create() {
     this.auth.post("event/", { title: this.title, date: this.date.getTime() }, 'text').subscribe(
-      result => {
-        console.log(result);
+      response => {
         this.eventService.addEvent({ title: this.title, date: this.date });
         this.dialogRef.close();
       },

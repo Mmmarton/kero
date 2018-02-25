@@ -19,9 +19,9 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.auth.get("user/list").subscribe(
-      result => {
-        for (let i = 0; i < result.length; i++) {
-          let user = new UserListing(result[i]);
+      response => {
+        for (let i = 0; i < response.length; i++) {
+          let user = new UserListing(response[i]);
           this.users.push(user);
           this.auth.getPicture(user.email).subscribe(
             (result) => {
@@ -50,9 +50,9 @@ export class UserListComponent implements OnInit {
       data: { user: user }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.users.splice(this.users.indexOf(result), 1);
+    dialogRef.afterClosed().subscribe(response => {
+      if (response) {
+        this.users.splice(this.users.indexOf(response), 1);
       }
     });
   }
@@ -60,9 +60,9 @@ export class UserListComponent implements OnInit {
   openInvite(): void {
     let dialogRef = this.dialog.open(UserInviteComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.users.push(new UserListing(result));
+    dialogRef.afterClosed().subscribe(response => {
+      if (response) {
+        this.users.push(new UserListing(response));
       }
     });
   }

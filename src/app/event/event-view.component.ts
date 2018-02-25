@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { EventEditComponent } from './event-edit.component';
 import { MatDialog } from '@angular/material';
 import { EventDeleteComponent } from './event-delete.component';
-import { ImageService } from '../image/image.service';
+import { ImagePreviewService } from '../image/image-preview.service';
 import { ImagePreview } from '../image/image-preview.model';
 import { ImageUploadComponent } from '../image/image-upload.component';
 import { AuthService } from '../services/auth/auth.service';
@@ -25,7 +25,7 @@ export class EventViewComponent implements OnInit {
     public dialog: MatDialog,
     private eventService: EventService,
     private router: Router,
-    private imageService: ImageService,
+    private imageService: ImagePreviewService,
     private auth: AuthService) { }
 
   ngOnInit() {
@@ -35,8 +35,8 @@ export class EventViewComponent implements OnInit {
     }
     else {
       this.auth.get("event/" + this.route.snapshot.params.id).subscribe(
-        result => {
-          this.event = result;
+        response => {
+          this.event = response;
           this.getImages();
         },
         error => {
@@ -48,12 +48,12 @@ export class EventViewComponent implements OnInit {
 
   private getImages() {
     this.auth.get("image/" + this.event.id).subscribe(
-      result => {
-        console.log(result);
-        for (let i = 0; i < result.length; i++) {
+      response => {
+        this.imageService.imagePreviews = this.imagePreviews;
+        for (let i = 0; i < response.length; i++) {
           let imagePreview = new ImagePreview();
-          imagePreview.id = result[i].id;
-          imagePreview.image = result[i].imagePath;
+          imagePreview.id = response[i].id;
+          imagePreview.image = response[i].imagePath;
           this.imagePreviews.push(imagePreview);
           this.loadImage(imagePreview);
         }
@@ -66,9 +66,8 @@ export class EventViewComponent implements OnInit {
 
   private loadImage(imagePreview: ImagePreview) {
     this.auth.get("image/" + imagePreview.image, 'text').subscribe(
-      result => {
-        imagePreview.setImage(result);
-        return true;
+      response => {
+        imagePreview.setImage(response);
       },
       error => {
         console.log(error);
@@ -78,15 +77,6 @@ export class EventViewComponent implements OnInit {
 
   getPreview(imageId: number) {
     return this.imagePreviews[imageId].image;
-    /*this.auth.post("image/load", this.imagePreviews[imageId].imagePath).subscribe(
-      result => {
-        console.log(result);
-        return result;
-      },
-      error => {
-        console.log(error);
-      }
-    );*/
   }
 
   count(size: number) {
@@ -98,7 +88,7 @@ export class EventViewComponent implements OnInit {
       data: { event: this.event }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(response => {
       console.log('The dialog was closed');
     });
   }
@@ -108,13 +98,13 @@ export class EventViewComponent implements OnInit {
       data: { event: this.event }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(response => {
       console.log('The dialog was closed');
     });
   }
 
-  viewImage(preview: ImagePreview) {
-    this.imageService.setCurrentImage(preview.id);
+  viewImage(index: number) {
+    this.imageService.setCurrentImage(index);
   }
 
   loaded(imageId: number) {

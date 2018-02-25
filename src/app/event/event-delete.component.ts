@@ -28,7 +28,7 @@ export class EventDeleteComponent implements OnInit {
 
   delete() {
     this.auth.delete("event/" + this.data.event.id, 'text').subscribe(
-      result => {
+      response => {
         this.router.navigate(['/galery']);
         this.dialogRef.close();
       },

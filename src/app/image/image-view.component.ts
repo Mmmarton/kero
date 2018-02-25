@@ -1,9 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ImageService } from './image.service';
-import { Image } from './image.model';
 import { ImageDeleteComponent } from './image-delete.component';
 import { MatDialog } from '@angular/material';
 import { AuthService } from '../services/auth/auth.service';
+import { ImagePreviewService } from './image-preview.service';
 
 @Component({
   selector: 'app-image-view',
@@ -23,7 +22,7 @@ export class ImageViewComponent implements OnInit {
     }
   }
 
-  constructor(public dialog: MatDialog, private imageService: ImageService, private auth: AuthService) { }
+  constructor(public dialog: MatDialog, private imageService: ImagePreviewService, private auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -37,7 +36,7 @@ export class ImageViewComponent implements OnInit {
   }
 
   getImage() {
-    return this.imageService.getCurrentImage().src;
+    return this.imageService.getCurrentImage().image;
   }
 
   right() {
@@ -51,8 +50,8 @@ export class ImageViewComponent implements OnInit {
   openDelete(): void {
     let dialogRef = this.dialog.open(ImageDeleteComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
+    dialogRef.afterClosed().subscribe(response => {
+      if (!response) {
         this.close();
       }
       console.log('The dialog was closed');

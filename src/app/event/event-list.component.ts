@@ -20,9 +20,8 @@ export class EventListComponent implements OnInit {
 
   ngOnInit() {
     this.auth.get("event/").subscribe(
-      result => {
-        console.log("setting events");
-        this.eventService.setEvents(result);
+      response => {
+        this.eventService.setEvents(response);
       },
       error => {
         console.log(error);
@@ -45,7 +44,7 @@ export class EventListComponent implements OnInit {
   openCreate(): void {
     let dialogRef = this.dialog.open(EventCreateComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(response => {
       console.log('The dialog was closed');
     });
   }

@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ImagePreview } from './image-preview.model';
-import { Image } from './image.model';
 
 @Injectable()
-export class ImageService {
+export class ImagePreviewService {
 
-  private currentImage: Image;
   private currentImageIndex: number;
   imagePreviews: ImagePreview[] = [];
 
@@ -25,18 +23,16 @@ export class ImageService {
     return this.imagePreviews;
   }
 
-  getImagePreview(id: string) {
-    return this.imagePreviews.find(preview => preview.id === id).id;
+  getImagePreview(index: number): ImagePreview {
+    return this.imagePreviews[index];
   }
 
-  setCurrentImage(id: string) {
-    this.currentImageIndex = this.imagePreviews.findIndex(preview => preview.id === id);
-    let src = this.imagePreviews[this.currentImageIndex].id;
-    this.currentImage = new Image(src);
+  setCurrentImage(currentImageIndex: number) {
+    this.currentImageIndex = currentImageIndex;
   }
 
-  getCurrentImage() {
-    return this.currentImage;
+  getCurrentImage(): ImagePreview {
+    return this.currentImageIndex ? this.imagePreviews[this.currentImageIndex] : null;
   }
 
   advanceCurrentImage() {
@@ -44,8 +40,6 @@ export class ImageService {
     if (this.currentImageIndex >= this.imagePreviews.length) {
       this.currentImageIndex = 0;
     }
-    let src = this.imagePreviews[this.currentImageIndex].id;
-    this.currentImage = new Image(src);
   }
 
   previousCurrentImage() {
@@ -53,8 +47,6 @@ export class ImageService {
     if (this.currentImageIndex < 0) {
       this.currentImageIndex = this.imagePreviews.length - 1;
     }
-    let src = this.imagePreviews[this.currentImageIndex].id;
-    this.currentImage = new Image(src);
   }
 
   deleteCurrentImage(): boolean {
@@ -65,12 +57,10 @@ export class ImageService {
     if (this.imagePreviews.length < 1) {
       return false;
     }
-    let src = this.imagePreviews[this.currentImageIndex].id;
-    this.currentImage = new Image(src);
     return true;
   }
 
   closeCurrentImage() {
-    this.currentImage = null;
+    this.currentImageIndex = null;
   }
 }

@@ -5,12 +5,21 @@ import { Event } from './event.model';
 export class EventService {
 
   events: Event[] = [];
+  currentEvent: Event;
 
   constructor() {
   }
 
   getEvent(id: string) {
     return this.events.find(event => event.id === id);
+  }
+
+  setCurrentEvent(currentEvent: Event) {
+    this.currentEvent = currentEvent;
+  }
+
+  getCurrentEvent(): Event {
+    return this.currentEvent;
   }
 
   addEvent(event: any) {

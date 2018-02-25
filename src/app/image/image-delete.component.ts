@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { ImagePreviewService } from './image-preview.service';
 import { AuthService } from '../services/auth/auth.service';
+import { EventService } from '../event/event.service';
 
 @Component({
   selector: 'app-image-delete',
@@ -16,6 +17,7 @@ export class ImageDeleteComponent implements OnInit {
     private dialogRef: MatDialogRef<ImageDeleteComponent>,
     private router: Router,
     private imageService: ImagePreviewService,
+    private eventService: EventService,
     private auth: AuthService) { }
 
   onNoClick(): void {
@@ -25,14 +27,15 @@ export class ImageDeleteComponent implements OnInit {
   ngOnInit() { }
 
   delete() {
-    this.auth.delete("image/" + this.imageService.getCurrentImage().id, 'text').subscribe(
-      response => {
-        this.dialogRef.close(this.imageService.deleteCurrentImage());
-      },
-      error => {
+    this.auth.delete("image/" + this.eventService.getCurrentEvent().id
+      + "/" + this.imageService.getCurrentImage().id, 'text').subscribe(
+        response => {
+          this.dialogRef.close(this.imageService.deleteCurrentImage());
+        },
+        error => {
 
-      }
-    );
+        }
+      );
   }
 
 }

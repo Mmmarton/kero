@@ -31,7 +31,6 @@ import { ImagePreviewService } from './image/image-preview.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { ImageViewComponent } from './image/image-view.component';
 import { ImageUploadComponent } from './image/image-upload.component';
-import { FileUploadModule } from 'ng2-file-upload';
 import { ImageDeleteComponent } from './image/image-delete.component';
 import { UserListComponent } from './user/user-list.component';
 import { UserDeleteComponent } from './user/user-delete.component';
@@ -80,7 +79,6 @@ import { MemberGuard } from './services/guards/member.guard';
     MatSelectModule,
     Angular2FontawesomeModule,
     CookieModule.forRoot(),
-    FileUploadModule,
     HttpClientModule,
     ReactiveFormsModule
   ],

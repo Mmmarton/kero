@@ -3,19 +3,19 @@
     <h1 class="title">Upload images</h1>
     <a class="button-upload">
       <fa [name]="'folder-open'" [size]="4"></fa>
-      <input type="file" ng2FileSelect [uploader]="uploader" multiple/>
+      <input type="file" (change)="getFiles($event)" multiple/>
     </a>
     <div class="controls">
-      <button class="button danger" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">Clear</button>
-      <button class="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload</button>
+      <button class="button danger" (click)="clearFiles()" [disabled]="isFileListEmpty()">Clear</button>
+      <button class="button" (click)="uploadFiles()" [disabled]="isFileListEmpty()">Upload</button>
     </div>
 
     <mat-chip-list>
-      <div class="image-box" [ngClass]="{'done':item.isSuccess}" (change)="changeHandler(item)"
-        *ngFor="let item of uploader.queue; let i = index">
+      <div class="image-box" [ngClass]="{'done':isFileUploaded(i)}"
+        *ngFor="let file of files; let i = index">
         <mat-chip>
-          <span>{{ item?.file?.name }}</span>
-          <a class="image-remove" (click)="item.remove()">
+          <span>{{ file.name | limit : 30 }}</span>
+          <a class="image-remove" (click)="removeFile(i)">
             <fa [name]="'times'" [size]="1"></fa>
           </a>
         </mat-chip>

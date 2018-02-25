@@ -32,7 +32,7 @@ export class ImagePreviewService {
   }
 
   getCurrentImage(): ImagePreview {
-    return this.currentImageIndex ? this.imagePreviews[this.currentImageIndex] : null;
+    return this.currentImageIndex >= 0 ? this.imagePreviews[this.currentImageIndex] : null;
   }
 
   advanceCurrentImage() {
@@ -61,6 +61,6 @@ export class ImagePreviewService {
   }
 
   closeCurrentImage() {
-    this.currentImageIndex = null;
+    this.currentImageIndex = -1;
   }
 }

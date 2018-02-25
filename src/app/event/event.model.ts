@@ -9,7 +9,8 @@ export class Event {
 
   constructor() { }
 
-  new(title: string, date: Date) {
+  new(id: string, title: string, date: Date) {
+    this.id = id;
     this.title = title;
     this.date = date;
     this.description = "";

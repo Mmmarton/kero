@@ -1,4 +1,5 @@
 export class User {
+  public static defaultPicture = "/assets/img/user.jpg";
   token: string;
   nickname: string;
   firstName: string;
@@ -8,7 +9,7 @@ export class User {
   role: string;
 
   constructor() {
-    this.picture = "/assets/img/user.jpg";
+    this.picture = User.defaultPicture;
     this.role = "GUEST";
   }
 
@@ -29,7 +30,7 @@ export class User {
     this.firstName = user.firstName || null;
     this.lastName = user.lastName || null;
     this.nickname = user.nickname || null;
-    this.picture = user.picture || "/assets/img/user.jpg";
+    this.picture = user.picture || User.defaultPicture;
     this.token = user.token || null;
     this.role = user.role || null;
     return this;
@@ -81,6 +82,6 @@ export class UserListing {
     this.email = user.email;
     this.nickname = user.nickname;
     this.role = user.role;
-    this.picture = "/assets/img/user.jpg";
+    this.picture = User.defaultPicture;
   }
 }

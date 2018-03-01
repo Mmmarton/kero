@@ -22,14 +22,10 @@ export class UserListComponent implements OnInit {
       response => {
         for (let i = 0; i < response.length; i++) {
           let user = new UserListing(response[i]);
+          if (response[i].hasPicture) {
+            user.picture = this.auth.getPictureLink(user.email);
+          }
           this.users.push(user);
-          this.auth.getPicture(user.email).subscribe(
-            (result) => {
-              if (result) {
-                user.picture = result;
-              }
-            }
-          );
         }
       },
       error => {

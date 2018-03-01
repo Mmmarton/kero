@@ -10,6 +10,7 @@ import { ImagePreviewService } from '../image/image-preview.service';
 import { ImagePreview } from '../image/image-preview.model';
 import { ImageUploadComponent } from '../image/image-upload.component';
 import { AuthService } from '../services/auth/auth.service';
+import { Observable, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-event-view',
@@ -54,30 +55,14 @@ export class EventViewComponent implements OnInit {
         for (let i = 0; i < response.length; i++) {
           let imagePreview = new ImagePreview();
           imagePreview.id = response[i].id;
-          imagePreview.image = response[i].imagePath;
+          imagePreview.image = "image/preview/" + response[i].imagePath;
           this.imagePreviews.push(imagePreview);
-          this.loadImage(imagePreview);
         }
       },
       error => {
         console.log(error);
       }
     );
-  }
-
-  private loadImage(imagePreview: ImagePreview) {
-    this.auth.get("image/" + imagePreview.image, 'text').subscribe(
-      response => {
-        imagePreview.setImage(response);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  getPreview(imageId: number) {
-    return this.imagePreviews[imageId].image;
   }
 
   count(size: number) {

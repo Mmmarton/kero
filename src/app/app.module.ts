@@ -38,6 +38,7 @@ import { UserInviteComponent } from './user/user-invite.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AdminGuard } from './services/guards/admin.guard';
 import { MemberGuard } from './services/guards/member.guard';
+import { LoadImagePipe } from './pipes/load.image.pipe';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { MemberGuard } from './services/guards/member.guard';
     ImageDeleteComponent,
     UserListComponent,
     UserDeleteComponent,
-    UserInviteComponent
+    UserInviteComponent,
+    LoadImagePipe
   ],
   imports: [
     BrowserModule,

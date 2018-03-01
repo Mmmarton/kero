@@ -52,7 +52,6 @@ export class ImageUploadComponent implements OnInit {
     body.append("image", file.data);
     this.auth.post("image/" + this.eventId, body, 'text').subscribe(
       response => {
-        console.log(response);
         file.uploaded = true;
       },
       error => {

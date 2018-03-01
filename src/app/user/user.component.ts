@@ -41,9 +41,6 @@ export class UserComponent implements OnInit {
   }
 
   getPicture() {
-    if (this.picture) {
-      return this.picture;
-    }
     return this.auth.getUser().picture;
   }
 
@@ -74,8 +71,6 @@ export class UserComponent implements OnInit {
         }
       });
     if (this.picture) {
-      this.auth.setPicture(this.picture);
-      this.picture = null;
       let formData: FormData = new FormData();
       formData.append('picture', this.imageFile);
       this.auth.put("user/picture", formData, 'text').subscribe(

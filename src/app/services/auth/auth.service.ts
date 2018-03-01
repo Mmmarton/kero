@@ -10,29 +10,24 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   private api = "http://localhost:8080/api/";
+  private pictureLink = "user/picture/";
   private user: User;
   private expirationDate: Date = new Date(Date.now() + (1000 * 60 * 60 * 24 * 10));
 
   constructor(private cookies: CookieService, private http: HttpClient, private router: Router) {
     this.user = new User();
-    let savedUser = <User>cookies.getObject('user');
-    if (savedUser) {
-      this.getPictureOrLogOut(savedUser);
+    let userCookie = <User>(cookies.getObject('user'));
+    if (userCookie) {
+      this.user.update(userCookie);
     }
-    else {
-      this.get("auth/session", "text").subscribe(r => { }, e => { });
-    }
-  }
-
-  getPicture(email?: string) {
-    if (email == null) {
-      email = this.user.email;
-    }
-    return this.get("user/picture/" + email, 'text');
-  }
-
-  setPicture(picture: string) {
-    this.user.picture = picture;
+    this.get("auth/session", "text").subscribe(
+      response => {
+        this.user.update(this.user);
+      },
+      error => {
+        this.logOut();
+      }
+    );
   }
 
   post(url: string, object: any, type: any = 'json') {
@@ -72,19 +67,8 @@ export class AuthService {
 
   logIn(user: User) {
     this.user = user;
-    if (this.user) {
-      let user = this.user.getCopy();
-      user.picture = null;
-      this.cookies.putObject("user", user, { expires: this.expirationDate });
-      this.getPicture().subscribe(
-        response => {
-          this.user.picture = response;
-        },
-        error => {
-
-        }
-      );
-    }
+    this.user.picture = this.getPictureLink(this.user.email);
+    this.cookies.putObject("user", user, { expires: this.expirationDate });
   }
 
   logOut() {
@@ -105,8 +89,8 @@ export class AuthService {
     this.user.nickname = user.nickname;
     this.user.firstName = user.firstName;
     this.user.lastName = user.lastName;
+    this.user.picture = this.getPictureLink(this.user.email);
     let userCookie = this.user.getCopy();
-    userCookie.picture = null;
     this.cookies.putObject("user", userCookie, { expires: this.expirationDate });
   }
 
@@ -118,15 +102,7 @@ export class AuthService {
     return this.user.role == "ROLE_MEMBER" || this.user.role == "ROLE_ADMIN";
   }
 
-  private getPictureOrLogOut(savedUser: User) {
-    this.user.update(savedUser);
-    this.getPicture().subscribe(
-      response => {
-        this.user.picture = response;
-      },
-      error => {
-        this.logOut();
-      }
-    );
+  getPictureLink(email: string) {
+    return this.pictureLink + email;
   }
 }

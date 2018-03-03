@@ -55,7 +55,7 @@ export class ImageUploadComponent implements OnInit {
         file.uploaded = true;
       },
       error => {
-        console.log(error);
+        this.auth.logoutIfNeeded(error);
       }
     );
   }

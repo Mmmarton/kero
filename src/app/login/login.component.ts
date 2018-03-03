@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           this.form.markAsPristine();
         }
         else {
-          console.log("Login failed.");
+          this.auth.logoutIfNeeded(error);
         }
       });
   }

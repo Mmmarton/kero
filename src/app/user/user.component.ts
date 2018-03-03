@@ -69,6 +69,9 @@ export class UserComponent implements OnInit {
           this.error = error.error;
           this.form.get('oldPassword').setErrors(['']);
         }
+        else {
+          this.auth.logoutIfNeeded(error);
+        }
       });
     if (this.picture) {
       let formData: FormData = new FormData();
@@ -77,6 +80,7 @@ export class UserComponent implements OnInit {
         response => {
         },
         error => {
+          this.auth.logoutIfNeeded(error);
         });
     }
   }

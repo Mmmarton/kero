@@ -29,6 +29,7 @@ export class UserListComponent implements OnInit {
         }
       },
       error => {
+        this.auth.logoutIfNeeded(error);
       }
     );
   }
@@ -38,6 +39,7 @@ export class UserListComponent implements OnInit {
       response => {
       },
       error => {
+        this.auth.logoutIfNeeded(error);
       });
   }
 

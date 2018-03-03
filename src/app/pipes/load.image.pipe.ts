@@ -15,6 +15,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscriber } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { User } from '../user/user.model';
+import { ImagePreviewService } from '../image/image-preview.service';
 
 @Pipe({
     name: 'loadImage',
@@ -34,7 +35,8 @@ export class LoadImagePipe implements PipeTransform, OnDestroy {
     constructor(
         private changeDetector: ChangeDetectorRef,
         private sanitizer: DomSanitizer,
-        private auth: AuthService
+        private auth: AuthService,
+        private imageService: ImagePreviewService
     ) { }
 
     ngOnDestroy(): void {
@@ -60,7 +62,8 @@ export class LoadImagePipe implements PipeTransform, OnDestroy {
                     observer.next(objectUrl);
                 },
                 error => {
-                    console.log(error);
+                    this.imageService.closeCurrentImage();
+                    this.auth.logoutIfNeeded(error);
                 }
             );
 

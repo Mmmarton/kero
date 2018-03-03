@@ -58,7 +58,6 @@ export class ImageViewComponent implements OnInit {
       if (!response) {
         this.close();
       }
-      console.log('The dialog was closed');
     });
   }
 

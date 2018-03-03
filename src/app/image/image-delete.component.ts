@@ -33,7 +33,7 @@ export class ImageDeleteComponent implements OnInit {
           this.dialogRef.close(this.imageService.deleteCurrentImage());
         },
         error => {
-
+          this.auth.logoutIfNeeded(error);
         }
       );
   }

@@ -8,6 +8,8 @@ import {
 } from '@angular/material';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { CookieModule } from 'ngx-cookie';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,14 +30,12 @@ import { EventService } from './event/event.service';
 import { EventEditComponent } from './event/event-edit.component';
 import { EventDeleteComponent } from './event/event-delete.component';
 import { ImagePreviewService } from './image/image-preview.service';
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { ImageViewComponent } from './image/image-view.component';
 import { ImageUploadComponent } from './image/image-upload.component';
 import { ImageDeleteComponent } from './image/image-delete.component';
 import { UserListComponent } from './user/user-list.component';
 import { UserDeleteComponent } from './user/user-delete.component';
 import { UserInviteComponent } from './user/user-invite.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AdminGuard } from './services/guards/admin.guard';
 import { MemberGuard } from './services/guards/member.guard';
 import { LoadImagePipe } from './pipes/load.image.pipe';

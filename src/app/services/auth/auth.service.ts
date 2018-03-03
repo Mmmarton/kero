@@ -80,6 +80,12 @@ export class AuthService {
     return this.user.token != null;
   }
 
+  logoutIfNeeded(error) {
+    if (error.status == 403 || error.status == 0) {
+      this.logOut();
+    }
+  }
+
   getUser() {
     return this.user.getCopy();
   }

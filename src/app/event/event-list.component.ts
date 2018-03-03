@@ -24,7 +24,7 @@ export class EventListComponent implements OnInit {
         this.eventService.setEvents(response);
       },
       error => {
-        console.log(error);
+        this.auth.logoutIfNeeded(error);
       }
     );
   }
@@ -45,7 +45,6 @@ export class EventListComponent implements OnInit {
     let dialogRef = this.dialog.open(EventCreateComponent);
 
     dialogRef.afterClosed().subscribe(response => {
-      console.log('The dialog was closed');
     });
   }
 }

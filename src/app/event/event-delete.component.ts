@@ -33,7 +33,7 @@ export class EventDeleteComponent implements OnInit {
         this.dialogRef.close();
       },
       error => {
-        console.log(error);
+        this.auth.logoutIfNeeded(error);
       }
     );
   }

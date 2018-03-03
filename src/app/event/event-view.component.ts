@@ -42,7 +42,7 @@ export class EventViewComponent implements OnInit {
           this.getImages();
         },
         error => {
-          this.router.navigate(['/galery']);
+          this.auth.logoutIfNeeded(error);
         }
       );
     }
@@ -60,7 +60,7 @@ export class EventViewComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        this.auth.logoutIfNeeded(error);
       }
     );
   }
@@ -75,7 +75,6 @@ export class EventViewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(response => {
-      console.log('The dialog was closed');
     });
   }
 
@@ -85,7 +84,6 @@ export class EventViewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(response => {
-      console.log('The dialog was closed');
     });
   }
 

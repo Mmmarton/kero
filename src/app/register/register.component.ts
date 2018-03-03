@@ -46,6 +46,9 @@ export class RegisterComponent implements OnInit {
           this.error = error.error;
           this.form.get('email').setErrors(['']);
         }
+        else {
+          this.auth.logoutIfNeeded(error);
+        }
       });
   }
 

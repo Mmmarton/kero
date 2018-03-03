@@ -44,7 +44,7 @@ export class EventEditComponent implements OnInit {
       response => {
       },
       error => {
-        console.log(error);
+        this.auth.logoutIfNeeded(error);
       }
     );
     this.data.event.update(this.event);

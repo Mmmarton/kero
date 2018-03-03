@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit {
     let dialogRef = this.dialog.open(LoginComponent);
 
     dialogRef.afterClosed().subscribe(response => {
-      console.log('The dialog was closed');
     });
   }
 

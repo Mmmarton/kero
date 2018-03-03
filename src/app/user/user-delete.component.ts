@@ -31,6 +31,7 @@ export class UserDeleteComponent implements OnInit {
         this.dialogRef.close(this.data.user);
       },
       error => {
+        this.auth.logoutIfNeeded(error);
       }
     );
   }

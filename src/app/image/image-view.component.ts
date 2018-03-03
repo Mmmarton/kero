@@ -22,6 +22,8 @@ export class ImageViewComponent implements OnInit {
     }
   }
 
+  loaded = false;
+
   constructor(public dialog: MatDialog, private imageService: ImagePreviewService, private auth: AuthService) { }
 
   ngOnInit() {
@@ -41,10 +43,12 @@ export class ImageViewComponent implements OnInit {
 
   right() {
     this.imageService.advanceCurrentImage();
+    this.setLoaded(false);
   }
 
   left() {
     this.imageService.previousCurrentImage();
+    this.setLoaded(false);
   }
 
   openDelete(): void {
@@ -60,5 +64,9 @@ export class ImageViewComponent implements OnInit {
 
   isMember() {
     return this.auth.isMember();
+  }
+
+  setLoaded(loaded:boolean) {
+    this.loaded = loaded;
   }
 }

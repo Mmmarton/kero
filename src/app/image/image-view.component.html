@@ -10,7 +10,10 @@
       <fa class="navigation-button" [name]="'chevron-left'" [size]="3" (click)="left()"></fa>
     </a>
     <div class="image-box">
-      <img [src]="getImage() | loadImage" />
+      <img [src]="getImage() | loadImage" (load)="setLoaded(true)" [hidden]="!loaded" />
+      <div class="loader" *ngIf="!loaded">
+        <div class="spinner"></div>
+      </div>
     </div>
     <a>
       <fa class="navigation-button" [name]="'chevron-right'" [size]="3" (click)="right()"></fa>

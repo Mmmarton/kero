@@ -22,7 +22,6 @@ export class AuthService {
     }
     this.get("auth/session", "text").subscribe(
       response => {
-        this.user.update(this.user);
       },
       error => {
         this.logOut();

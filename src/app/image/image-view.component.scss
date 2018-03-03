@@ -1,5 +1,6 @@
 @import "../../scss/colors";
 @import "../../scss/mixins";
+@import "../../scss/spinner";
 
 .fullscreen {
   background-color: rgba($color: black, $alpha: 0.9);
@@ -45,4 +46,15 @@
     padding: 0px;
     object-fit: contain;
   }
+}
+
+.loader {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content:center;
+  align-items:center;
 }

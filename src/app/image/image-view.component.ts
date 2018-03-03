@@ -36,7 +36,7 @@ export class ImageViewComponent implements OnInit {
   }
 
   getImage() {
-    return this.imageService.getCurrentImage().image;
+    return this.imageService.getCurrentImage().image.replace("/preview", "");
   }
 
   right() {

@@ -10,7 +10,7 @@
       <fa class="navigation-button" [name]="'chevron-left'" [size]="3" (click)="left()"></fa>
     </a>
     <div class="image-box">
-      <img [src]="getImage()" />
+      <img [src]="getImage() | loadImage" />
     </div>
     <a>
       <fa class="navigation-button" [name]="'chevron-right'" [size]="3" (click)="right()"></fa>

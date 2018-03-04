@@ -15,6 +15,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscriber } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { User } from '../user/user.model';
+import { Event } from '../event/event.model';
 import { ImagePreviewService } from '../image/image-preview.service';
 
 @Pipe({
@@ -48,6 +49,9 @@ export class LoadImagePipe implements PipeTransform, OnDestroy {
     transform(url: string): any {
         if (url == User.defaultPicture) {
             return User.defaultPicture;
+        }
+        if (url == Event.defaultPicture) {
+            return Event.defaultPicture;
         }
         let obj = this.internalTransform(url);
         return this.asyncTrasnform(obj);

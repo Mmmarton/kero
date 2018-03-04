@@ -15,21 +15,28 @@ export class EventPreviewComponent implements OnInit, OnDestroy {
   event: Event;
   private previewIndex = 0;
   private alive: boolean;
+  loaded = false;
 
   constructor() {
     this.alive = true;
   }
 
   ngOnInit() {
-    IntervalObservable.create(10000 + Math.random() * 20000)
-      .takeWhile(() => this.alive)
-      .subscribe(() => {
-        this.previewIndex = (this.previewIndex + 1) % this.event.previews.length;
-      });
+    if (this.event.previews.length > 1) {
+      IntervalObservable.create(1000 + Math.random() * 500)
+        .takeWhile(() => this.alive)
+        .subscribe(() => {
+          this.previewIndex = (this.previewIndex + 1) % this.event.previews.length;
+        });
+    }
   }
 
   getPreview() {
-    return this.event.previews[this.previewIndex];
+    let preview = this.event.previews[this.previewIndex];
+    if (preview != Event.defaultPicture) {
+      preview = "image/preview/" + preview;
+    }
+    return preview;
   }
 
   ngOnDestroy() {

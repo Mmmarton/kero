@@ -1,9 +1,9 @@
-<div class="container" [routerLink]="['/event', event.id]" >
+<div class="container" [routerLink]="['/event', event.id]">
   <div class="row">
     <div class="column column-50">
       <div class='box'>
         <div class='content'>
-          <img [src]="getPreview()" />
+          <img [src]="getPreview() | loadImage" (load)="loaded = true" [hidden]="!loaded" />
         </div>
       </div>
     </div>

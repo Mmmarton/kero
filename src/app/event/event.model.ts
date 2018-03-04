@@ -1,5 +1,5 @@
 export class Event {
-
+  public static defaultPicture = "/assets/img/preview.jpg";
   id: string;
   authorId: string;
   title: string;
@@ -14,7 +14,7 @@ export class Event {
     this.title = title;
     this.date = date;
     this.description = "";
-    this.previews = ["/assets/img/preview.jpg"];
+    this.previews = [Event.defaultPicture];
     return this;
   }
 

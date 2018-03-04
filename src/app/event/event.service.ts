@@ -35,7 +35,7 @@ export class EventService {
         events[i].title,
         new Date(events[i].date),
         events[i].description ? events[i].description : "",
-        events[i].previews || ["/assets/img/preview.jpg"])
+        events[i].previews.length ? events[i].previews : [Event.defaultPicture])
       );
     }
   }

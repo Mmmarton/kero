@@ -21,9 +21,9 @@
 }
 
 @mixin darken_style() {
-  background-color: rgba($color: $color-dark, $alpha: .8);
+  background-color: rgba($color-dark, 0.8);
   border-style: solid;
-  border-color: rgba($color: $color-primary, $alpha: .8);
+  border-color: rgba($color-primary, 0.8);
   border-width: 1px;
 }
 

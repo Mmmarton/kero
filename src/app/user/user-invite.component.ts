@@ -44,6 +44,7 @@ export class UserInviteComponent implements OnInit {
         }
         else {
           this.auth.logoutIfNeeded(error);
+          this.dialogRef.close();
         }
       });
   }

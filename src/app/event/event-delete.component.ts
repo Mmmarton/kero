@@ -30,12 +30,12 @@ export class EventDeleteComponent implements OnInit {
     this.auth.delete("event/" + this.data.event.id, 'text').subscribe(
       response => {
         this.router.navigate(['/galery']);
-        this.dialogRef.close();
       },
       error => {
         this.auth.logoutIfNeeded(error);
       }
     );
+    this.dialogRef.close();
   }
 
 }

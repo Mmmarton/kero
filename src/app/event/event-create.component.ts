@@ -38,11 +38,11 @@ export class EventCreateComponent implements OnInit {
     this.auth.post("event/", { title: this.title, date: this.date.getTime() }, 'text').subscribe(
       response => {
         this.eventService.addEvent({ id: response, title: this.title, date: this.date });
-        this.dialogRef.close();
       },
       error => {
         this.auth.logoutIfNeeded(error);
       }
     );
+    this.dialogRef.close();
   }
 }

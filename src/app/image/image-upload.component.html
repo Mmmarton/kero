@@ -11,13 +11,24 @@
     </div>
 
     <mat-chip-list>
-      <div class="image-box" [ngClass]="{'done':isFileUploaded(i)}"
-        *ngFor="let file of files; let i = index">
+      <div class="image-box" [ngClass]="{'done':isFileUploaded(i)}" *ngFor="let file of files; let i = index">
         <mat-chip>
-          <span>{{ file.name | limit : 30 }}</span>
-          <a class="image-remove" (click)="removeFile(i)">
-            <fa [name]="'times'" [size]="1"></fa>
-          </a>
+          <div>
+            <a class="image-remove" (click)="removeFile(i)">
+              <fa [name]="'times'" [size]="1"></fa>
+            </a>
+            <div class='box'>
+              <div class='content'>
+                <img [src]="file.preview" (load)="file.loaded = true" [hidden]="!file.loaded" />
+                <div class="loader" *ngIf="!file.loaded">
+                  <div class="spinner"></div>
+                </div>
+              </div>
+            </div>
+            <div class="image-name">
+              <div>{{file.name | limit:15}}</div>
+            </div>
+          </div>
         </mat-chip>
       </div>
     </mat-chip-list>

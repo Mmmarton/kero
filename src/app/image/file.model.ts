@@ -1,6 +1,7 @@
 export class ImageFile {
   data: any;
   uploaded: boolean;
+  failed: boolean;
   name: string;
   preview: any;
   loaded: boolean;

@@ -65,7 +65,7 @@ export class ImageViewComponent implements OnInit {
     return this.auth.isMember();
   }
 
-  setLoaded(loaded:boolean) {
-    this.loaded = loaded;
+  setLoaded(loaded: boolean) {
+    this.loaded = loaded || this.imageService.imagePreviews.length == 1;
   }
 }

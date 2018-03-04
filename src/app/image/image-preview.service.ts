@@ -10,19 +10,6 @@ export class ImagePreviewService {
   constructor() {
   }
 
-  random() {
-    return 200 + Math.round(Math.random() * 800);
-  }
-
-  getImagePreviews(eventId: string) {
-    this.imagePreviews = [];
-    for (let i = 0; i < Math.floor(Math.random() * 10 + 10); i++) {
-      let imagePreview = new ImagePreview();
-      this.imagePreviews.push(imagePreview);
-    }
-    return this.imagePreviews;
-  }
-
   getImagePreview(index: number): ImagePreview {
     return this.imagePreviews[index];
   }

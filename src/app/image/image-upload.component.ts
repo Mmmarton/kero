@@ -13,6 +13,7 @@ export class ImageUploadComponent implements OnInit {
 
   eventId: string;
   files: ImageFile[] = [];
+  failures: boolean;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -20,12 +21,12 @@ export class ImageUploadComponent implements OnInit {
 
   ngOnInit() {
     this.eventId = this.route.snapshot.params.id;
+    this.failures = false;
   }
 
   getFiles(event) {
     if (event.target.files && event.target.files[0]) {
       for (let i = 0; i < event.target.files.length; i++) {
-        console.log(event.target.files[i].type.substring(0, 5));
         if (event.target.files[i].type.substring(0, 5) == "image") {
           let file = new ImageFile();
           file.data = event.target.files[i];
@@ -85,7 +86,9 @@ export class ImageUploadComponent implements OnInit {
 
   private uploadFile(index: number) {
     if (index == this.files.length) {
-      this.router.navigate(['event/' + this.eventId]);
+      if (!this.failures) {
+        this.router.navigate(['event/' + this.eventId]);
+      }
       return;
     }
     let file = this.files[index];
@@ -98,6 +101,9 @@ export class ImageUploadComponent implements OnInit {
       },
       error => {
         this.auth.logoutIfNeeded(error);
+        file.failed = true;
+        this.failures = true;
+        this.uploadFile(index + 1);
       }
     );
   }
@@ -108,6 +114,10 @@ export class ImageUploadComponent implements OnInit {
 
   isFileUploaded(index: number) {
     return this.files[index].uploaded;
+  }
+
+  isFileFailed(index: number) {
+    return this.files[index].failed;
   }
 
   removeFile(index: number) {

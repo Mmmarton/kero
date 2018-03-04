@@ -11,7 +11,8 @@
     </div>
 
     <mat-chip-list>
-      <div class="image-box" [ngClass]="{'done':isFileUploaded(i)}" *ngFor="let file of files; let i = index">
+      <div class="image-box" [ngClass]="{'done':isFileUploaded(i), 'failed':isFileFailed(i)}"
+        *ngFor="let file of files; let i = index">
         <mat-chip>
           <div>
             <a class="image-remove" (click)="removeFile(i)">

@@ -23,7 +23,7 @@ export class EventPreviewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.event.previews.length > 1) {
-      IntervalObservable.create(1000 + Math.random() * 500)
+      IntervalObservable.create(5000 + Math.random() * 50000)
         .takeWhile(() => this.alive)
         .subscribe(() => {
           this.previewIndex = (this.previewIndex + 1) % this.event.previews.length;

@@ -19,9 +19,19 @@
 
 .image-box {
   margin: 0.2em;
-  
-  .image-remove {
+
+  a.image-remove {
     float: right;
+    color: $color-initial;
+  
+    &:hover {
+      color: lighten($color-primary, 10%);
+      cursor: pointer;
+    }
+  
+    &:active {
+      color: darken($color-primary, 5%);
+    }
   }
 
   mat-chip {
@@ -85,5 +95,11 @@
 .done {
   mat-chip {
     background-color: darken($color-secondary, 22%);
+  }
+}
+
+.failed {
+  mat-chip {
+    background-color: darken($color-tertiary, 22%);
   }
 }

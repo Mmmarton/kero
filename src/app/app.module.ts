@@ -1,3 +1,5 @@
+import 'intersection-observer';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -10,6 +12,7 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 import { CookieModule } from 'ngx-cookie';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { InViewportModule } from 'ng-in-viewport';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -82,7 +85,8 @@ import { LoadImagePipe } from './pipes/load.image.pipe';
     Angular2FontawesomeModule,
     CookieModule.forRoot(),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InViewportModule.forRoot()
   ],
   providers: [
     AuthService,

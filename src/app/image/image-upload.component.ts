@@ -25,10 +25,13 @@ export class ImageUploadComponent implements OnInit {
   getFiles(event) {
     if (event.target.files && event.target.files[0]) {
       for (let i = 0; i < event.target.files.length; i++) {
-        let file = new ImageFile();
-        file.data = event.target.files[i];
-        file.name = event.target.files[i].name;
-        this.files.push(file);
+        console.log(event.target.files[i].type.substring(0, 5));
+        if (event.target.files[i].type.substring(0, 5) == "image") {
+          let file = new ImageFile();
+          file.data = event.target.files[i];
+          file.name = event.target.files[i].name;
+          this.files.push(file);
+        }
       }
       this.loadPreview(0);
     }
@@ -43,6 +46,9 @@ export class ImageUploadComponent implements OnInit {
       canvas.width = image.width * scale;
       canvas.height = image.height * scale;
       canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+      if (!file) {
+        return;
+      }
       file.preview = canvas.toDataURL('image/jpeg', 1);
       this.loadPreview(index + 1);
       canvas = null;

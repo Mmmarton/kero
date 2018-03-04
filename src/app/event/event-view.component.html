@@ -18,8 +18,9 @@
     </a>
   </div>
   <div class="preview-container" *ngFor="let preview of imagePreviews; let i = index"
-    (click)="viewImage(i)">
-    <img [src]="preview.image | loadImage" (load)="loaded(i)" [hidden]="!isLoaded(i)" />
+    (click)="viewImage(i)" in-viewport [inViewportOptions]="{ partial: true }" (inViewportAction)="enableImage($event, preview)">
+    <img [src]="preview.image | loadImage" (load)="loaded(i)" [hidden]="!isLoaded(i)"
+      *ngIf="preview.enabled" />
     <div class="loader" *ngIf="!isLoaded(i)">
       <fa [name]="'image'" [size]="3"></fa>
     </div>

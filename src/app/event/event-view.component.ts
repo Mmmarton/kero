@@ -102,4 +102,10 @@ export class EventViewComponent implements OnInit {
   isLoaded(imageId: number) {
     return this.imagePreviews[imageId].loaded;
   }
+
+  enableImage(event, preview: ImagePreview) {
+    if (event.value && !preview.enabled) {
+      preview.enabled = true;
+    }
+  }
 }

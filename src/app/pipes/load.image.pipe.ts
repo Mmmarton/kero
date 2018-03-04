@@ -46,7 +46,7 @@ export class LoadImagePipe implements PipeTransform, OnDestroy {
     }
 
     transform(url: string): any {
-        if(url == User.defaultPicture) {
+        if (url == User.defaultPicture) {
             return User.defaultPicture;
         }
         let obj = this.internalTransform(url);
@@ -62,8 +62,9 @@ export class LoadImagePipe implements PipeTransform, OnDestroy {
                     observer.next(objectUrl);
                 },
                 error => {
-                    this.imageService.closeCurrentImage();
-                    this.auth.logoutIfNeeded(error);
+                    if (this.auth.logoutIfNeeded(error)) {
+                        this.imageService.closeCurrentImage();
+                    }
                 }
             );
 

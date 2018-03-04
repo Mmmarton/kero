@@ -81,9 +81,11 @@ export class AuthService {
   }
 
   logoutIfNeeded(error) {
-    if (error.status == 403 || error.status == 0) {
+    if (error.status == 403) {
       this.logOut();
+      return true;
     }
+    return false;
   }
 
   getUser() {

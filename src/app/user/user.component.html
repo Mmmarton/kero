@@ -69,7 +69,7 @@
             Passwords do not match.
           </mat-error>
         </mat-form-field>
-        <button [disabled]="!form.valid" type="submit">Update</button>
+        <button [disabled]="!form.valid || loading" type="submit">Update</button>
       </div>
     </div>
   </form>

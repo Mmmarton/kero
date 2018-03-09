@@ -4,6 +4,7 @@ import { User, UserUpdateModel } from './user.model';
 import { AuthService } from '../services/auth/auth.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { PasswordValidator } from '../../validators/password-match.validator';
+import { SnackbarService } from '../snackbar/snackbar.service';
 
 @Component({
   selector: 'app-user',
@@ -18,10 +19,14 @@ export class UserComponent implements OnInit {
   picture: any;
   imageFile: any;
   password2: string;
+  loading: boolean;
 
-  constructor(private route: ActivatedRoute, private auth: AuthService) { }
+  constructor(private route: ActivatedRoute,
+    private auth: AuthService,
+    private snackbarService: SnackbarService) { }
 
   ngOnInit() {
+    this.loading = false;
     let user = this.auth.getUser();
     this.user = new UserUpdateModel().fromUser(user);
     this.form = new FormGroup({
@@ -60,12 +65,16 @@ export class UserComponent implements OnInit {
   }
 
   update() {
+    this.loading = true;
+    let successes = 0;
     this.auth.put("user/", this.user, 'text').subscribe(
       response => {
+        successes = this.checkIfSuccess(successes);
         this.auth.updateUser(this.user);
       },
       error => {
         if (error.status == 406) {
+          this.loading = false;
           this.error = error.error;
           this.form.get('oldPassword').setErrors(['']);
         }
@@ -78,11 +87,26 @@ export class UserComponent implements OnInit {
       formData.append('picture', this.imageFile);
       this.auth.put("user/picture", formData, 'text').subscribe(
         response => {
+          successes = this.checkIfSuccess(successes);
         },
         error => {
+          this.loading = false;
+          this.snackbarService.showMessage("Profile picture update failed.", "error");
           this.auth.logoutIfNeeded(error);
         });
     }
+    else {
+      successes = this.checkIfSuccess(successes);
+    }
+  }
+
+  private checkIfSuccess(successes) {
+    successes++;
+    if (successes == 2) {
+      this.snackbarService.showMessage("User profile updated", "success");
+      this.loading = false;
+    }
+    return successes;
   }
 
 }

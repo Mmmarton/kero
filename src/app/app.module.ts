@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatOptionModule,
-  MatInputModule, MatCheckboxModule, MatDividerModule, MatChipsModule, MatSelectModule
+  MatInputModule, MatCheckboxModule, MatDividerModule, MatChipsModule, MatSelectModule, MatSnackBarModule
 } from '@angular/material';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { CookieModule } from 'ngx-cookie';
@@ -42,6 +42,8 @@ import { UserInviteComponent } from './user/user-invite.component';
 import { AdminGuard } from './services/guards/admin.guard';
 import { MemberGuard } from './services/guards/member.guard';
 import { LoadImagePipe } from './pipes/load.image.pipe';
+import { SnackbarComponent } from './snackbar/snackbar.component';
+import { SnackbarService } from './snackbar/snackbar.service';
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { LoadImagePipe } from './pipes/load.image.pipe';
     UserListComponent,
     UserDeleteComponent,
     UserInviteComponent,
-    LoadImagePipe
+    LoadImagePipe,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ import { LoadImagePipe } from './pipes/load.image.pipe';
     CookieModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
-    InViewportModule.forRoot()
+    InViewportModule.forRoot(),
+    MatSnackBarModule
   ],
   providers: [
     AuthService,
@@ -95,7 +99,8 @@ import { LoadImagePipe } from './pipes/load.image.pipe';
     MemberGuard,
     EventService,
     ImagePreviewService,
-    HttpClient
+    HttpClient,
+    SnackbarService
   ],
   entryComponents: [
     LoginComponent,
@@ -104,7 +109,8 @@ import { LoadImagePipe } from './pipes/load.image.pipe';
     EventDeleteComponent,
     ImageDeleteComponent,
     UserDeleteComponent,
-    UserInviteComponent
+    UserInviteComponent,
+    SnackbarComponent
   ],
   bootstrap: [AppComponent]
 })

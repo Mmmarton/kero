@@ -19,12 +19,16 @@ export class ImageViewComponent implements OnInit {
       this.left();
     } else if (event.key == "Escape") {
       this.close();
+    } else if (event.key == "Delete") {
+      this.openDelete();
     }
   }
 
   loaded = false;
 
-  constructor(public dialog: MatDialog, private imageService: ImagePreviewService, private auth: AuthService) { }
+  constructor(public dialog: MatDialog,
+    private imageService: ImagePreviewService,
+    private auth: AuthService) { }
 
   ngOnInit() {
   }

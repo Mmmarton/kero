@@ -6,6 +6,7 @@
       <input type="file" (change)="getFiles($event)" multiple/>
     </a>
     <div class="controls">
+      <button class="button" (click)="back()">Back</button>
       <button class="button danger" (click)="clearFiles()" [disabled]="isFileListEmpty()">Clear</button>
       <button class="button" (click)="uploadFiles()" [disabled]="isFileListEmpty()">Upload</button>
     </div>

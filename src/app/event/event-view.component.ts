@@ -31,14 +31,15 @@ export class EventViewComponent implements OnInit {
 
   ngOnInit() {
     this.event = this.eventService.getEvent(this.route.snapshot.params.id);
-    this.eventService.setCurrentEvent(this.event);
     if (this.event) {
+      this.eventService.setCurrentEvent(this.event);
       this.getImages();
     }
     else {
       this.auth.get("event/" + this.route.snapshot.params.id).subscribe(
         response => {
-          this.event = response;
+          this.event = new Event().loadFrom(response);
+          this.eventService.setCurrentEvent(this.event);
           this.getImages();
         },
         error => {

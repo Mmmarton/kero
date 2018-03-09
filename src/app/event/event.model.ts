@@ -28,6 +28,16 @@ export class Event {
     return this;
   }
 
+  loadFrom(event: any) {
+    this.id = event.id;
+    this.authorId = event.authorId;
+    this.title = event.title;
+    this.date = new Date(event.date);
+    this.description = event.description;
+    this.previews = event.previews;
+    return this;
+  }
+
   getCopy() {
     let event: Event = new Event();
     event.id = this.id;

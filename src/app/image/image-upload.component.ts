@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageFile } from './file.model';
 import { AuthService } from '../services/auth/auth.service';
+import { SnackbarService } from '../snackbar/snackbar.service';
+import { MatSnackBarRef } from '@angular/material';
 
 @Component({
   selector: 'app-image-upload',
@@ -17,7 +19,8 @@ export class ImageUploadComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private snackbarService: SnackbarService) { }
 
   ngOnInit() {
     this.eventId = this.route.snapshot.params.id;
@@ -81,14 +84,28 @@ export class ImageUploadComponent implements OnInit {
   }
 
   uploadFiles() {
+    for (let i = 0; i < this.files.length; i++) {
+      this.files[i].failed = false;
+    }
+    this.failures = false;
     this.uploadFile(0);
   }
 
   private uploadFile(index: number) {
     if (index == this.files.length) {
       if (!this.failures) {
-        this.router.navigate(['event/' + this.eventId]);
+        let snackBarRef = this.snackbarService.showMessage("All images uploaded.", "success");
+        snackBarRef.afterDismissed().subscribe(
+          () => { this.router.navigate(['event/' + this.eventId]); }
+        );
       }
+      else {
+        this.snackbarService.showMessage("Failed to upload some images.", "error");
+      }
+      return;
+    }
+    if (this.files[index].uploaded) {
+      this.uploadFile(index + 1);
       return;
     }
     let file = this.files[index];
@@ -125,5 +142,9 @@ export class ImageUploadComponent implements OnInit {
     this.files[index].preview = null;
     this.files[index] = null;
     this.files.splice(index, 1);
+  }
+
+  back() {
+    this.router.navigate(['event/' + this.eventId]);
   }
 }

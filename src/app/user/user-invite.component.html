@@ -11,9 +11,9 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" formControlName="nickname">
-      <mat-error *ngIf="!form.controls.nickname.valid && form.controls.nickname.dirty">
-        Nickname is required with a length between 3 and 20 characters. Just to know who
+      <input matInput type="text" [(ngModel)]="user.firstName" placeholder="First Name" formControlName="firstName">
+      <mat-error *ngIf="!form.controls.firstName.valid && form.controls.firstName.dirty">
+        First Name is required with a length between 3 and 20 characters. Just to know who
         are you inviting.
       </mat-error>
     </mat-form-field>

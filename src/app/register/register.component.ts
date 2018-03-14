@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { MatDialogRef } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';

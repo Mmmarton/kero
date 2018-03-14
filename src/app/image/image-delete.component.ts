@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { ImagePreviewService } from './image-preview.service';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { EventService } from '../event/event.service';
 
 @Component({

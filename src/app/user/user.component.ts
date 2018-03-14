@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User, UserUpdateModel } from './user.model';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { PasswordValidator } from '../../validators/password-match.validator';
 import { SnackbarService } from '../snackbar/snackbar.service';
@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
   }
 
   getPicture() {
-    return this.auth.getUser().picture;
+    return this.auth.getUser().getPicture();
   }
 
   readUrl(event: any) {
@@ -70,11 +70,10 @@ export class UserComponent implements OnInit {
     this.auth.put("user/", this.user, 'text').subscribe(
       response => {
         successes = this.checkIfSuccess(successes);
-        this.auth.updateUser(this.user);
       },
       error => {
+        this.loading = false;
         if (error.status == 406) {
-          this.loading = false;
           this.error = error.error;
           this.form.get('oldPassword').setErrors(['']);
         }
@@ -87,6 +86,7 @@ export class UserComponent implements OnInit {
       formData.append('picture', this.imageFile);
       this.auth.put("user/picture", formData, 'text').subscribe(
         response => {
+          this.user.picture = response;
           successes = this.checkIfSuccess(successes);
         },
         error => {
@@ -103,6 +103,7 @@ export class UserComponent implements OnInit {
   private checkIfSuccess(successes) {
     successes++;
     if (successes == 2) {
+      this.auth.updateUser(this.user);
       this.snackbarService.showMessage("User profile updated", "success");
       this.loading = false;
     }

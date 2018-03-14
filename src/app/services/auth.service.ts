@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { User, UserUpdateModel } from '../../user/user.model';
+import { User, UserUpdateModel } from '../user/user.model';
 import { CookieService } from 'ngx-cookie';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Credentials } from '../../user/credentials.model';
-import { Router } from '@angular/router';
+import { Credentials } from '../user/credentials.model';
+import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
 
   private api = "http://localhost:8080/api/";
-  private pictureLink = "user/picture/";
   private user: User;
   private expirationDate: Date = new Date(Date.now() + (1000 * 60 * 60 * 24 * 10));
 
@@ -24,7 +23,7 @@ export class AuthService {
       response => {
       },
       error => {
-        this.logOut();
+        this.logOut(window.location.pathname.includes("register/"));
       }
     );
   }
@@ -66,14 +65,15 @@ export class AuthService {
 
   logIn(user: User) {
     this.user = user;
-    this.user.picture = this.getPictureLink(this.user.email);
     this.cookies.putObject("user", user, { expires: this.expirationDate });
   }
 
-  logOut() {
+  logOut(silent?: boolean) {
     this.cookies.remove("user");
     this.user = new User();
-    this.router.navigate(['/home']);
+    if (!silent) {
+      this.router.navigate(['/home']);
+    }
   }
 
   isLoggedIn() {
@@ -82,7 +82,7 @@ export class AuthService {
 
   logoutIfNeeded(error) {
     if (error.status == 403) {
-      this.logOut();
+      this.logOut(window.location.pathname.includes("register/"));
       return true;
     }
     return false;
@@ -96,7 +96,9 @@ export class AuthService {
     this.user.nickname = user.nickname;
     this.user.firstName = user.firstName;
     this.user.lastName = user.lastName;
-    this.user.picture = this.getPictureLink(this.user.email);
+    if (user.picture) {
+      this.user.picture = user.picture;
+    }
     let userCookie = this.user.getCopy();
     this.cookies.putObject("user", userCookie, { expires: this.expirationDate });
   }
@@ -107,9 +109,5 @@ export class AuthService {
 
   isMember() {
     return this.user.role == "ROLE_MEMBER" || this.user.role == "ROLE_ADMIN";
-  }
-
-  getPictureLink(email: string) {
-    return this.pictureLink + email;
   }
 }

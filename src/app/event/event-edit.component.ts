@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Event } from './event.model';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({

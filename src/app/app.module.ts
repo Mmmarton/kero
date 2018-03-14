@@ -18,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
-import { AuthService } from './services/auth/auth.service';
+import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/guards/auth.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';

@@ -8,16 +8,16 @@
   <table>
     <tr class="table-header">
       <th class="image-cell"></th>
-      <th>Nickname</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Role</th>
       <th></th>
     </tr>
     <tr *ngFor="let user of users">
       <td>
-        <img class="profile-picture" [src]="user?.picture | loadImage">
+        <img class="profile-picture" [src]="user?.getPicture() | loadImage">
       </td>
-      <td>{{user?.nickname}}</td>
+      <td>{{user?.firstName}}</td>
       <td>{{user?.email}}</td>
       <td>
         <mat-form-field class="role-cell">

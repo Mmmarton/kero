@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageFile } from './file.model';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { MatSnackBarRef } from '@angular/material';
 

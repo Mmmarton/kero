@@ -3,7 +3,7 @@ import { User, UserListing } from './user.model';
 import { UserDeleteComponent } from './user-delete.component';
 import { MatDialog } from '@angular/material';
 import { UserInviteComponent } from './user-invite.component';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -22,9 +22,6 @@ export class UserListComponent implements OnInit {
       response => {
         for (let i = 0; i < response.length; i++) {
           let user = new UserListing(response[i]);
-          if (response[i].hasPicture) {
-            user.picture = this.auth.getPictureLink(user.email);
-          }
           this.users.push(user);
         }
       },

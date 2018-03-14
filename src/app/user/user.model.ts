@@ -1,5 +1,6 @@
 export class User {
   public static defaultPicture = "/assets/img/user.jpg";
+  public static pictureLink = "user/picture/";
   token: string;
   nickname: string;
   firstName: string;
@@ -9,7 +10,6 @@ export class User {
   role: string;
 
   constructor() {
-    this.picture = User.defaultPicture;
     this.role = "GUEST";
   }
 
@@ -30,10 +30,14 @@ export class User {
     this.firstName = user.firstName || null;
     this.lastName = user.lastName || null;
     this.nickname = user.nickname || null;
-    this.picture = user.picture || User.defaultPicture;
+    this.picture = user.picture || null;
     this.token = user.token || null;
     this.role = user.role || null;
     return this;
+  }
+
+  getPicture() {
+    return this.picture ? User.pictureLink + this.picture : User.defaultPicture;
   }
 }
 
@@ -50,7 +54,7 @@ export class UserRegistration {
 
 export class UserInvitation {
   email: string;
-  nickname: string;
+  firstName: string;
 }
 
 export class UserUpdateModel {
@@ -60,6 +64,7 @@ export class UserUpdateModel {
   lastName: string;
   oldPassword: string;
   password: string;
+  picture: string;
 
   constructor() { }
 
@@ -75,13 +80,17 @@ export class UserUpdateModel {
 export class UserListing {
   picture: string;
   email: string;
-  nickname: string;
+  firstName: string;
   role: string;
 
   constructor(user: any) {
     this.email = user.email;
-    this.nickname = user.nickname;
+    this.firstName = user.firstName;
     this.role = user.role;
-    this.picture = User.defaultPicture;
+    this.picture = user.picture;
+  }
+
+  getPicture() {
+    return this.picture ? User.pictureLink + this.picture : User.defaultPicture;
   }
 }

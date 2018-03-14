@@ -9,7 +9,7 @@ import { EventDeleteComponent } from './event-delete.component';
 import { ImagePreviewService } from '../image/image-preview.service';
 import { ImagePreview } from '../image/image-preview.model';
 import { ImageUploadComponent } from '../image/image-upload.component';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Observable, Subscriber } from 'rxjs';
 
 @Component({

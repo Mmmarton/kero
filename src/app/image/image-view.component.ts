@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ImageDeleteComponent } from './image-delete.component';
 import { MatDialog } from '@angular/material';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { ImagePreviewService } from './image-preview.service';
 
 @Component({

@@ -7,7 +7,7 @@
       <fa [name]="'users'" [size]="2"></fa>
     </a>
     <a routerLink="user" class="user-control">
-      <img class="profile-picture" [src]="user?.picture | loadImage" /> {{user?.nickname}}
+      <img class="profile-picture" [src]="user?.getPicture() | loadImage" /> {{user?.nickname}}
     </a>
     <a (click)="logOut()" class="logout-control">
       <fa [name]="'sign-out'"></fa>

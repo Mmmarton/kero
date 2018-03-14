@@ -13,7 +13,7 @@ import 'rxjs/add/observable/of';
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscriber } from 'rxjs';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { User } from '../user/user.model';
 import { Event } from '../event/event.model';
 import { ImagePreviewService } from '../image/image-preview.service';

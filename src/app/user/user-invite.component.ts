@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserInvitation } from './user.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
+import { SnackbarService } from '../snackbar/snackbar.service';
 
 @Component({
   selector: 'app-user-invite',
@@ -18,7 +19,8 @@ export class UserInviteComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<UserInviteComponent>,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private snackbarService: SnackbarService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -27,7 +29,7 @@ export class UserInviteComponent implements OnInit {
   ngOnInit() {
     this.user = new UserInvitation();
     this.form = new FormGroup({
-      nickname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.email]),
     });
   }
@@ -39,8 +41,15 @@ export class UserInviteComponent implements OnInit {
       },
       error => {
         if (error.status == 400) {
-          this.error = error.error;
-          this.form.get('email').setErrors(['']);
+          error = JSON.parse(error.error);
+          if (error.error == "DUPLICATE") {
+            this.error = error.error;
+            this.form.get('email').setErrors(['']);
+          }
+          else if (error.message == "INVALID_INVITATION") {
+            this.dialogRef.close();
+            this.snackbarService.showMessage("Your First Name is not set.", "error");
+          }
         }
         else {
           this.auth.logoutIfNeeded(error);

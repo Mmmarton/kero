@@ -11,16 +11,18 @@ import { ImagePreviewService } from './image-preview.service';
 })
 export class ImageViewComponent implements OnInit {
 
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('window:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.key == "ArrowRight") {
-      this.right();
-    } else if (event.key == "ArrowLeft") {
-      this.left();
-    } else if (event.key == "Escape") {
-      this.close();
-    } else if (event.key == "Delete") {
-      this.openDelete();
+    if (this.isImageShown()) {
+      if (event.key == "ArrowRight") {
+        this.right();
+      } else if (event.key == "ArrowLeft") {
+        this.left();
+      } else if (event.key == "Escape") {
+        this.close();
+      } else if (event.key == "Delete") {
+        this.openDelete();
+      }
     }
   }
 
@@ -59,7 +61,7 @@ export class ImageViewComponent implements OnInit {
     let dialogRef = this.dialog.open(ImageDeleteComponent);
 
     dialogRef.afterClosed().subscribe(response => {
-      if (!response) {
+      if (response == "error") {
         this.close();
       }
     });

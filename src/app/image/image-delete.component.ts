@@ -34,7 +34,7 @@ export class ImageDeleteComponent implements OnInit {
         },
         error => {
           this.auth.logoutIfNeeded(error);
-          this.dialogRef.close();
+          this.dialogRef.close("error");
         }
       );
   }

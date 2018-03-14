@@ -5,8 +5,11 @@
 
       <mat-form-field>
         <input matInput type="text" [(ngModel)]="user.username" placeholder="Username" formControlName="username">
-        <mat-error *ngIf="!form.controls.username.valid && form.controls.username.dirty">
+        <mat-error *ngIf="!form.controls.username.valid && form.controls.username.dirty && !errorDuplicate">
           Username is required with a length between 8 and 30 characters.
+        </mat-error>
+        <mat-error *ngIf="errorDuplicate">
+          Username already taken.
         </mat-error>
       </mat-form-field>
 
@@ -35,11 +38,14 @@
 
       <mat-form-field>
         <input matInput type="text" [(ngModel)]="user.email" placeholder="Email" formControlName="email">
-        <mat-error *ngIf="!form.controls.email.valid && form.controls.email.dirty && !error">
+        <mat-error *ngIf="!form.controls.email.valid && form.controls.email.dirty && !errorEmail && !errorEmailNone">
           A valid email is required with a length between 5 and 50 characters.
         </mat-error>
-        <mat-error *ngIf="error">
+        <mat-error *ngIf="errorEmail">
           Invalid invitation for the given email.
+        </mat-error>
+        <mat-error *ngIf="errorEmailNone">
+          No invitation for the given email.
         </mat-error>
       </mat-form-field>
 

@@ -15,7 +15,9 @@ export class RegisterComponent implements OnInit {
 
   form: FormGroup;
   user: UserRegistration;
-  error: string;
+  errorEmail: string;
+  errorEmailNone: string;
+  errorDuplicate: string;
 
   constructor(
     private auth: AuthService,
@@ -42,9 +44,22 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error => {
+        console.log(error);
         if (error.status == 400) {
-          this.error = error.error;
-          this.form.get('email').setErrors(['']);
+          error = JSON.parse(error.error);
+          if (error.message == "NO_INVITATION") {
+            this.errorEmailNone = "error";
+            this.form.get('email').setErrors(['']);
+          }
+          else if (error.message == "INVALID_INVITATION") {
+            this.errorEmail = "error";
+            this.form.get('email').setErrors(['']);
+          }
+          else if (error.error == "DUPLICATE") {
+            console.log("here");
+            this.errorDuplicate = "error";
+            this.form.get('username').setErrors(['']);
+          }
         }
         else {
           this.auth.logoutIfNeeded(error);

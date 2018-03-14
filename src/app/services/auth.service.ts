@@ -19,13 +19,18 @@ export class AuthService {
     if (userCookie) {
       this.user.update(userCookie);
     }
-    this.get("auth/session", "text").subscribe(
-      response => {
-      },
-      error => {
-        this.logOut(window.location.pathname.includes("register/"));
-      }
-    );
+    if (window.location.pathname.includes("register/")) {
+      this.logOut(true);
+    }
+    else {
+      this.get("auth/session", "text").subscribe(
+        response => {
+        },
+        error => {
+          this.logOut();
+        }
+      );
+    }
   }
 
   post(url: string, object: any, type: any = 'json') {

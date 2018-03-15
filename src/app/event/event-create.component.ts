@@ -15,6 +15,7 @@ export class EventCreateComponent implements OnInit {
   title: string;
   date: Date;
   form: FormGroup;
+  error: string;
 
   constructor(
     private dialog: MatDialog,
@@ -38,11 +39,21 @@ export class EventCreateComponent implements OnInit {
     this.auth.post("event/", { title: this.title, date: this.date.getTime() }, 'text').subscribe(
       response => {
         this.eventService.addEvent({ id: response, title: this.title, date: this.date, authorId: this.auth.getUser().id });
+        this.dialogRef.close();
       },
       error => {
         this.auth.logoutIfNeeded(error);
+        if (error.status == 400) {
+          error = JSON.parse(error.error);
+          if (error.error == "DUPLICATE") {
+            this.error = error.error;
+            this.form.get('title').setErrors(['']);
+          }
+        }
+        else {
+          this.dialogRef.close();
+        }
       }
     );
-    this.dialogRef.close();
   }
 }

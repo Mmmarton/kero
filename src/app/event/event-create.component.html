@@ -3,8 +3,11 @@
     <h1 class="title">New event</h1>
     <mat-form-field>
       <input matInput type="text" [(ngModel)]="title" placeholder="Title" formControlName="title">
-      <mat-error *ngIf="!form.controls.title.valid && form.controls.title.dirty">
+      <mat-error *ngIf="!form.controls.title.valid && form.controls.title.dirty && !error">
         Title is required with a length between 3 and 50 characters.
+      </mat-error>
+      <mat-error *ngIf="error">
+        Another event already exists with this title.
       </mat-error>
     </mat-form-field>
     <mat-form-field>

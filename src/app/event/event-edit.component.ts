@@ -13,6 +13,7 @@ export class EventEditComponent implements OnInit {
 
   event: Event;
   form: FormGroup;
+  error: string;
 
   constructor(
     private dialog: MatDialog,
@@ -42,13 +43,24 @@ export class EventEditComponent implements OnInit {
     };
     this.auth.put("event/", event, 'text').subscribe(
       response => {
+        console.log(response);
+        this.data.event.update(this.event);
+        this.dialogRef.close();
       },
       error => {
         this.auth.logoutIfNeeded(error);
+        if (error.status == 400) {
+          error = JSON.parse(error.error);
+          if (error.error == "DUPLICATE") {
+            this.error = error.error;
+            this.form.get('title').setErrors(['']);
+          }
+        }
+        else {
+          this.dialogRef.close();
+        }
       }
     );
-    this.data.event.update(this.event);
-    this.dialogRef.close();
   }
 
 }

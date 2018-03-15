@@ -71,6 +71,10 @@ export class ImageViewComponent implements OnInit {
     return this.auth.isMember();
   }
 
+  canDelete() {
+    return this.auth.isMember() && (this.auth.getUser().id == this.imageService.getCurrentImage().authorId || this.auth.isAdmin());
+  }
+
   setLoaded(loaded: boolean) {
     this.loaded = loaded || this.imageService.imagePreviews.length == 1;
   }

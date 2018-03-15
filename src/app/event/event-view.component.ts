@@ -56,6 +56,7 @@ export class EventViewComponent implements OnInit {
         for (let i = 0; i < response.length; i++) {
           let imagePreview = new ImagePreview();
           imagePreview.id = response[i].id;
+          imagePreview.authorId = response[i].authorId;
           imagePreview.image = "image/preview/" + response[i].imagePath;
           this.imagePreviews.push(imagePreview);
         }
@@ -98,6 +99,10 @@ export class EventViewComponent implements OnInit {
 
   isMember() {
     return this.auth.isMember();
+  }
+
+  canDelete() {
+    return this.auth.isMember() && (this.auth.getUser().id == this.event.authorId || this.auth.isAdmin());
   }
 
   isLoaded(imageId: number) {

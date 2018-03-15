@@ -2,7 +2,7 @@
   <a (click)="close()">
     <fa class="exit-button" [name]="'times'" [size]="3"></fa>
   </a>
-  <a (click)="openDelete()" class="image-delete danger" *ngIf="isMember()">
+  <a (click)="openDelete()" class="image-delete danger" *ngIf="canDelete()">
     <fa [name]="'trash'" [size]="3"></fa>
   </a>
   <div class="image-container">

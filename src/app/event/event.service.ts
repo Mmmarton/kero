@@ -23,7 +23,7 @@ export class EventService {
   }
 
   addEvent(event: any) {
-    this.events.unshift(new Event().new(event.id, event.title, event.date));
+    this.events.unshift(new Event().new(event.id, event.title, event.date, event.authorId));
   }
 
   setEvents(events: any[]) {

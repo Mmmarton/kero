@@ -3,6 +3,7 @@ export class ImagePreview {
   image: string;
   loaded: boolean;
   enabled: boolean;
+  authorId: string;
 
   constructor() {
     this.loaded = false;

@@ -9,8 +9,9 @@ export class Event {
 
   constructor() { }
 
-  new(id: string, title: string, date: Date) {
+  new(id: string, title: string, date: Date, authorId: string) {
     this.id = id;
+    this.authorId = authorId;
     this.title = title;
     this.date = date;
     this.description = "";

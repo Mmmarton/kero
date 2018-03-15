@@ -3,7 +3,7 @@
     <a (click)="openEdit()" class="event-edit" *ngIf="isMember()">
       <fa [name]="'edit'" [size]="2"></fa>
     </a>
-    <a (click)="openDelete()" class="event-delete danger" *ngIf="isMember()">
+    <a (click)="openDelete()" class="event-delete danger" *ngIf="canDelete()">
       <fa [name]="'trash'" [size]="2"></fa>
     </a>
     <h1>{{event?.title}}</h1>

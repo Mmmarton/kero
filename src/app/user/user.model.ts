@@ -56,6 +56,7 @@ export class UserRegistration {
 }
 
 export class UserInvitation {
+  id: string;
   email: string;
   firstName: string;
 }

@@ -32,7 +32,7 @@ export class UserListComponent implements OnInit {
   }
 
   update(user: UserListing) {
-    this.auth.put("user/role", { email: user.email, role: user.role }, 'text').subscribe(
+    this.auth.put("user/role", { id: user.id, role: user.role }, 'text').subscribe(
       response => {
       },
       error => {

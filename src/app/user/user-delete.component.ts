@@ -26,7 +26,7 @@ export class UserDeleteComponent implements OnInit {
   ngOnInit() { }
 
   delete() {
-    this.auth.delete("user/" + this.data.user.email, 'text').subscribe(
+    this.auth.delete("user/" + this.data.user.id, 'text').subscribe(
       response => {
         this.dialogRef.close(this.data.user);
       },

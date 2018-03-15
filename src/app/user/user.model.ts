@@ -1,6 +1,7 @@
 export class User {
   public static defaultPicture = "/assets/img/user.jpg";
   public static pictureLink = "user/picture/";
+  id: string;
   token: string;
   nickname: string;
   firstName: string;
@@ -15,6 +16,7 @@ export class User {
 
   getCopy() {
     let user = new User();
+    user.id = this.id;
     user.email = this.email;
     user.firstName = this.firstName;
     user.token = this.token;
@@ -26,13 +28,14 @@ export class User {
   }
 
   update(user: any) {
-    this.email = user.email || null;
-    this.firstName = user.firstName || null;
-    this.lastName = user.lastName || null;
-    this.nickname = user.nickname || null;
-    this.picture = user.picture || null;
-    this.token = user.token || null;
-    this.role = user.role || null;
+    this.id = user.id;
+    this.email = user.email;
+    this.firstName = user.firstName;
+    this.lastName = user.lastName;
+    this.nickname = user.nickname;
+    this.picture = user.picture;
+    this.token = user.token;
+    this.role = user.role;
     return this;
   }
 
@@ -58,6 +61,7 @@ export class UserInvitation {
 }
 
 export class UserUpdateModel {
+  id: string;
   email: string;
   nickname: string;
   firstName: string;
@@ -69,21 +73,24 @@ export class UserUpdateModel {
   constructor() { }
 
   fromUser(user: User): UserUpdateModel {
-    this.email = user.email || null;
-    this.nickname = user.nickname || null;
-    this.firstName = user.firstName || null;
-    this.lastName = user.lastName || null;
+    this.id = user.id;
+    this.email = user.email;
+    this.nickname = user.nickname;
+    this.firstName = user.firstName;
+    this.lastName = user.lastName;
     return this;
   }
 }
 
 export class UserListing {
+  id: string;
   picture: string;
   email: string;
   firstName: string;
   role: string;
 
   constructor(user: any) {
+    this.id = user.id;
     this.email = user.email;
     this.firstName = user.firstName;
     this.role = user.role;

@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error => {
-        console.log(error);
         if (error.status == 400) {
           error = JSON.parse(error.error);
           if (error.message == "NO_INVITATION") {
@@ -56,7 +55,6 @@ export class RegisterComponent implements OnInit {
             this.form.get('email').setErrors(['']);
           }
           else if (error.error == "DUPLICATE") {
-            console.log("here");
             this.errorDuplicate = "error";
             this.form.get('username').setErrors(['']);
           }

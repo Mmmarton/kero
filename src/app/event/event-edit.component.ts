@@ -43,7 +43,6 @@ export class EventEditComponent implements OnInit {
     };
     this.auth.put("event/", event, 'text').subscribe(
       response => {
-        console.log(response);
         this.data.event.update(this.event);
         this.dialogRef.close();
       },

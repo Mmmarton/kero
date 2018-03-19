@@ -11,6 +11,11 @@
     <div class="description">
       <p>{{event?.description}}</p>
     </div>
+    <div class="author-box">
+      <img class="author-picture" [src]="user?.getPicture() | loadImage" />
+      <h5>{{user?.nickname}}</h5>
+    </div>
+
 
     <a [routerLink]="['/upload', event.id]" class="image-add" *ngIf="isMember()">
       <fa [name]="'plus'" [size]="2" class="underlay"></fa>

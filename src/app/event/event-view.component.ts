@@ -11,6 +11,7 @@ import { ImagePreview } from '../image/image-preview.model';
 import { ImageUploadComponent } from '../image/image-upload.component';
 import { AuthService } from '../services/auth.service';
 import { Observable, Subscriber } from 'rxjs';
+import { User } from '../user/user.model';
 
 @Component({
   selector: 'app-event-view',
@@ -21,6 +22,7 @@ export class EventViewComponent implements OnInit {
 
   imagePreviews: ImagePreview[] = [];
   event: Event;
+  user: User;
 
   constructor(private route: ActivatedRoute,
     public dialog: MatDialog,
@@ -33,6 +35,7 @@ export class EventViewComponent implements OnInit {
     this.event = this.eventService.getEvent(this.route.snapshot.params.id);
     if (this.event) {
       this.eventService.setCurrentEvent(this.event);
+      this.loadAuthor();
       this.getImages();
     }
     else {
@@ -40,6 +43,7 @@ export class EventViewComponent implements OnInit {
         response => {
           this.event = new Event().loadFrom(response);
           this.eventService.setCurrentEvent(this.event);
+          this.loadAuthor();
           this.getImages();
         },
         error => {
@@ -47,6 +51,17 @@ export class EventViewComponent implements OnInit {
         }
       );
     }
+  }
+
+  private loadAuthor() {
+    this.auth.get("user/" + this.event.authorId).subscribe(
+      response => {
+        this.user = new User().update(response);
+      },
+      error => {
+        this.auth.logoutIfNeeded(error);
+      }
+    );
   }
 
   private getImages() {

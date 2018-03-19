@@ -14,6 +14,7 @@ export class UserListComponent implements OnInit {
 
   users: UserListing[] = [];
   roles = ["ROLE_GUEST", "ROLE_MEMBER"];
+  waiting = false;
 
   constructor(public dialog: MatDialog, private auth: AuthService) { }
 
@@ -32,8 +33,10 @@ export class UserListComponent implements OnInit {
   }
 
   update(user: UserListing) {
+    this.waiting = true;
     this.auth.put("user/role", { id: user.id, role: user.role }, 'text').subscribe(
       response => {
+        this.waiting = false;
       },
       error => {
         this.auth.logoutIfNeeded(error);

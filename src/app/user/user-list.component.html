@@ -21,7 +21,7 @@
       <td>{{user?.email}}</td>
       <td>
         <mat-form-field class="role-cell">
-          <mat-select [(ngModel)]="user.role" (change)="update(user)">
+          <mat-select [(ngModel)]="user.role" (change)="update(user)" [disabled]="waiting">
             <mat-option *ngFor="let role of roles; let i = index" [value]="role">
               {{ role }}
             </mat-option>

@@ -14,23 +14,22 @@ export class AuthService {
   private expirationDate: Date = new Date(Date.now() + (1000 * 60 * 60 * 24 * 10));
 
   constructor(private cookies: CookieService, private http: HttpClient, private router: Router) {
+    if (window.location.pathname.includes("register/")) {
+      this.logOut(true);
+      return;
+    }
     this.user = new User();
     let userCookie = <User>(cookies.getObject('user'));
     if (userCookie) {
       this.user.update(userCookie);
     }
-    if (window.location.pathname.includes("register/")) {
-      this.logOut(true);
-    }
-    else {
-      this.get("auth/session", "text").subscribe(
-        response => {
-        },
-        error => {
-          this.logOut();
-        }
-      );
-    }
+    this.get("auth/session", "text").subscribe(
+      response => {
+      },
+      error => {
+        this.logOut();
+      }
+    );
   }
 
   post(url: string, object: any, type: any = 'json') {

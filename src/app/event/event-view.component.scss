@@ -106,7 +106,7 @@ h5 {
   display: inline;
   padding: 11px 15px 8px 4px;
   border-radius: 23px;
-  cursor: pointer;
+  background-color: $color-dark;
 
   h5 {
     display: inline;
@@ -118,12 +118,5 @@ h5 {
     vertical-align: bottom;
     border-radius: 50%;
     margin: 0px;
-  }
-
-  &:hover {
-    background-color: rgba(darken($color-secondary, 25%),0.5);
-  }
-  &:active {
-    background-color: rgba(darken($color-secondary, 27%),0.5);
   }
 }

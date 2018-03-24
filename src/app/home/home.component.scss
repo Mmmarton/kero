@@ -1,7 +1,85 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+$logo-drop-color: rgba($color-dark, 0.92);
+
 .promo-container {
-  padding: 200px;
+  position: relative;
+  padding: 100px;
   width: auto;
   height: 100vh;
-  background-image: url("/assets/img/170388.jpg");
+  background-image: url("/assets/img/homescreen.jpg");
   background-size: cover;
+}
+
+.motto-container {
+  margin-top: 5%;
+  display: inline-block;
+  background-color: $logo-drop-color;
+  @include box_shadow(22vw, 25vw, $logo-drop-color);
+  h1 {
+    font-size: 8em;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 3em;
+    font-weight: bold;
+    display: inline;
+    padding: 0.1em;
+    cursor: pointer;
+  }
+  .meet {
+    color: $color-secondary;
+  }
+  .share {
+    color: $color-quaternary;
+  }
+  .build {
+    color: $color-tertiary;
+  }
+  .logo {
+    width: 20vw;
+    height: auto;
+    margin-right: 5%;
+  }
+}
+
+.meet-container {
+  background-color: rgba(darken($color-secondary, 10%), 0.8);
+}
+
+.share-container {
+  background-color: rgba($color-quaternary, 0.8);
+}
+
+.build-container {
+  background-color: rgba(darken($color-tertiary, 10%), 0.8);
+}
+
+.scroller {
+  width: calc(100vw + 26px);
+  height: 100vh;
+  // white-space: nowrap;
+  overflow-y: hidden;
+  overflow: auto;
+
+  // scroll-snap-type: mandatory;
+  // scroll-snap-destination: 0% 100%;
+  // scroll-snap-points-y: repeat(100%);
+
+  // -webkit-scroll-snap-type: mandatory;
+  // -webkit-scroll-snap-destination: 0% 100%;
+  // -webkit-scroll-snap-points-y: repeat(100%);
+}
+
+.page {
+  text-align: center;
+  vertical-align: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+  // scroll-snap-align: start;
 }

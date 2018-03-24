@@ -1,2 +1,22 @@
-<div class="promo-container">      
+<div class="scroller" #scroller>
+  <div class="page promo-container">
+    <div class="motto-container">
+      <object class="logo" type="image/svg+xml" data="./assets/img/logo.svg">
+        ooOo
+      </object>
+      <h1>Kéro</h1>
+      <h2 [ngx-scroll-to]="'meet'" [ngx-scroll-to-easing]="ngxScrollToEasing" class="meet">Meet.</h2>
+      <h2 [ngx-scroll-to]="'share'" class="share">Share.</h2>
+      <h2 [ngx-scroll-to]="'build'" class="build">Build.</h2>
+    </div>
+  </div>
+  <div id="meet" class="page meet-container">
+    <h2>Meet.</h2>
+  </div>
+  <div id="share" class="page share-container">
+    <h2 class="accent">Share.</h2>
+  </div>
+  <div id="build" class="page build-container">
+    <h2>Build.</h2>
+  </div>
 </div>

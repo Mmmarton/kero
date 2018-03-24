@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScrollToAnimationEasing } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  public ngxScrollToEasing: ScrollToAnimationEasing;
+
   ngOnInit() {
+    this.ngxScrollToEasing = "easeOutQuint";
   }
 
 }

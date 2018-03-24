@@ -13,6 +13,7 @@ import { CookieModule } from 'ngx-cookie';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { InViewportModule } from 'ng-in-viewport';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -90,7 +91,8 @@ import { SnackbarService } from './snackbar/snackbar.service';
     HttpClientModule,
     ReactiveFormsModule,
     InViewportModule.forRoot(),
-    MatSnackBarModule
+    MatSnackBarModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     AuthService,

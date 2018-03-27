@@ -89,6 +89,7 @@ export class UserListing {
   email: string;
   firstName: string;
   role: string;
+  deleted: boolean;
 
   constructor(user: any) {
     this.id = user.id;

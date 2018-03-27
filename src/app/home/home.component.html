@@ -15,20 +15,20 @@
     </div>
   </div>
   <div id="meet" class="page meet-container presenting-page">
-    <h1>Meet.</h1>
-    <div class="container">
+    <h1 in-viewport [inViewportOptions]="{ partial: true }" (inViewportAction)="fadeTitle($event)">Meet.</h1>
+    <div class="container" in-viewport [inViewportOptions]="{ partial: true }" (inViewportAction)="fadeText($event)">
       <h2>
-        Join us and meet new people. Show a bit of yourself, and you will see a bit of us.
-        Let yourself go a bit, and we will get loose. If a mind may contain a whole
-        world, a community makes up an entire universe.
+        Join us and meet new people. Share a bit of yourself and we’ll share a bit of ourselves.
+        Let yourself go and we’ll loosen up.
+        <br/>If a mind may contain a whole world, a community makes up an entire universe.
       </h2>
     </div>
   </div>
   <div id="share" class="page share-container presenting-page">
-    <h1>Share.</h1>
-    <div class="container">
+    <h1 in-viewport [inViewportOptions]="{ partial: true }" (inViewportAction)="fadeTitle($event)">Share.</h1>
+    <div class="container" in-viewport [inViewportOptions]="{ partial: true }" (inViewportAction)="fadeText($event)">
       <h2>
-        Hear our stories and have a laugh. Maybe tell us the story from the other day. We're
+        Hear our stories and have a laugh. Maybe tell us a story from the other day. We're
         sure you too had some nights that you will not forget soon... Share your
         visions and we will figure out how to make this basket full of ingredients
         into a delicious dish. Trips, places, activities, you name it!
@@ -36,12 +36,12 @@
     </div>
   </div>
   <div id="build" class="page build-container presenting-page">
-    <h1>Build.</h1>
-    <div class="container">
+    <h1 in-viewport [inViewportOptions]="{ partial: true }" (inViewportAction)="fadeTitle($event)">Build.</h1>
+    <div class="container" in-viewport [inViewportOptions]="{ partial: true }" (inViewportAction)="fadeText($event)">
       <h2>
-        Brick by brick, member by member, experience by experience. A temple built on rock-solid
-        foundation carved by time and bound by friendship. This is what we build.
-        A haven for all those who wish to be part of it.
+        Brick by brick, member by member, experience by experience.
+        <br/>A temple built on rock-solid foundation, carved by time and bound by friendship.
+        This is what we build. A haven for all those who wish to be part of it.
       </h2>
     </div>
   </div>

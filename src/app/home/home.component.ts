@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ScrollToAnimationEasing, ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   private previousScrollTop;
   scrolling;
 
-  constructor(private scrollToService: ScrollToService) {
+  constructor(private scrollToService: ScrollToService, private renderer: Renderer2) {
 
   }
 
@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
     this.scrolling = true;
 
     let delta = this.previousScrollTop - event.target.scrollTop;
-    //console.log(this.previousScrollTop + " - " + event.target.scrollTop);
     this.previousScrollTop = event.target.scrollTop;
 
     let index;
@@ -42,7 +41,6 @@ export class HomeComponent implements OnInit {
     else if (delta > 0) {
       index = Math.floor(event.target.scrollTop / event.target.clientHeight);
     }
-    console.log(index);
     this.scrollTo(index, index * event.target.clientHeight);
   }
 
@@ -54,12 +52,32 @@ export class HomeComponent implements OnInit {
     this.scrollToService.scrollTo(config).subscribe(
       value => {
         if (value == Math.round(value)) {
-          Observable.timer(10).subscribe(i => {
+          Observable.timer(10).subscribe(() => {
             this.scrolling = false;
             this.previousScrollTop = position;
-          })
+          });
         }
       }
     );
+  }
+
+  fadeTitle(event) {
+    if (event.value) {
+      this.renderer.addClass(event.target, 'fade-title');
+      this.renderer.removeClass(event.target, 'hidden');
+    } else {
+      this.renderer.removeClass(event.target, 'fade-title');
+      this.renderer.addClass(event.target, 'hidden');
+    }
+  }
+
+  fadeText(event) {
+    if (event.value) {
+      this.renderer.addClass(event.target, 'fade-text');
+      this.renderer.removeClass(event.target, 'hidden');
+    } else {
+      this.renderer.removeClass(event.target, 'fade-text');
+      this.renderer.addClass(event.target, 'hidden');
+    }
   }
 }

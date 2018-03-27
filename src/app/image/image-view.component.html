@@ -1,4 +1,4 @@
-<div *ngIf="isImageShown()" class="fullscreen">
+<div *ngIf="isImageShown()" class="fullscreen" [ngClass]="shown?'fade-in':'fade-out'">
   <a (click)="close()">
     <fa class="exit-button" [name]="'times'" [size]="3"></fa>
   </a>

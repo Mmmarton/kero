@@ -14,7 +14,8 @@
   margin: 2em;
 }
 
-.event-create {
+.event-create {  
+  @include appear(0.2s, 0s);
   text-shadow: 1px 1px 5px black;
   margin: 0px;
   padding: 0px;

@@ -37,3 +37,23 @@
   max-width: 100%;
   justify-content: center;
 }
+
+@mixin appear($duration, $delay) {
+  animation: appear $duration forwards;
+  animation-delay: $delay;
+}
+
+@mixin dissapear($duration, $delay) {
+  animation: dissapear $duration forwards;
+  animation-delay: $delay;
+}
+
+@keyframes appear {
+  0%   {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes dissapear {
+  0%   {opacity: 1;}
+  100% {opacity: 0;}
+}

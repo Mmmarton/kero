@@ -5,6 +5,7 @@ export class ImageFile {
   name: string;
   preview: any;
   loaded: boolean;
+  deleted: boolean;
 
   constructor() {
     this.uploaded = false;

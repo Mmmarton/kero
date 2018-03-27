@@ -12,11 +12,11 @@
     </div>
 
     <mat-chip-list>
-      <div class="image-box" [ngClass]="{'done':isFileUploaded(i), 'failed':isFileFailed(i)}"
+      <div class="image-box" [ngClass]="{'done':isFileUploaded(i), 'failed':isFileFailed(i), 'fade-out': file?.deleted}"
         *ngFor="let file of files; let i = index">
         <mat-chip>
           <div>
-            <a class="image-remove" (click)="removeFile(i)">
+            <a class="image-remove" (click)="removeFile(file)">
               <fa [name]="'times'" [size]="1"></fa>
             </a>
             <div class='box'>

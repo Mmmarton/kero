@@ -42,6 +42,7 @@ export class ImagePreviewService {
       this.currentImageIndex = 0;
     }
     if (this.imagePreviews.length < 1) {
+      this.currentImageIndex = -1;
       return false;
     }
     return true;

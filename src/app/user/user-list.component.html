@@ -13,7 +13,7 @@
       <th>Role</th>
       <th></th>
     </tr>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of users" class="user-container" [ngClass]="{'fade-out': user?.deleted}">
       <td>
         <img class="profile-picture" [src]="user?.getPicture() | loadImage">
       </td>

@@ -4,6 +4,7 @@ import { UserDeleteComponent } from './user-delete.component';
 import { MatDialog } from '@angular/material';
 import { UserInviteComponent } from './user-invite.component';
 import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -50,7 +51,10 @@ export class UserListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(response => {
       if (response) {
-        this.users.splice(this.users.indexOf(response), 1);
+        user.deleted = true;
+        Observable.timer(200).subscribe(() => {
+          this.users.splice(this.users.indexOf(response), 1);
+        });
       }
     });
   }

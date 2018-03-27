@@ -5,6 +5,7 @@
 
 .container {
   padding-bottom: 5em;
+  @include appear(0.2s, 0s);
 }
 
 .mat-divider.mat-divider-vertical {

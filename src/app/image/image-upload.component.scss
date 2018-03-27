@@ -4,6 +4,7 @@
 @import "../../scss/spinner";
 
 .container {
+  @include appear(0.2s, 0s);
   padding: 30px 60px 30px 60px;
   .title {
     font-size: 4em;
@@ -19,6 +20,8 @@
 
 .image-box {
   margin: 0.2em;
+  opacity: 0;
+  @include appear(0.8s, 0s);
 
   a.image-remove {
     float: right;
@@ -102,4 +105,8 @@
   mat-chip {
     background-color: darken($color-tertiary, 22%);
   }
+}
+
+.fade-out {
+  @include dissapear(0.2s, 0s);
 }

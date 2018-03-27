@@ -58,6 +58,7 @@ h5 {
   margin: 1em;
   padding: 1em;
   width: 100%;
+  @include appear(0.2s, 0s);
 }
 
 .description {
@@ -74,6 +75,7 @@ h5 {
   padding: 0.2em;
   cursor: pointer;
   height: $preview-size + 0.5em;
+  @include appear(0.2s, 0s);
   
   &:hover {
     background-color: darken($color-secondary, 18%);
@@ -87,6 +89,8 @@ h5 {
     padding: 0px;
     width: auto;
     height: $preview-size;
+    object-fit: cover;
+    animation: growIn 0.2s linear forwards;
   }
 
   .loader {
@@ -99,6 +103,11 @@ h5 {
     justify-content:center;
     align-items:center;
   }
+}
+
+@keyframes growIn {
+  0%   {max-width: $preview-size; opacity:0}
+  100% {max-width: 50vw; opacity:1}
 }
 
 .author-box {

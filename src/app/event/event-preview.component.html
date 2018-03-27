@@ -1,14 +1,15 @@
-<div class="container" [routerLink]="['/event', event.id]">
+<div class="container" [routerLink]="['/event', event.id]" [ngClass]="{'appear':loaded}">
   <div class="row">
     <div class="column column-50">
       <div class='box'>
         <div class='content'>
-          <img [src]="getPreview() | loadImage" (load)="loaded = true" [hidden]="!loaded" />
+          <img [src]="getPreview() | loadImage" (load)="loaded = true"
+            [hidden]="!loaded" />
         </div>
       </div>
     </div>
     <div class="column column-50">
-      <h1>{{event.title | limit : 25}}</h1>
+      <h1>{{event.title | limit : 40}}</h1>
       <h5>{{event.date | date:'yyyy.MM.dd'}}</h5>
       <p>{{event.description | limit : 80}}</p>
     </div>

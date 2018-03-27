@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageFile } from './file.model';
 import { AuthService } from '../services/auth.service';
@@ -76,11 +76,16 @@ export class ImageUploadComponent implements OnInit {
 
   clearFiles() {
     for (let i = 0; i < this.files.length; i++) {
-      this.files[i].data = null;
-      this.files[i].preview = null;
-      this.files[i] = null;
+      this.files[i].deleted = true;
     }
-    this.files = [];
+    Observable.timer(200).subscribe(() => {
+      for (let i = 0; i < this.files.length; i++) {
+        this.files[i].data = null;
+        this.files[i].preview = null;
+        this.files[i] = null;
+      }
+      this.files = [];
+    });
   }
 
   uploadFiles() {
@@ -137,11 +142,14 @@ export class ImageUploadComponent implements OnInit {
     return this.files[index].failed;
   }
 
-  removeFile(index: number) {
-    this.files[index].data = null;
-    this.files[index].preview = null;
-    this.files[index] = null;
-    this.files.splice(index, 1);
+  removeFile(file) {
+    file.deleted = true;
+    Observable.timer(200).subscribe(() => {
+      this.files.splice(this.files.findIndex(f => f.data == file.data), 1);
+      file.data = null;
+      file.preview = null;
+      file = null;
+    });
   }
 
   back() {

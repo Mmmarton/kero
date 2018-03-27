@@ -6,15 +6,18 @@ h1 {
   margin: 0px;
   color: $color-secondary;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 h5 {
   font-weight: bold;
   color: $color-primary;
+  margin-bottom: 10px;
 }
 
 .container {
+  opacity: 0;
+  @include appear(0.2s, 0.1s);
   @include darken_style();
   @include box_shadow(7px, 1px, black);
   margin: 1em;

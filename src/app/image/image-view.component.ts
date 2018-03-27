@@ -3,6 +3,7 @@ import { ImageDeleteComponent } from './image-delete.component';
 import { MatDialog } from '@angular/material';
 import { AuthService } from '../services/auth.service';
 import { ImagePreviewService } from './image-preview.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-image-view',
@@ -27,6 +28,7 @@ export class ImageViewComponent implements OnInit {
   }
 
   loaded = false;
+  shown = true;
 
   constructor(public dialog: MatDialog,
     private imageService: ImagePreviewService,
@@ -36,7 +38,11 @@ export class ImageViewComponent implements OnInit {
   }
 
   close() {
-    this.imageService.closeCurrentImage();
+    this.shown = false;
+    Observable.timer(200).subscribe(() => {
+      this.shown = true;
+      this.imageService.closeCurrentImage();
+    });
   }
 
   isImageShown() {
@@ -61,7 +67,19 @@ export class ImageViewComponent implements OnInit {
     let dialogRef = this.dialog.open(ImageDeleteComponent);
 
     dialogRef.afterClosed().subscribe(response => {
-      if (response == "error") {
+      if (response == "deleted") {
+        if (this.imageService.imagePreviews.length == 1) {
+          this.shown = false;
+          Observable.timer(200).subscribe(() => {
+            this.shown = true;
+            this.imageService.deleteCurrentImage();
+          });
+        }
+        else {
+          this.imageService.deleteCurrentImage();
+        }
+      }
+      else if (response == "error") {
         this.close();
       }
     });

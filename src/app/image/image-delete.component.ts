@@ -30,7 +30,7 @@ export class ImageDeleteComponent implements OnInit {
     this.auth.delete("image/" + this.eventService.getCurrentEvent().id
       + "/" + this.imageService.getCurrentImage().id, 'text').subscribe(
         response => {
-          this.dialogRef.close(this.imageService.deleteCurrentImage());
+          this.dialogRef.close("deleted");
         },
         error => {
           this.auth.logoutIfNeeded(error);

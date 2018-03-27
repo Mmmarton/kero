@@ -26,6 +26,15 @@
 
 .container {
   padding-bottom: 10em;
+  @include appear(0.2s, 0s);
+}
+
+.user-container {
+  @include appear(0.2s, 0s);
+}
+
+.fade-out {
+  @include dissapear(0.2s, 0s);
 }
 
 .role-cell {

@@ -61,11 +61,6 @@ $logo-drop-color: rgba($color-dark, 0.92);
   }
 }
 
-@keyframes appear {
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
-}
-
 @keyframes bounce {
   0%   {bottom: 1em;}
   50%   {bottom: 2em;}
@@ -87,6 +82,10 @@ $logo-drop-color: rgba($color-dark, 0.92);
 .presenting-page {
   h1 {
     margin-top: 16vh;
+    opacity: 0;
+  }
+  .container {
+    opacity: 0;
   }
 }
 
@@ -108,7 +107,7 @@ $logo-drop-color: rgba($color-dark, 0.92);
   height: 100vh;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .no-scroll {
@@ -116,4 +115,12 @@ $logo-drop-color: rgba($color-dark, 0.92);
   position: fixed;
   width: 100%;
   height: 100%;
+}
+
+.fade-title {
+  @include appear(1s, 0.2s);
+}
+
+.fade-text {
+  @include appear(0.8s, 0.4s);
 }

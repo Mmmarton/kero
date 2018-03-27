@@ -41,5 +41,6 @@ export class EventPreviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.alive = false;
+    this.event.dispose();
   }
 }

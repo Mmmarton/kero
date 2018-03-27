@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User, UserListing } from './user.model';
 import { UserDeleteComponent } from './user-delete.component';
 import { MatDialog } from '@angular/material';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnDestroy {
 
   users: UserListing[] = [];
   roles = ["ROLE_GUEST", "ROLE_MEMBER"];
@@ -31,6 +31,11 @@ export class UserListComponent implements OnInit {
         this.auth.logoutIfNeeded(error);
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.users.forEach(user => { user.dispose(); });
+    this.users = null;
   }
 
   update(user: UserListing) {
@@ -53,7 +58,8 @@ export class UserListComponent implements OnInit {
       if (response) {
         user.deleted = true;
         Observable.timer(200).subscribe(() => {
-          this.users.splice(this.users.indexOf(response), 1);
+          let user = this.users.splice(this.users.indexOf(response), 1);
+          user[0].dispose();
         });
       }
     });

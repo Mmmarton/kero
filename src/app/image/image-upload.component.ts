@@ -80,8 +80,7 @@ export class ImageUploadComponent implements OnInit {
     }
     Observable.timer(200).subscribe(() => {
       for (let i = 0; i < this.files.length; i++) {
-        this.files[i].data = null;
-        this.files[i].preview = null;
+        this.files[i].dispose();
         this.files[i] = null;
       }
       this.files = [];
@@ -142,12 +141,11 @@ export class ImageUploadComponent implements OnInit {
     return this.files[index].failed;
   }
 
-  removeFile(file) {
+  removeFile(file: ImageFile) {
     file.deleted = true;
     Observable.timer(200).subscribe(() => {
       this.files.splice(this.files.findIndex(f => f.data == file.data), 1);
-      file.data = null;
-      file.preview = null;
+      file.dispose();
       file = null;
     });
   }

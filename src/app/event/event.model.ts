@@ -63,4 +63,11 @@ export class Event {
       this.previews = event.previews;
     }
   }
+
+  dispose() {
+    if (this.previews) {
+      this.previews.forEach(preview => { preview = null });
+      this.previews = [];
+    }
+  }
 }

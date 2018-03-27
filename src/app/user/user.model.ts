@@ -43,6 +43,17 @@ export class User {
   getPicture() {
     return this.picture ? User.pictureLink + this.picture : User.defaultPicture;
   }
+
+  dispose() {
+    this.id = null;
+    this.email = null;
+    this.firstName = null;
+    this.lastName = null;
+    this.nickname = null;
+    this.picture = null;
+    this.token = null;
+    this.role = null;
+  }
 }
 
 export class UserRegistration {
@@ -54,12 +65,27 @@ export class UserRegistration {
   inviteCode: string;
 
   constructor() { }
+
+  dispose() {
+    this.email = null;
+    this.nickname = null;
+    this.password = null;
+    this.password2 = null;
+    this.username = null;
+    this.inviteCode = null;
+  }
 }
 
 export class UserInvitation {
   id: string;
   email: string;
   firstName: string;
+
+  dispose() {
+    this.id = null;
+    this.email = null;
+    this.firstName = null;
+  }
 }
 
 export class UserUpdateModel {
@@ -82,6 +108,17 @@ export class UserUpdateModel {
     this.lastName = user.lastName;
     return this;
   }
+
+  dispose() {
+    this.id = null;
+    this.email = null;
+    this.firstName = null;
+    this.lastName = null;
+    this.nickname = null;
+    this.picture = null;
+    this.oldPassword = null;
+    this.password = null;
+  }
 }
 
 export class UserListing {
@@ -102,5 +139,14 @@ export class UserListing {
 
   getPicture() {
     return this.picture ? User.pictureLink + this.picture : User.defaultPicture;
+  }
+
+  dispose() {
+    this.id = null;
+    this.email = null;
+    this.firstName = null;
+    this.picture = null;
+    this.role = null;
+    this.deleted = null;
   }
 }

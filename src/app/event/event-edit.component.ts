@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Event } from './event.model';
 import { AuthService } from '../services/auth.service';
@@ -9,7 +9,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   templateUrl: './event-edit.component.html',
   styleUrls: ['./event-edit.component.scss']
 })
-export class EventEditComponent implements OnInit {
+export class EventEditComponent implements OnInit, OnDestroy {
 
   event: Event;
   form: FormGroup;
@@ -32,6 +32,10 @@ export class EventEditComponent implements OnInit {
       description: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]),
       date: new FormControl('', [])
     });
+  }
+
+  ngOnDestroy(): void {
+    this.event.dispose();
   }
 
   save() {

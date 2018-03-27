@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserInvitation } from './user.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -10,7 +10,7 @@ import { SnackbarService } from '../snackbar/snackbar.service';
   templateUrl: './user-invite.component.html',
   styleUrls: ['./user-invite.component.scss']
 })
-export class UserInviteComponent implements OnInit {
+export class UserInviteComponent implements OnInit, OnDestroy {
 
   user: UserInvitation;
   form: FormGroup;
@@ -32,6 +32,11 @@ export class UserInviteComponent implements OnInit {
       firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.email]),
     });
+  }
+
+  ngOnDestroy() {
+    this.user.dispose();
+    this.form = null;
   }
 
   invite() {

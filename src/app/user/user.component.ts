@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User, UserUpdateModel } from './user.model';
 import { AuthService } from '../services/auth.service';
@@ -11,7 +11,7 @@ import { SnackbarService } from '../snackbar/snackbar.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
 
   user: UserUpdateModel;
   form: FormGroup;
@@ -43,6 +43,13 @@ export class UserComponent implements OnInit {
     this.form.get('password').setValidators([Validators.minLength(12), Validators.maxLength(30),
     PasswordValidator.notEmpty(this.form.get('oldPassword'))]);
     this.form.get('password2').setValidators([PasswordValidator.matches(this.form.get('password'))]);
+  }
+
+  ngOnDestroy() {
+    this.user.dispose();
+    this.form = null;
+    this.picture = null;
+    this.imageFile = null;
   }
 
   getPicture() {

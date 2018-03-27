@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Event } from './event.model';
 import { EventService } from './event.service';
@@ -18,7 +18,7 @@ import { User } from '../user/user.model';
   templateUrl: './event-view.component.html',
   styleUrls: ['./event-view.component.scss']
 })
-export class EventViewComponent implements OnInit {
+export class EventViewComponent implements OnInit, OnDestroy {
 
   imagePreviews: ImagePreview[] = [];
   event: Event;
@@ -51,6 +51,11 @@ export class EventViewComponent implements OnInit {
         }
       );
     }
+  }
+
+  ngOnDestroy(): void {
+    this.event.dispose();
+    this.user.dispose();
   }
 
   private loadAuthor() {

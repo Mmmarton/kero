@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { MatDialogRef } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,7 +11,7 @@ import { PasswordValidator } from '../../validators/password-match.validator';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   user: UserRegistration;
@@ -36,6 +36,10 @@ export class RegisterComponent implements OnInit {
     this.form.get('password2').setValidators([PasswordValidator.matches(this.form.get('password'))]);
     this.user.email = this.route.snapshot.params.email;
     this.user.inviteCode = this.route.snapshot.params.code;
+  }
+
+  ngOnDestroy() {
+    this.user.dispose();
   }
 
   register() {

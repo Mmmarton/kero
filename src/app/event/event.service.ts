@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Event } from './event.model';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class EventService {
   }
 
   setEvents(events: any[]) {
-    this.events = [];
+    this.clearEvents();
     for (let i = 0; i < events.length; i++) {
       this.events.unshift(new Event().load(
         events[i].id,
@@ -38,5 +38,12 @@ export class EventService {
         events[i].previews.length ? events[i].previews : [Event.defaultPicture])
       );
     }
+  }
+
+  clearEvents() {
+    for (let i = 0; i < this.events.length; i++) {
+      this.events[i].dispose();
+    }
+    this.events = [];
   }
 }

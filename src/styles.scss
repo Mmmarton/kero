@@ -107,3 +107,15 @@ button[type='submit'].danger, .button.danger {
 .hidden {
   opacity: 0;
 }
+
+*:focus {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition-delay: 9999s;
+    -webkit-transition: color 9999s ease-out, $color-secondary 9999s ease-out;
+}

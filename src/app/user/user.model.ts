@@ -12,6 +12,7 @@ export class User {
 
   constructor() {
     this.role = "GUEST";
+    this.nickname = "Noname";
   }
 
   getCopy() {

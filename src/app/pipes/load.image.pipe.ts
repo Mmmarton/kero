@@ -127,8 +127,12 @@ export class LoadImagePipe implements PipeTransform, OnDestroy {
     }
 
     private dispose() {
-        this.subscription.unsubscribe();
-        this.internalSubscription.unsubscribe();
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+        if (this.internalSubscription) {
+            this.internalSubscription.unsubscribe();
+        }
         this.internalSubscription = null;
         this.latestValue = null;
         this.latestReturnedValue = null;

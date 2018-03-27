@@ -60,6 +60,11 @@ export class EventViewComponent implements OnInit {
       },
       error => {
         this.auth.logoutIfNeeded(error);
+        if (error.status == 400) {
+          if (error.error.message == "INVALID_USER") {
+            this.user = new User();
+          }
+        }
       }
     );
   }

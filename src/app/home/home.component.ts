@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     this.scrollTo(index, index * event.target.clientHeight);
   }
 
-  scrollTo(index, position) {
+  scrollTo(index, position = 0) {
     const config: ScrollToConfigOptions = {
       target: this.slides[index],
       easing: 'easeOutCubic'

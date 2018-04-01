@@ -35,7 +35,6 @@ export class UserInviteComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.user.dispose();
     this.form = null;
   }
 

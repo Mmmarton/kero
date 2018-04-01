@@ -74,7 +74,9 @@ export class AuthService {
 
   logOut(silent?: boolean) {
     this.cookies.remove("user");
-    this.user.dispose();
+    if (this.user) {
+      this.user.dispose();
+    }
     this.user = new User();
     if (!silent) {
       this.router.navigate(['/home']);

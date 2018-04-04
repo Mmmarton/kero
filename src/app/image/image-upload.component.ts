@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageFile } from './file.model';
@@ -11,11 +11,18 @@ import { MatSnackBarRef } from '@angular/material';
   templateUrl: './image-upload.component.html',
   styleUrls: ['./image-upload.component.scss']
 })
-export class ImageUploadComponent implements OnInit {
+export class ImageUploadComponent implements OnInit, OnDestroy {
+
+  private static reader = new FileReader();
+  private static canvas = document.createElement("canvas");
+  private static image = new Image();
 
   eventId: string;
   files: ImageFile[] = [];
   failures: boolean;
+
+  private continueUploads;
+  private startedUploads;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -25,10 +32,23 @@ export class ImageUploadComponent implements OnInit {
   ngOnInit() {
     this.eventId = this.route.snapshot.params.id;
     this.failures = false;
+    this.continueUploads = true;
+    this.startedUploads = false;
+  }
+
+  ngOnDestroy() {
+    this.continueUploads = false;
+    for (let i = 0; i < this.files.length; i++) {
+      if (this.files[i]) {
+        this.files[i].dispose();
+      }
+    }
+    this.files = null;
   }
 
   getFiles(event) {
     if (event.target.files && event.target.files[0]) {
+      this.continueUploads = true;
       for (let i = 0; i < event.target.files.length; i++) {
         if (event.target.files[i].type.substring(0, 5) == "image") {
           let file = new ImageFile();
@@ -43,8 +63,8 @@ export class ImageUploadComponent implements OnInit {
 
   resizeImage(url, width, height, index) {
     let file = this.files[index];
-    let image = new Image();
-    let canvas = document.createElement("canvas");
+    let image = ImageUploadComponent.image;
+    let canvas = ImageUploadComponent.canvas;
     image.onload = () => {
       let scale = 150 / Math.max(image.width, image.height);
       canvas.width = image.width * scale;
@@ -54,7 +74,9 @@ export class ImageUploadComponent implements OnInit {
         return;
       }
       file.preview = canvas.toDataURL('image/jpeg', 1);
-      this.loadPreview(index + 1);
+      if (this.continueUploads) {
+        this.loadPreview(index + 1);
+      }
       canvas = null;
       image = null;
     }
@@ -66,15 +88,15 @@ export class ImageUploadComponent implements OnInit {
       return;
     }
     let file = this.files[index];
-    var reader = new FileReader();
-    reader.onload = (event: any) => {
+    ImageUploadComponent.reader.onload = (event: any) => {
       this.resizeImage(event.target.result, 150, 150, index);
     }
-    reader.readAsDataURL(file.data);
-    reader = null;
+    ImageUploadComponent.reader.readAsDataURL(file.data);
   }
 
   clearFiles() {
+    this.continueUploads = false;
+    this.startedUploads = false;
     for (let i = 0; i < this.files.length; i++) {
       this.files[i].deleted = true;
     }
@@ -88,6 +110,7 @@ export class ImageUploadComponent implements OnInit {
   }
 
   uploadFiles() {
+    this.startedUploads = true;
     for (let i = 0; i < this.files.length; i++) {
       this.files[i].failed = false;
     }
@@ -96,6 +119,9 @@ export class ImageUploadComponent implements OnInit {
   }
 
   private uploadFile(index: number) {
+    if (!this.continueUploads) {
+      return;
+    }
     if (index == this.files.length) {
       if (!this.failures) {
         let snackBarRef = this.snackbarService.showMessage("All images uploaded.", "success");
@@ -127,6 +153,10 @@ export class ImageUploadComponent implements OnInit {
         this.uploadFile(index + 1);
       }
     );
+  }
+
+  canUpload() {
+    return this.isFileListEmpty() && !this.startedUploads;
   }
 
   isFileListEmpty() {

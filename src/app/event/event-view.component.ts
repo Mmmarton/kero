@@ -54,8 +54,12 @@ export class EventViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.event.dispose();
-    this.user.dispose();
+    if (this.event) {
+      this.event.dispose();
+    }
+    if (this.user) {
+      this.user.dispose();
+    }
   }
 
   private loadAuthor() {

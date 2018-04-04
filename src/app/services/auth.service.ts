@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
 
-  private api = "http://localhost:8080/api/";
+  private api = "api/";
   private user: User;
   private expirationDate: Date = new Date(Date.now() + (1000 * 60 * 60 * 24 * 10));
 

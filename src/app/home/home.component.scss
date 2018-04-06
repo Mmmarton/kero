@@ -54,7 +54,7 @@ $logo-drop-color: rgba($color-dark, 0.92);
   .down-arrow {
     opacity: 0;
     animation: appear 3s forwards, bounce 2s infinite;
-    animation-delay: 8s, 8s;
+    animation-delay: 4s, 4s;
     position: absolute;
     bottom: 1em;
     left: calc(50vw - 2em);

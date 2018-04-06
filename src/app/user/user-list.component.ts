@@ -13,13 +13,14 @@ import { Observable } from 'rxjs';
 })
 export class UserListComponent implements OnInit, OnDestroy {
 
-  users: UserListing[] = [];
+  users: UserListing[];
   roles = ["ROLE_GUEST", "ROLE_MEMBER"];
   waiting = false;
 
   constructor(public dialog: MatDialog, private auth: AuthService) { }
 
   ngOnInit() {
+    this.users = [];
     this.auth.get("user/list").subscribe(
       response => {
         for (let i = 0; i < response.length; i++) {

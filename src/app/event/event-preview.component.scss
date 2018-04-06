@@ -1,6 +1,7 @@
 @import "../../scss/colors";
 @import "../../scss/mixins";
 @import "../../scss/boxing";
+@import "../../scss/spinner";
 
 h1 {
   margin: 0px;
@@ -16,8 +17,6 @@ h5 {
 }
 
 .container {
-  opacity: 0;
-  @include appear(0.2s, 0.1s);
   @include darken_style();
   @include box_shadow(7px, 1px, black);
   margin: 1em;

@@ -1,5 +1,5 @@
 <div class="container">
-  <form (submit)="update()" [formGroup]="form">
+  <form (submit)="update()" [formGroup]="form" autocomplete="off">
     <div class="row">
       <div class="column column-20 column-offset-10 imageColumn">
         <div class='box'>
@@ -17,31 +17,34 @@
       <mat-divider [vertical]="true"></mat-divider>
       <div class="column column-50 infos">
         <mat-form-field>
-          <input matInput type="text" [(ngModel)]="user.email" readonly placeholder="Email"
-            formControlName="email">
+          <input matInput type="text" autocomplete="off" [(ngModel)]="user.email" readonly
+            placeholder="Email" formControlName="email">
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="text" [(ngModel)]="user.nickname" placeholder="Nickname" formControlName="nickname">
+          <input matInput type="text" autocomplete="off" [(ngModel)]="user.nickname" placeholder="Nickname"
+            formControlName="nickname">
           <mat-error *ngIf="!form.controls.nickname.valid && form.controls.nickname.dirty">
             Nickname length must be between 3 and 20 characters.
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="text" [(ngModel)]="user.firstName" placeholder="Firstname"
+          <input matInput type="text" autocomplete="off" [(ngModel)]="user.firstName" placeholder="Firstname"
             formControlName="firstName">
           <mat-error *ngIf="!form.controls.firstName.valid && form.controls.firstName.dirty">
             Fisrtname length must be between 3 and 30 characters.
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="text" [(ngModel)]="user.lastName" placeholder="Lastname" formControlName="lastName">
+          <input matInput type="text" autocomplete="off" [(ngModel)]="user.lastName" placeholder="Lastname"
+            formControlName="lastName">
           <mat-error *ngIf="!form.controls.lastName.valid && form.controls.lastName.dirty">
             Lastname length must be length between 3 and 30 characters.
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="password" [(ngModel)]="user.oldPassword" placeholder="Old password"
-            formControlName="oldPassword">
+          <input type="password" style="display:none;" name="password">
+          <input matInput type="password" autocomplete="off" [(ngModel)]="user.oldPassword"
+            placeholder="Old password" formControlName="oldPassword">
           <mat-error *ngIf="(!form.get('oldPassword').getError('notEmpty')) && form.controls.oldPassword.dirty && !error">
             Old password length must be between 12 and 30 characters.
           </mat-error>
@@ -53,8 +56,8 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="password" [(ngModel)]="user.password" (input)="check()" placeholder="New password"
-            formControlName="password">
+          <input matInput type="password" autocomplete="off" [(ngModel)]="user.password" (input)="check()"
+            placeholder="New password" formControlName="password">
           <mat-error *ngIf="(!form.get('password').getError('notEmpty')) && form.controls.password.dirty">
             New password length must be between 12 and 30 characters.
           </mat-error>
@@ -63,7 +66,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="password" [(ngModel)]="password2" placeholder="Repeat password"
+          <input matInput type="password" autocomplete="off" [(ngModel)]="password2" placeholder="Repeat password"
             formControlName="password2">
           <mat-error *ngIf="!form.controls.password2.valid && form.controls.password2.dirty">
             Passwords do not match.

@@ -3,8 +3,10 @@
     <div class="column column-50">
       <div class='box'>
         <div class='content'>
-          <img [src]="getPreview() | loadImage" (load)="loaded = true"
-            [hidden]="!loaded" />
+          <img [src]="getPreview() | loadImage" (load)="loaded = true" [hidden]="!loaded" />
+          <div class="loader" *ngIf="!loaded">
+            <div class="spinner"></div>
+          </div>
         </div>
       </div>
     </div>

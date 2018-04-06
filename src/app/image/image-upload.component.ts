@@ -18,11 +18,12 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
   private static image = new Image();
 
   eventId: string;
-  files: ImageFile[] = [];
+  files: ImageFile[];
   failures: boolean;
 
   private continueUploads;
   private startedUploads;
+  private previewsAreLoading;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -30,10 +31,12 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
     private snackbarService: SnackbarService) { }
 
   ngOnInit() {
+    this.files = [];
     this.eventId = this.route.snapshot.params.id;
     this.failures = false;
     this.continueUploads = true;
     this.startedUploads = false;
+    this.previewsAreLoading = false;
   }
 
   ngOnDestroy() {
@@ -49,6 +52,7 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
   getFiles(event) {
     if (event.target.files && event.target.files[0]) {
       this.continueUploads = true;
+      let lastIndex = this.files.length;
       for (let i = 0; i < event.target.files.length; i++) {
         if (event.target.files[i].type.substring(0, 5) == "image") {
           let file = new ImageFile();
@@ -57,11 +61,18 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
           this.files.push(file);
         }
       }
-      this.loadPreview(0);
+      if (!this.previewsAreLoading) {
+        this.loadPreview(lastIndex);
+        this.previewsAreLoading = true;
+      }
     }
   }
 
   resizeImage(url, width, height, index) {
+    if (!this.continueUploads) {
+      this.previewsAreLoading = false;
+      return;
+    }
     let file = this.files[index];
     let image = ImageUploadComponent.image;
     let canvas = ImageUploadComponent.canvas;
@@ -74,9 +85,7 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
         return;
       }
       file.preview = canvas.toDataURL('image/jpeg', 1);
-      if (this.continueUploads) {
-        this.loadPreview(index + 1);
-      }
+      this.loadPreview(index + 1);
       canvas = null;
       image = null;
     }
@@ -84,7 +93,8 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
   }
 
   loadPreview(index: number) {
-    if (index == this.files.length) {
+    if (!this.continueUploads || index == this.files.length) {
+      this.previewsAreLoading = false;
       return;
     }
     let file = this.files[index];
@@ -155,8 +165,8 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
     );
   }
 
-  canUpload() {
-    return this.isFileListEmpty() && !this.startedUploads;
+  isUploadDisabled() {
+    return this.isFileListEmpty() || this.startedUploads;
   }
 
   isFileListEmpty() {

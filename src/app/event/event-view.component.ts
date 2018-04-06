@@ -20,7 +20,7 @@ import { User } from '../user/user.model';
 })
 export class EventViewComponent implements OnInit, OnDestroy {
 
-  imagePreviews: ImagePreview[] = [];
+  imagePreviews: ImagePreview[];
   event: Event;
   user: User;
 
@@ -32,6 +32,7 @@ export class EventViewComponent implements OnInit, OnDestroy {
     private auth: AuthService) { }
 
   ngOnInit() {
+    this.imagePreviews = [];
     this.event = this.eventService.getEvent(this.route.snapshot.params.id);
     if (this.event) {
       this.eventService.setCurrentEvent(this.event);

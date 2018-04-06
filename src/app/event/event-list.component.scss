@@ -1,6 +1,7 @@
 @import "../../scss/mixins";
 
 .container {
+  @include appear(0.2s, 0s);
   @include flex_container();
   padding-bottom: 5em;
   &:after {
@@ -15,7 +16,6 @@
 }
 
 .event-create {  
-  @include appear(0.2s, 0s);
   text-shadow: 1px 1px 5px black;
   margin: 0px;
   padding: 0px;
